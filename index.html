@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,6 +94,15 @@ a{text-decoration:none;color:inherit}
 .btn-gold:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink)}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;flex-direction:column;gap:5px;padding:8px}
 .nav-toggle span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.25s}
+.lang-toggle{
+  display:flex;align-items:center;gap:6px;
+  background:transparent;border:1.5px solid var(--ink);border-radius:999px;
+  padding:8px 14px;cursor:pointer;font-family:var(--sans);font-size:12px;
+  font-weight:700;letter-spacing:.1em;color:var(--ink);
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+.lang-toggle:hover{background:var(--gold-soft);transform:translate(-2px,-2px);box-shadow:3px 3px 0 var(--gold)}
+.lang-toggle svg{flex-shrink:0}
 
 /* ---------- hero ---------- */
 .hero{
@@ -498,12 +507,16 @@ a{text-decoration:none;color:inherit}
       <div class="brand-name">METIS <em>CAMPUS</em></div>
     </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#inicio">INICIO</a>
-      <a href="#como-funciona">CÓMO FUNCIONA</a>
-      <a href="#plataforma">PLATAFORMA</a>
-      <a href="#plantillas">PLANTILLAS</a>
-      <a href="#" class="btn btn-nav" style="letter-spacing:.12em">REGISTRARSE</a>
+      <a href="#inicio" data-i18n="nav_home">INICIO</a>
+      <a href="#como-funciona" data-i18n="nav_how">CÓMO FUNCIONA</a>
+      <a href="#plataforma" data-i18n="nav_platform">PLATAFORMA</a>
+      <a href="#plantillas" data-i18n="nav_templates">PLANTILLAS</a>
+      <a href="#" class="btn btn-nav" style="letter-spacing:.12em" data-i18n="nav_register">REGISTRARSE</a>
     </nav>
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M2 12h20M12 2a15 15 0 014 10 15 15 0 01-4 10 15 15 0 01-4-10A15 15 0 0112 2z" stroke="currentColor" stroke-width="1.8"/></svg>
+      <span id="langLabel">EN</span>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -522,29 +535,29 @@ a{text-decoration:none;color:inherit}
 
   <div class="hero-inner">
     <div>
-      <div class="eyebrow reveal"><span class="dot"></span> PLATAFORMA EDUCATIVA CON IA · VERSIÓN 2.0 PRO</div>
-      <h1 class="reveal">Evaluaciones<br>con <span class="accent">sabiduría</span></h1>
+      <div class="eyebrow reveal"><span class="dot"></span> <span data-i18n="hero_eyebrow">PLATAFORMA EDUCATIVA CON IA · VERSIÓN 2.0 PRO</span></div>
+      <h1 class="reveal" data-i18n="hero_h1">Evaluaciones<br>con <span class="accent">sabiduría</span></h1>
       <svg class="squiggle reveal" viewBox="0 0 320 18" fill="none">
         <path d="M3 12c40-9 76-9 116-2 40 7 76 7 116-2 24-5 48-6 82-1" stroke="#C2933C" stroke-width="5" stroke-linecap="round"/>
       </svg>
-      <p class="hero-sub">Generador de exámenes inteligentes para docentes</p>
-      <p class="hero-desc">Diseña evaluaciones personalizadas alineadas al currículo escolar. Ahorra horas de preparación con nuestro motor de Inteligencia Artificial — con la experiencia de gestión que tu campus ya conoce.</p>
+      <p class="hero-sub" data-i18n="hero_sub">Generador de exámenes inteligentes para docentes</p>
+      <p class="hero-desc" data-i18n="hero_desc">Diseña evaluaciones personalizadas alineadas al currículo escolar. Ahorra horas de preparación con nuestro motor de Inteligencia Artificial — con la experiencia de gestión que tu campus ya conoce.</p>
       <div class="hero-cta">
-        <a href="#" class="btn btn-dark">Comenzar Gratis
+        <a href="#" class="btn btn-dark" data-i18n="cta_start">Comenzar Gratis
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#como-funciona" class="btn btn-ghost">Ver Demostración</a>
+        <a href="#como-funciona" class="btn btn-ghost" data-i18n="cta_demo">Ver Demostración</a>
       </div>
       <div class="hero-trust">
-        <span>
+        <span data-i18n="trust_canvas">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#A87B2C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Compatible con Canvas LMS
         </span>
-        <span>
+        <span data-i18n="trust_export">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#A87B2C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Exporta a PDF · Word · LMS
         </span>
-        <span>
+        <span data-i18n="trust_free">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#A87B2C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Sin tarjeta de crédito
         </span>
@@ -556,10 +569,10 @@ a{text-decoration:none;color:inherit}
       <div class="art-halo"></div>
       <div class="art-ring"></div>
       <div class="avatar-wrap float-a">
-        <img src="avatar.png" alt="Metis, la guía de METIS CAMPUS — ilustración de una estudiante con corona de laurel dorada, su lechuza y sus libros">
+        <img src="avatar.png" data-i18n-alt="alt_avatar" alt="Metis, la guía de METIS CAMPUS — ilustración de una estudiante con corona de laurel dorada, su lechuza y sus libros">
       </div>
-      <div class="art-badge b1 float-b"><b>10 s</b>PARA GENERAR<br>UN EXAMEN</div>
-      <div class="art-badge b2 float-a"><b>+100</b>PLANTILLAS<br>LISTAS</div>
+      <div class="art-badge b1 float-b"><b>10 s</b><span data-i18n="badge_generate">PARA GENERAR<br>UN EXAMEN</span></div>
+      <div class="art-badge b2 float-a"><b>+100</b><span data-i18n="badge_templates">PLANTILLAS<br>LISTAS</span></div>
       <svg class="sparkle twinkle" style="top:14%;right:12%" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z" fill="#C2933C"/></svg>
       <svg class="sparkle float-b" style="bottom:8%;left:14%" width="20" height="20" viewBox="0 0 24 24"><path d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z" fill="#E0A45C"/></svg>
     </div>
@@ -568,7 +581,7 @@ a{text-decoration:none;color:inherit}
 
 <!-- ============ MARQUEE ============ -->
 <div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
+  <div class="marquee-track" data-i18n="marquee">
     <span>SABIDURÍA CLÁSICA</span><span>INTELIGENCIA ARTIFICIAL</span><span>CANVAS-READY</span><span>MÓDULOS</span><span>TAREAS</span><span>CALIFICACIONES</span><span>RUBRICS</span><span>ANALÍTICAS</span>
     <span>SABIDURÍA CLÁSICA</span><span>INTELIGENCIA ARTIFICIAL</span><span>CANVAS-READY</span><span>MÓDULOS</span><span>TAREAS</span><span>CALIFICACIONES</span><span>RUBRICS</span><span>ANALÍTICAS</span>
   </div>
@@ -578,9 +591,9 @@ a{text-decoration:none;color:inherit}
 <section class="section product" id="como-funciona">
   <div class="section-inner">
     <div class="section-head reveal">
-      <div class="kicker">LA PLATAFORMA</div>
-      <h2>Crea exámenes profesionales <em>en pocos minutos</em></h2>
-      <p>Sube tus materiales, deja que la IA diseñe las preguntas y publica en tu LMS. Todo el flujo, en una sola superficie cálida y clara.</p>
+      <div class="kicker" data-i18n="product_kicker">LA PLATAFORMA</div>
+      <h2 data-i18n="product_h2">Crea exámenes profesionales <em>en pocos minutos</em></h2>
+      <p data-i18n="product_desc">Sube tus materiales, deja que la IA diseñe las preguntas y publica en tu LMS. Todo el flujo, en una sola superficie cálida y clara.</p>
     </div>
 
     <div class="browser reveal">
@@ -590,16 +603,16 @@ a{text-decoration:none;color:inherit}
       </div>
       <div class="browser-body">
         <div>
-          <div class="eyebrow" style="margin-bottom:18px"><span class="dot"></span> PLATAFORMA DE EVALUACIÓN IA</div>
-          <h2>Crea exámenes profesionales<br><em>en pocos minutos</em></h2>
-          <p class="desc">Diseña evaluaciones personalizadas alineadas al currículo escolar. Ahorra horas de preparación con nuestro motor de Inteligencia Artificial para profesores.</p>
+          <div class="eyebrow" style="margin-bottom:18px"><span class="dot"></span> <span data-i18n="product_badge">PLATAFORMA DE EVALUACIÓN IA</span></div>
+          <h2 data-i18n="product_body_h2">Crea exámenes profesionales<br><em>en pocos minutos</em></h2>
+          <p class="desc" data-i18n="product_body_desc">Diseña evaluaciones personalizadas alineadas al currículo escolar. Ahorra horas de preparación con nuestro motor de Inteligencia Artificial para profesores.</p>
           <div class="browser-btns">
-            <a href="#" class="btn btn-dark">Comenzar Gratis</a>
-            <a href="#" class="btn btn-ghost">Ver Demostración</a>
+            <a href="#" class="btn btn-dark" data-i18n="cta_start">Comenzar Gratis</a>
+            <a href="#" class="btn btn-ghost" data-i18n="cta_demo">Ver Demostración</a>
           </div>
         </div>
         <div class="art-scene">
-          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hand-drawn%20black%20ink%20line%20art%20illustration%20of%20a%20smiling%20young%20university%20teacher%20working%20at%20a%20desk%20with%20an%20open%20laptop%2C%20floating%20exam%20papers%20and%20open%20books%20around%20her%2C%20laurel%20leaves%20and%20sparkle%20doodles%2C%20warm%20cream%20paper%20background%2C%20antique%20gold%20and%20warm%20ochre%20accents%20only%2C%20cute%20elegant%20academic%20storybook%20doodle%20style%2C%20clean%20thick%20outlines%2C%20flat%2C%20no%20text&image_size=landscape_4_3" alt="Ilustración de una docente creando exámenes con IA">
+          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hand-drawn%20black%20ink%20line%20art%20illustration%20of%20a%20smiling%20young%20university%20teacher%20working%20at%20a%20desk%20with%20an%20open%20laptop%2C%20floating%20exam%20papers%20and%20open%20books%20around%20her%2C%20laurel%20leaves%20and%20sparkle%20doodles%2C%20warm%20cream%20paper%20background%2C%20antique%20gold%20and%20warm%20ochre%20accents%20only%2C%20cute%20elegant%20academic%20storybook%20doodle%20style%2C%20clean%20thick%20outlines%2C%20flat%2C%20no%20text&image_size=landscape_4_3" data-i18n-alt="alt_teacher" alt="Ilustración de una docente creando exámenes con IA">
         </div>
       </div>
     </div>
@@ -610,20 +623,20 @@ a{text-decoration:none;color:inherit}
 <section class="section canvas-sec" id="plataforma">
   <div class="section-inner canvas-grid">
     <div class="canvas-copy reveal">
-      <div class="kicker" style="justify-content:flex-start">PARA TU CAMPUS</div>
-      <h2>Si conoces Canvas,<br>ya conoces <em>METIS</em></h2>
-      <p>Replicamos la funcionalidad que tu institución ya domina: cursos, módulos, tareas, calificaciones y calendario — con los mismos nombres y flujos que tu equipo usa hoy.</p>
-      <p>La diferencia está en la superficie: moderna, cálida y potenciada con IA. La migración es invisible para tus docentes; la adopción, inmediata.</p>
+      <div class="kicker" style="justify-content:flex-start" data-i18n="canvas_kicker">PARA TU CAMPUS</div>
+      <h2 data-i18n="canvas_h2">Si conoces Canvas,<br>ya conoces <em>METIS</em></h2>
+      <p data-i18n="canvas_p1">Replicamos la funcionalidad que tu institución ya domina: cursos, módulos, tareas, calificaciones y calendario — con los mismos nombres y flujos que tu equipo usa hoy.</p>
+      <p data-i18n="canvas_p2">La diferencia está en la superficie: moderna, cálida y potenciada con IA. La migración es invisible para tus docentes; la adopción, inmediata.</p>
       <div class="pill-row">
-        <span class="pill">
+        <span class="pill" data-i18n="canvas_pill1">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v12M7 10l5 5 5-5M4 19h16" stroke="#A87B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Importa desde Canvas
         </span>
-        <span class="pill">
+        <span class="pill" data-i18n="canvas_pill2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#A87B2C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Misma terminología LMS
         </span>
-        <span class="pill">
+        <span class="pill" data-i18n="canvas_pill3">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8z" fill="#C2933C"/></svg>
           Potenciado con IA
         </span>
@@ -632,53 +645,53 @@ a{text-decoration:none;color:inherit}
 
     <div class="lms-card reveal">
       <div class="lms-top">
-        <b>METIS · Panel del curso</b>
+        <b data-i18n="lms_panel">METIS · Panel del curso</b>
         <div class="lms-user">M</div>
       </div>
       <div class="lms-body">
         <nav class="lms-side">
-          <a class="active" href="#">
+          <a class="active" href="#" data-i18n="lms_courses">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 9h16M9 9v10" stroke="#E9D9AE" stroke-width="1.8"/></svg>
             Cursos
           </a>
-          <a href="#">
+          <a href="#" data-i18n="lms_modules">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 6h14M5 12h14M5 18h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             Módulos
           </a>
-          <a href="#">
+          <a href="#" data-i18n="lms_assignments">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 10l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Tareas
           </a>
-          <a href="#">
+          <a href="#" data-i18n="lms_grades">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 19V9M12 19V5M19 19v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             Calificaciones
           </a>
-          <a href="#">
+          <a href="#" data-i18n="lms_calendar">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             Calendario
           </a>
-          <a href="#">
+          <a href="#" data-i18n="lms_people">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="9" r="3.2" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 19c.7-2.8 2.9-4.3 5.5-4.3s4.8 1.5 5.5 4.3M15 7.5h5M15 11h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             Personas
           </a>
         </nav>
         <div class="lms-main">
-          <h4>Química Básica · 3.º Trimestre</h4>
+          <h4 data-i18n="lms_course_title">Química Básica · 3.º Trimestre</h4>
           <div class="course-row">
             <div class="course-chip">
-              <small>MÓDULO 1</small>
+              <small data-i18n="module1_label">MÓDULO 1</small>
               <div class="bar" style="width:82%"></div>
-              <p>Estructura atómica</p>
+              <p data-i18n="module1_title">Estructura atómica</p>
             </div>
             <div class="course-chip">
-              <small>MÓDULO 2</small>
+              <small data-i18n="module2_label">MÓDULO 2</small>
               <div class="bar" style="width:64%"></div>
-              <p>Enlace químico</p>
+              <p data-i18n="module2_title">Enlace químico</p>
             </div>
             <div class="course-chip">
-              <small>MÓDULO 3</small>
+              <small data-i18n="module3_label">MÓDULO 3</small>
               <div class="bar" style="width:30%"></div>
-              <p>Estequiometría</p>
+              <p data-i18n="module3_title">Estequiometría</p>
             </div>
           </div>
           <div class="assign-list">
@@ -686,17 +699,17 @@ a{text-decoration:none;color:inherit}
               <div class="tick done">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#E9D9AE" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <span>Examen Parcial — Enlace químico</span>
-              <time>CALIFICADO</time>
+              <span data-i18n="assign1">Examen Parcial — Enlace químico</span>
+              <time data-i18n="assign1_status">CALIFICADO</time>
             </div>
             <div class="assign-item">
               <div class="tick"></div>
-              <span>Taller — Tabla periódica</span>
+              <span data-i18n="assign2">Taller — Tabla periódica</span>
               <time>12 OCT</time>
             </div>
             <div class="assign-item">
               <div class="tick"></div>
-              <span>Examen Final — Generado con IA</span>
+              <span data-i18n="assign3">Examen Final — Generado con IA</span>
               <time>20 OCT</time>
             </div>
           </div>
@@ -710,9 +723,9 @@ a{text-decoration:none;color:inherit}
 <section class="section features" id="plantillas">
   <div class="section-inner">
     <div class="section-head reveal">
-      <div class="kicker">CARACTERÍSTICAS</div>
-      <h2>Todo lo que necesitas,<br><em>sin la complejidad</em></h2>
-      <p>Herramientas de generación, edición y gestión diseñadas alrededor de un principio: que cada docente se sienta experto desde el primer minuto.</p>
+      <div class="kicker" data-i18n="features_kicker">CARACTERÍSTICAS</div>
+      <h2 data-i18n="features_h2">Todo lo que necesitas,<br><em>sin la complejidad</em></h2>
+      <p data-i18n="features_desc">Herramientas de generación, edición y gestión diseñadas alrededor de un principio: que cada docente se sienta experto desde el primer minuto.</p>
     </div>
 
     <div class="feature-grid">
@@ -721,8 +734,8 @@ a{text-decoration:none;color:inherit}
         <div class="feature-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z" stroke="#221B10" stroke-width="1.8" stroke-linejoin="round"/><path d="M18.5 16l.7 2.2 2.3.8-2.3.8-.7 2.2-.7-2.2-2.3-.8 2.3-.8z" fill="#221B10"/></svg>
         </div>
-        <h3>IA Generativa</h3>
-        <p>Genera preguntas personalizadas basadas en tus materiales de estudio con inteligencia artificial avanzada.</p>
+        <h3 data-i18n="feat1_title">IA Generativa</h3>
+        <p data-i18n="feat1_desc">Genera preguntas personalizadas basadas en tus materiales de estudio con inteligencia artificial avanzada.</p>
       </div>
 
       <div class="feature-card reveal">
@@ -730,8 +743,8 @@ a{text-decoration:none;color:inherit}
         <div class="feature-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="12" height="15" rx="2" stroke="#221B10" stroke-width="1.8"/><path d="M8 21h10a2 2 0 002-2V8" stroke="#221B10" stroke-width="1.8" stroke-linecap="round"/><path d="M7 7h6M7 10.5h6M7 14h4" stroke="#221B10" stroke-width="1.6" stroke-linecap="round"/></svg>
         </div>
-        <h3>+100 Plantillas</h3>
-        <p>Más de 100 plantillas de evaluaciones listas para usar en diversas materias y niveles educativos.</p>
+        <h3 data-i18n="feat2_title">+100 Plantillas</h3>
+        <p data-i18n="feat2_desc">Más de 100 plantillas de evaluaciones listas para usar en diversas materias y niveles educativos.</p>
       </div>
 
       <div class="feature-card reveal">
@@ -739,8 +752,8 @@ a{text-decoration:none;color:inherit}
         <div class="feature-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M14.5 5.5l4 4L9 19H5v-4z" stroke="#221B10" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 7l4 4" stroke="#221B10" stroke-width="1.8"/><path d="M4 21h16" stroke="#221B10" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Editor Inteligente</h3>
-        <p>Edita y personaliza cada pregunta con un editor avanzado que sugiere mejoras automáticamente.</p>
+        <h3 data-i18n="feat3_title">Editor Inteligente</h3>
+        <p data-i18n="feat3_desc">Edita y personaliza cada pregunta con un editor avanzado que sugiere mejoras automáticamente.</p>
       </div>
 
       <div class="feature-card reveal">
@@ -748,8 +761,8 @@ a{text-decoration:none;color:inherit}
         <div class="feature-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#221B10" stroke-width="1.8"/><path d="M16 16l4.5 4.5" stroke="#221B10" stroke-width="1.8" stroke-linecap="round"/><path d="M8.5 11l1.8 1.8 3.2-3.4" stroke="#221B10" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-        <h3>Fuentes Verificables</h3>
-        <p>Sistema de verificación de fuentes con citas académicas y referencias verificables en cada pregunta.</p>
+        <h3 data-i18n="feat4_title">Fuentes Verificables</h3>
+        <p data-i18n="feat4_desc">Sistema de verificación de fuentes con citas académicas y referencias verificables en cada pregunta.</p>
       </div>
 
       <div class="feature-card reveal">
@@ -757,8 +770,8 @@ a{text-decoration:none;color:inherit}
         <div class="feature-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 15V4M8 8l4-4 4 4" stroke="#221B10" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13v5a2 2 0 002 2h10a2 2 0 002-2v-5" stroke="#221B10" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Exportación Total</h3>
-        <p>Exportación a múltiples formatos: PDF, Word y compatibilidad directa con plataformas LMS como Canvas.</p>
+        <h3 data-i18n="feat5_title">Exportación Total</h3>
+        <p data-i18n="feat5_desc">Exportación a múltiples formatos: PDF, Word y compatibilidad directa con plataformas LMS como Canvas.</p>
       </div>
 
       <div class="feature-card reveal">
@@ -766,8 +779,8 @@ a{text-decoration:none;color:inherit}
         <div class="feature-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 19V10M12 19V5M19 19v-6" stroke="#221B10" stroke-width="2" stroke-linecap="round"/><path d="M3 21h18" stroke="#221B10" stroke-width="1.8" stroke-linecap="round"/></svg>
         </div>
-        <h3>Analíticas de Aula</h3>
-        <p>Visualiza el desempeño por estudiante, pregunta y módulo. Detecta brechas de aprendizaje en tiempo real.</p>
+        <h3 data-i18n="feat6_title">Analíticas de Aula</h3>
+        <p data-i18n="feat6_desc">Visualiza el desempeño por estudiante, pregunta y módulo. Detecta brechas de aprendizaje en tiempo real.</p>
       </div>
     </div>
   </div>
@@ -777,37 +790,37 @@ a{text-decoration:none;color:inherit}
 <section class="section steps">
   <div class="section-inner">
     <div class="section-head reveal">
-      <div class="kicker">CÓMO FUNCIONA</div>
-      <h2>Tres pasos. <em>Un examen perfecto.</em></h2>
-      <p>El flujo completo, de tus materiales a la publicación, sin fricción.</p>
+      <div class="kicker" data-i18n="steps_kicker">CÓMO FUNCIONA</div>
+      <h2 data-i18n="steps_h2">Tres pasos. <em>Un examen perfecto.</em></h2>
+      <p data-i18n="steps_desc">El flujo completo, de tus materiales a la publicación, sin fricción.</p>
     </div>
 
     <div class="step-grid">
       <div class="step reveal">
         <div class="step-num">1</div>
-        <h3>Sube tus materiales</h3>
-        <p>Arrastra tus apuntes, PDFs y documentos. METIS entiende tu contenido y tu currículo.</p>
+        <h3 data-i18n="step1_title">Sube tus materiales</h3>
+        <p data-i18n="step1_desc">Arrastra tus apuntes, PDFs y documentos. METIS entiende tu contenido y tu currículo.</p>
         <ul>
-          <li>PDFs, apuntes y documentos</li>
-          <li>Alineación automática al currículo</li>
+          <li data-i18n="step1_li1">PDFs, apuntes y documentos</li>
+          <li data-i18n="step1_li2">Alineación automática al currículo</li>
         </ul>
       </div>
       <div class="step reveal">
         <div class="step-num">2</div>
-        <h3>La IA genera preguntas</h3>
-        <p>El motor diseña preguntas adaptables a tu contenido y al nivel de tus estudiantes.</p>
+        <h3 data-i18n="step2_title">La IA genera preguntas</h3>
+        <p data-i18n="step2_desc">El motor diseña preguntas adaptables a tu contenido y al nivel de tus estudiantes.</p>
         <ul>
-          <li>Preguntas adaptables por nivel</li>
-          <li>Citas y fuentes verificables</li>
+          <li data-i18n="step2_li1">Preguntas adaptables por nivel</li>
+          <li data-i18n="step2_li2">Citas y fuentes verificables</li>
         </ul>
       </div>
       <div class="step reveal">
         <div class="step-num">3</div>
-        <h3>Revisa, edita y aprueba</h3>
-        <p>Cada pregunta pasa por tu criterio antes de publicarse. Tú tienes la última palabra.</p>
+        <h3 data-i18n="step3_title">Revisa, edita y aprueba</h3>
+        <p data-i18n="step3_desc">Cada pregunta pasa por tu criterio antes de publicarse. Tú tienes la última palabra.</p>
         <ul>
-          <li>Editor con sugerencias inteligentes</li>
-          <li>Publica en tu LMS en un clic</li>
+          <li data-i18n="step3_li1">Editor con sugerencias inteligentes</li>
+          <li data-i18n="step3_li2">Publica en tu LMS en un clic</li>
         </ul>
       </div>
     </div>
@@ -820,8 +833,8 @@ a{text-decoration:none;color:inherit}
     <div class="exam-card reveal">
       <div class="exam-head">
         <div>
-          <h4>Química Básica</h4>
-          <p>EXAMEN PARCIAL — 10 PREGUNTAS</p>
+          <h4 data-i18n="exam_title">Química Básica</h4>
+          <p data-i18n="exam_subtitle">EXAMEN PARCIAL — 10 PREGUNTAS</p>
         </div>
         <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
           <path d="M12 2.5c-3 2.2-4.6 5-4.6 8.1 0 3.4 2 6.4 4.6 8.9 2.6-2.5 4.6-5.5 4.6-8.9 0-3.1-1.6-5.9-4.6-8.1z" stroke="#C2933C" stroke-width="1.5" stroke-linejoin="round"/>
@@ -829,20 +842,20 @@ a{text-decoration:none;color:inherit}
         </svg>
       </div>
       <div class="exam-progress"><i></i></div>
-      <p class="exam-q">¿Cuál de los siguientes es un <em style="color:var(--gold-deep)">elemento químico</em>?</p>
-      <div class="exam-opt"><div class="radio"></div><span>Molécula</span></div>
-      <div class="exam-opt sel"><div class="radio"></div><span>Elemento químico</span></div>
-      <div class="exam-opt"><div class="radio"></div><span>Compuesto</span></div>
+      <p class="exam-q" data-i18n="exam_q">¿Cuál de los siguientes es un <em style="color:var(--gold-deep)">elemento químico</em>?</p>
+      <div class="exam-opt"><div class="radio"></div><span data-i18n="exam_opt1">Molécula</span></div>
+      <div class="exam-opt sel"><div class="radio"></div><span data-i18n="exam_opt2">Elemento químico</span></div>
+      <div class="exam-opt"><div class="radio"></div><span data-i18n="exam_opt3">Compuesto</span></div>
       <div class="exam-foot">
-        <span>PREGUNTA 3 DE 10</span>
-        <strong>1 punto</strong>
+        <span data-i18n="exam_foot_q">PREGUNTA 3 DE 10</span>
+        <strong data-i18n="exam_foot_pts">1 punto</strong>
       </div>
     </div>
 
     <div>
       <div class="section-head reveal" style="text-align:left;margin:0 0 36px">
-        <div class="kicker" style="justify-content:flex-start">DISEÑO CON INTENCIÓN</div>
-        <h2>Precisión académica,<br><em>verificada por humanos</em></h2>
+        <div class="kicker" style="justify-content:flex-start" data-i18n="specs_kicker">DISEÑO CON INTENCIÓN</div>
+        <h2 data-i18n="specs_h2">Precisión académica,<br><em>verificada por humanos</em></h2>
       </div>
       <div class="spec-list">
         <div class="spec-item reveal">
@@ -850,8 +863,8 @@ a{text-decoration:none;color:inherit}
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z" stroke="#221B10" stroke-width="1.7" stroke-linejoin="round"/></svg>
           </div>
           <div>
-            <h4>Preguntas adaptativas</h4>
-            <p>Preguntas adaptativas basadas en el nivel del estudiante y los materiales proporcionados.</p>
+            <h4 data-i18n="spec1_title">Preguntas adaptativas</h4>
+            <p data-i18n="spec1_desc">Preguntas adaptativas basadas en el nivel del estudiante y los materiales proporcionados.</p>
           </div>
         </div>
         <div class="spec-item reveal">
@@ -859,8 +872,8 @@ a{text-decoration:none;color:inherit}
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#221B10" stroke-width="1.7"/><path d="M16 16l4.5 4.5" stroke="#221B10" stroke-width="1.7" stroke-linecap="round"/></svg>
           </div>
           <div>
-            <h4>Verificación de fuentes</h4>
-            <p>Sistema de verificación de fuentes con citas académicas y referencias verificables.</p>
+            <h4 data-i18n="spec2_title">Verificación de fuentes</h4>
+            <p data-i18n="spec2_desc">Sistema de verificación de fuentes con citas académicas y referencias verificables.</p>
           </div>
         </div>
         <div class="spec-item reveal">
@@ -868,8 +881,8 @@ a{text-decoration:none;color:inherit}
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 15V4M8 8l4-4 4 4" stroke="#221B10" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13v5a2 2 0 002 2h10a2 2 0 002-2v-5" stroke="#221B10" stroke-width="1.7" stroke-linecap="round"/></svg>
           </div>
           <div>
-            <h4>Compatibilidad total</h4>
-            <p>Exportación a múltiples formatos: PDF, Word, y compatibilidad con plataformas LMS.</p>
+            <h4 data-i18n="spec3_title">Compatibilidad total</h4>
+            <p data-i18n="spec3_desc">Exportación a múltiples formatos: PDF, Word, y compatibilidad con plataformas LMS.</p>
           </div>
         </div>
       </div>
@@ -882,21 +895,21 @@ a{text-decoration:none;color:inherit}
   <div class="cta-dots"></div>
   <div class="cta-inner">
     <div class="reveal">
-      <h2>Empieza hoy.<br>La sabiduría <em>hace el resto.</em></h2>
-      <p>Únete a los docentes que ya crean evaluaciones mejores en una fracción del tiempo. Gratis para empezar, listo para tu campus.</p>
+      <h2 data-i18n="cta_h2">Empieza hoy.<br>La sabiduría <em>hace el resto.</em></h2>
+      <p data-i18n="cta_desc">Únete a los docentes que ya crean evaluaciones mejores en una fracción del tiempo. Gratis para empezar, listo para tu campus.</p>
       <div class="cta-btns">
-        <a href="#" class="btn btn-gold">Comenzar Gratis
+        <a href="#" class="btn btn-gold" data-i18n="cta_start">Comenzar Gratis
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#" class="btn btn-ghost">Hablar con el equipo</a>
+        <a href="#" class="btn btn-ghost" data-i18n="cta_team">Hablar con el equipo</a>
       </div>
       <div class="cta-note">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#E9D9AE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        SIN TARJETA DE CRÉDITO · CONFIGURACIÓN EN 2 MINUTOS
+        <span data-i18n="cta_note">SIN TARJETA DE CRÉDITO · CONFIGURACIÓN EN 2 MINUTOS</span>
       </div>
     </div>
     <div class="cta-art reveal">
-      <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hand-drawn%20black%20ink%20line%20art%20illustration%20of%20a%20cute%20wise%20owl%20perched%20on%20a%20stack%20of%20open%20books%20with%20a%20small%20gold%20laurel%20wreath%2C%20twinkling%20four-point%20sparkle%20doodles%20floating%20around%2C%20warm%20cream%20paper%20background%2C%20antique%20gold%20and%20warm%20ochre%20color%20accents%20only%2C%20elegant%20whimsical%20academic%20storybook%20doodle%20style%2C%20clean%20thick%20outlines%2C%20flat%2C%20no%20text&image_size=square_hd" alt="La lechuza de METIS sobre una pila de libros">
+      <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hand-drawn%20black%20ink%20line%20art%20illustration%20of%20a%20cute%20wise%20owl%20perched%20on%20a%20stack%20of%20open%20books%20with%20a%20small%20gold%20laurel%20wreath%2C%20twinkling%20four-point%20sparkle%20doodles%20floating%20around%2C%20warm%20cream%20paper%20background%2C%20antique%20gold%20and%20warm%20ochre%20color%20accents%20only%2C%20elegant%20whimsical%20academic%20storybook%20doodle%20style%2C%20clean%20thick%20outlines%2C%20flat%2C%20no%20text&image_size=square_hd" data-i18n-alt="alt_owl" alt="La lechuza de METIS sobre una pila de libros">
     </div>
   </div>
 </section>
@@ -914,11 +927,11 @@ a{text-decoration:none;color:inherit}
       <div class="brand-name">METIS <em>CAMPUS</em></div>
     </a>
     <nav class="footer-links">
-      <a href="#">Privacidad</a>
-      <a href="#">Términos</a>
-      <a href="#">Contacto</a>
+      <a href="#" data-i18n="footer_privacy">Privacidad</a>
+      <a href="#" data-i18n="footer_terms">Términos</a>
+      <a href="#" data-i18n="footer_contact">Contacto</a>
     </nav>
-    <span class="footer-copy">© 2026 METIS CAMPUS. Todos los derechos reservados.</span>
+    <span class="footer-copy" data-i18n="footer_copy">© 2026 METIS CAMPUS. Todos los derechos reservados.</span>
   </div>
 </footer>
 
@@ -934,6 +947,297 @@ const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ---------- i18n (Spanish / English) ----------
+const MARQUEE = {
+  es: ['SABIDURÍA CLÁSICA','INTELIGENCIA ARTIFICIAL','CANVAS-READY','MÓDULOS','TAREAS','CALIFICACIONES','RUBRICS','ANALÍTICAS'],
+  en: ['CLASSICAL WISDOM','ARTIFICIAL INTELLIGENCE','CANVAS-READY','MODULES','ASSIGNMENTS','GRADES','RUBRICS','ANALYTICS']
+};
+function marqueeHTML(lang){
+  const row = MARQUEE[lang].map(t => `<span>${t}</span>`).join('');
+  return row + row; // duplicated for a seamless loop
+}
+
+const i18n = {
+  es: {
+    doc_title: 'METIS CAMPUS — Generación de exámenes con IA',
+    doc_desc: 'METIS CAMPUS — Generación de exámenes con IA. La plataforma educativa que combina la sabiduría clásica con la inteligencia artificial. Compatible con Canvas.',
+    alt_teacher: 'Ilustración de una docente creando exámenes con IA',
+    alt_owl: 'La lechuza de METIS sobre una pila de libros',
+    alt_avatar: 'Metis, la guía de METIS CAMPUS — ilustración de una estudiante con corona de laurel dorada, su lechuza y sus libros',
+    nav_home: 'INICIO',
+    nav_how: 'CÓMO FUNCIONA',
+    nav_platform: 'PLATAFORMA',
+    nav_templates: 'PLANTILLAS',
+    nav_register: 'REGISTRARSE',
+    hero_eyebrow: 'PLATAFORMA EDUCATIVA CON IA · VERSIÓN 2.0 PRO',
+    hero_h1: 'Evaluaciones<br>con <span class="accent">sabiduría</span>',
+    hero_sub: 'Generador de exámenes inteligentes para docentes',
+    hero_desc: 'Diseña evaluaciones personalizadas alineadas al currículo escolar. Ahorra horas de preparación con nuestro motor de Inteligencia Artificial — con la experiencia de gestión que tu campus ya conoce.',
+    cta_start: 'Comenzar Gratis',
+    cta_demo: 'Ver Demostración',
+    trust_canvas: 'Compatible con Canvas LMS',
+    trust_export: 'Exporta a PDF · Word · LMS',
+    trust_free: 'Sin tarjeta de crédito',
+    badge_generate: 'PARA GENERAR<br>UN EXAMEN',
+    badge_templates: 'PLANTILLAS<br>LISTAS',
+    marquee: marqueeHTML('es'),
+    product_kicker: 'LA PLATAFORMA',
+    product_h2: 'Crea exámenes profesionales <em>en pocos minutos</em>',
+    product_desc: 'Sube tus materiales, deja que la IA diseñe las preguntas y publica en tu LMS. Todo el flujo, en una sola superficie cálida y clara.',
+    product_badge: 'PLATAFORMA DE EVALUACIÓN IA',
+    product_body_h2: 'Crea exámenes profesionales<br><em>en pocos minutos</em>',
+    product_body_desc: 'Diseña evaluaciones personalizadas alineadas al currículo escolar. Ahorra horas de preparación con nuestro motor de Inteligencia Artificial para profesores.',
+    canvas_kicker: 'PARA TU CAMPUS',
+    canvas_h2: 'Si conoces Canvas,<br>ya conoces <em>METIS</em>',
+    canvas_p1: 'Replicamos la funcionalidad que tu institución ya domina: cursos, módulos, tareas, calificaciones y calendario — con los mismos nombres y flujos que tu equipo usa hoy.',
+    canvas_p2: 'La diferencia está en la superficie: moderna, cálida y potenciada con IA. La migración es invisible para tus docentes; la adopción, inmediata.',
+    canvas_pill1: 'Importa desde Canvas',
+    canvas_pill2: 'Misma terminología LMS',
+    canvas_pill3: 'Potenciado con IA',
+    lms_panel: 'METIS · Panel del curso',
+    lms_courses: 'Cursos',
+    lms_modules: 'Módulos',
+    lms_assignments: 'Tareas',
+    lms_grades: 'Calificaciones',
+    lms_calendar: 'Calendario',
+    lms_people: 'Personas',
+    lms_course_title: 'Química Básica · 3.º Trimestre',
+    module1_label: 'MÓDULO 1',
+    module1_title: 'Estructura atómica',
+    module2_label: 'MÓDULO 2',
+    module2_title: 'Enlace químico',
+    module3_label: 'MÓDULO 3',
+    module3_title: 'Estequiometría',
+    assign1: 'Examen Parcial — Enlace químico',
+    assign1_status: 'CALIFICADO',
+    assign2: 'Taller — Tabla periódica',
+    assign3: 'Examen Final — Generado con IA',
+    features_kicker: 'CARACTERÍSTICAS',
+    features_h2: 'Todo lo que necesitas,<br><em>sin la complejidad</em>',
+    features_desc: 'Herramientas de generación, edición y gestión diseñadas alrededor de un principio: que cada docente se sienta experto desde el primer minuto.',
+    feat1_title: 'IA Generativa',
+    feat1_desc: 'Genera preguntas personalizadas basadas en tus materiales de estudio con inteligencia artificial avanzada.',
+    feat2_title: '+100 Plantillas',
+    feat2_desc: 'Más de 100 plantillas de evaluaciones listas para usar en diversas materias y niveles educativos.',
+    feat3_title: 'Editor Inteligente',
+    feat3_desc: 'Edita y personaliza cada pregunta con un editor avanzado que sugiere mejoras automáticamente.',
+    feat4_title: 'Fuentes Verificables',
+    feat4_desc: 'Sistema de verificación de fuentes con citas académicas y referencias verificables en cada pregunta.',
+    feat5_title: 'Exportación Total',
+    feat5_desc: 'Exportación a múltiples formatos: PDF, Word y compatibilidad directa con plataformas LMS como Canvas.',
+    feat6_title: 'Analíticas de Aula',
+    feat6_desc: 'Visualiza el desempeño por estudiante, pregunta y módulo. Detecta brechas de aprendizaje en tiempo real.',
+    steps_kicker: 'CÓMO FUNCIONA',
+    steps_h2: 'Tres pasos. <em>Un examen perfecto.</em>',
+    steps_desc: 'El flujo completo, de tus materiales a la publicación, sin fricción.',
+    step1_title: 'Sube tus materiales',
+    step1_desc: 'Arrastra tus apuntes, PDFs y documentos. METIS entiende tu contenido y tu currículo.',
+    step1_li1: 'PDFs, apuntes y documentos',
+    step1_li2: 'Alineación automática al currículo',
+    step2_title: 'La IA genera preguntas',
+    step2_desc: 'El motor diseña preguntas adaptables a tu contenido y al nivel de tus estudiantes.',
+    step2_li1: 'Preguntas adaptables por nivel',
+    step2_li2: 'Citas y fuentes verificables',
+    step3_title: 'Revisa, edita y aprueba',
+    step3_desc: 'Cada pregunta pasa por tu criterio antes de publicarse. Tú tienes la última palabra.',
+    step3_li1: 'Editor con sugerencias inteligentes',
+    step3_li2: 'Publica en tu LMS en un clic',
+    exam_title: 'Química Básica',
+    exam_subtitle: 'EXAMEN PARCIAL — 10 PREGUNTAS',
+    exam_q: '¿Cuál de los siguientes es un <em style="color:var(--gold-deep)">elemento químico</em>?',
+    exam_opt1: 'Molécula',
+    exam_opt2: 'Elemento químico',
+    exam_opt3: 'Compuesto',
+    exam_foot_q: 'PREGUNTA 3 DE 10',
+    exam_foot_pts: '1 punto',
+    specs_kicker: 'DISEÑO CON INTENCIÓN',
+    specs_h2: 'Precisión académica,<br><em>verificada por humanos</em>',
+    spec1_title: 'Preguntas adaptativas',
+    spec1_desc: 'Preguntas adaptativas basadas en el nivel del estudiante y los materiales proporcionados.',
+    spec2_title: 'Verificación de fuentes',
+    spec2_desc: 'Sistema de verificación de fuentes con citas académicas y referencias verificables.',
+    spec3_title: 'Compatibilidad total',
+    spec3_desc: 'Exportación a múltiples formatos: PDF, Word, y compatibilidad con plataformas LMS.',
+    cta_h2: 'Empieza hoy.<br>La sabiduría <em>hace el resto.</em>',
+    cta_desc: 'Únete a los docentes que ya crean evaluaciones mejores en una fracción del tiempo. Gratis para empezar, listo para tu campus.',
+    cta_team: 'Hablar con el equipo',
+    cta_note: 'SIN TARJETA DE CRÉDITO · CONFIGURACIÓN EN 2 MINUTOS',
+    footer_privacy: 'Privacidad',
+    footer_terms: 'Términos',
+    footer_contact: 'Contacto',
+    footer_copy: '© 2026 METIS CAMPUS. Todos los derechos reservados.'
+  },
+  en: {
+    doc_title: 'METIS CAMPUS — AI Exam Generation',
+    doc_desc: 'METIS CAMPUS — AI exam generation. The education platform that blends classical wisdom with artificial intelligence. Canvas-compatible.',
+    alt_teacher: 'Illustration of a teacher creating exams with AI',
+    alt_owl: 'The METIS owl perched on a stack of books',
+    alt_avatar: 'Metis, the METIS CAMPUS guide — an illustration of a student with a golden laurel wreath, her owl and her books',
+    nav_home: 'HOME',
+    nav_how: 'HOW IT WORKS',
+    nav_platform: 'PLATFORM',
+    nav_templates: 'TEMPLATES',
+    nav_register: 'SIGN UP',
+    hero_eyebrow: 'AI-POWERED EDUCATION PLATFORM · VERSION 2.0 PRO',
+    hero_h1: 'Assessments<br>built with <span class="accent">wisdom</span>',
+    hero_sub: 'Smart exam generator for educators',
+    hero_desc: 'Design custom assessments aligned to your curriculum. Save hours of prep with our artificial intelligence engine — with the management experience your campus already trusts.',
+    cta_start: 'Start Free',
+    cta_demo: 'See Demo',
+    trust_canvas: 'Canvas LMS compatible',
+    trust_export: 'Export to PDF · Word · LMS',
+    trust_free: 'No credit card required',
+    badge_generate: 'TO GENERATE<br>AN EXAM',
+    badge_templates: 'READY-MADE<br>TEMPLATES',
+    marquee: marqueeHTML('en'),
+    product_kicker: 'THE PLATFORM',
+    product_h2: 'Create professional exams <em>in minutes</em>',
+    product_desc: 'Upload your materials, let AI design the questions and publish to your LMS. The whole workflow on one warm, clear surface.',
+    product_badge: 'AI ASSESSMENT PLATFORM',
+    product_body_h2: 'Create professional exams<br><em>in minutes</em>',
+    product_body_desc: 'Design custom assessments aligned to your curriculum. Save hours of prep with our artificial intelligence engine for teachers.',
+    canvas_kicker: 'FOR YOUR CAMPUS',
+    canvas_h2: 'If you know Canvas,<br>you already know <em>METIS</em>',
+    canvas_p1: 'We replicate the functionality your institution already knows: courses, modules, assignments, grades and calendar — with the same names and flows your team uses today.',
+    canvas_p2: 'The difference is the surface: modern, warm and AI-powered. Migration is invisible for your teachers; adoption is immediate.',
+    canvas_pill1: 'Import from Canvas',
+    canvas_pill2: 'Same LMS terminology',
+    canvas_pill3: 'AI-powered',
+    lms_panel: 'METIS · Course dashboard',
+    lms_courses: 'Courses',
+    lms_modules: 'Modules',
+    lms_assignments: 'Assignments',
+    lms_grades: 'Grades',
+    lms_calendar: 'Calendar',
+    lms_people: 'People',
+    lms_course_title: 'Basic Chemistry · 3rd Term',
+    module1_label: 'MODULE 1',
+    module1_title: 'Atomic structure',
+    module2_label: 'MODULE 2',
+    module2_title: 'Chemical bonding',
+    module3_label: 'MODULE 3',
+    module3_title: 'Stoichiometry',
+    assign1: 'Midterm Exam — Chemical bonding',
+    assign1_status: 'GRADED',
+    assign2: 'Worksheet — Periodic table',
+    assign3: 'Final Exam — AI-generated',
+    features_kicker: 'FEATURES',
+    features_h2: 'Everything you need,<br><em>without the complexity</em>',
+    features_desc: 'Generation, editing and management tools built around one principle: every teacher feels like an expert from the very first minute.',
+    feat1_title: 'Generative AI',
+    feat1_desc: 'Generate custom questions based on your study materials with advanced artificial intelligence.',
+    feat2_title: '100+ Templates',
+    feat2_desc: 'More than 100 ready-to-use assessment templates across subjects and education levels.',
+    feat3_title: 'Smart Editor',
+    feat3_desc: 'Edit and customize every question with an advanced editor that suggests improvements automatically.',
+    feat4_title: 'Verifiable Sources',
+    feat4_desc: 'A source-verification system with academic citations and verifiable references on every question.',
+    feat5_title: 'Full Export',
+    feat5_desc: 'Export to multiple formats: PDF, Word and direct compatibility with LMS platforms like Canvas.',
+    feat6_title: 'Classroom Analytics',
+    feat6_desc: 'See performance by student, question and module. Spot learning gaps in real time.',
+    steps_kicker: 'HOW IT WORKS',
+    steps_h2: 'Three steps. <em>One perfect exam.</em>',
+    steps_desc: 'The complete flow, from your materials to publishing — without friction.',
+    step1_title: 'Upload your materials',
+    step1_desc: 'Drag in your notes, PDFs and documents. METIS understands your content and your curriculum.',
+    step1_li1: 'PDFs, notes and documents',
+    step1_li2: 'Automatic curriculum alignment',
+    step2_title: 'AI generates the questions',
+    step2_desc: 'The engine designs questions that adapt to your content and your students level.',
+    step2_li1: 'Level-adaptive questions',
+    step2_li2: 'Citations and verifiable sources',
+    step3_title: 'Review, edit and approve',
+    step3_desc: 'Every question passes your judgment before publishing. You have the final word.',
+    step3_li1: 'Editor with smart suggestions',
+    step3_li2: 'Publish to your LMS in one click',
+    exam_title: 'Basic Chemistry',
+    exam_subtitle: 'MIDTERM EXAM — 10 QUESTIONS',
+    exam_q: 'Which of the following is a <em style="color:var(--gold-deep)">chemical element</em>?',
+    exam_opt1: 'Molecule',
+    exam_opt2: 'Chemical element',
+    exam_opt3: 'Compound',
+    exam_foot_q: 'QUESTION 3 OF 10',
+    exam_foot_pts: '1 point',
+    specs_kicker: 'DESIGN WITH INTENT',
+    specs_h2: 'Academic precision,<br><em>verified by humans</em>',
+    spec1_title: 'Adaptive questions',
+    spec1_desc: 'Adaptive questions based on the students level and the materials provided.',
+    spec2_title: 'Source verification',
+    spec2_desc: 'A source-verification system with academic citations and verifiable references.',
+    spec3_title: 'Full compatibility',
+    spec3_desc: 'Export to multiple formats: PDF, Word, and compatibility with LMS platforms.',
+    cta_h2: 'Start today.<br>Wisdom <em>does the rest.</em>',
+    cta_desc: 'Join the teachers already creating better assessments in a fraction of the time. Free to start, ready for your campus.',
+    cta_team: 'Talk to the team',
+    cta_note: 'NO CREDIT CARD · SET UP IN 2 MINUTES',
+    footer_privacy: 'Privacy',
+    footer_terms: 'Terms',
+    footer_contact: 'Contact',
+    footer_copy: '© 2026 METIS CAMPUS. All rights reserved.'
+  }
+};
+
+function setLang(lang){
+  const dict = i18n[lang] || i18n.es;
+  document.documentElement.lang = lang;
+  document.documentElement.setAttribute('data-lang', lang);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = dict[key];
+    if (val == null) return;
+    const svg = el.querySelector(':scope > svg');
+    if (svg){
+      // keep the decorative icon, swap only the text; preserve its position
+      let textBefore = false;
+      for (let n = el.firstChild; n && n !== svg; n = n.nextSibling){
+        if (n.nodeType === 3 && n.textContent.trim()){ textBefore = true; break; }
+      }
+      const icon = svg.outerHTML;
+      el.innerHTML = textBefore ? val + ' ' + icon : icon + ' ' + val;
+    } else {
+      el.innerHTML = val;
+    }
+  });
+
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const key = el.getAttribute('data-i18n-alt');
+    if (dict[key]) el.setAttribute('alt', dict[key]);
+  });
+
+  document.title = dict.doc_title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', dict.doc_desc);
+
+  const label = document.getElementById('langLabel');
+  if (label) label.textContent = lang === 'es' ? 'EN' : 'ES';
+  const langToggle = document.getElementById('langToggle');
+  if (langToggle) langToggle.setAttribute('aria-label', lang === 'es' ? 'Switch to English' : 'Cambiar a español');
+  if (navToggle) navToggle.setAttribute('aria-label', lang === 'es' ? 'Menú' : 'Menu');
+}
+
+function detectLang(){
+  const saved = localStorage.getItem('metis-lang');
+  if (saved === 'es' || saved === 'en') return saved;
+  const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'es'];
+  for (const l of langs){
+    if (!l) continue;
+    const low = l.toLowerCase();
+    if (low.startsWith('es')) return 'es';
+    if (low.startsWith('en')) return 'en';
+  }
+  return 'es';
+}
+
+setLang(detectLang());
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  const next = document.documentElement.lang === 'es' ? 'en' : 'es';
+  setLang(next);
+  localStorage.setItem('metis-lang', next);
+});
 </script>
 </body>
 </html>
