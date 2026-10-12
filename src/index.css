@@ -1,0 +1,8 @@
+/* Tailwind v4: theme + utilities only. Preflight is intentionally left out so the
+   landing design system stays pixel-identical; landing.css sits in the
+   components layer so Tailwind utilities can still override it on future pages. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./styles/landing.css" layer(components);
