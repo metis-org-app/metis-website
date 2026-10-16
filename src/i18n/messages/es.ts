@@ -133,7 +133,7 @@ export const es: Messages = {
         check40: '¿Es $40?',
       },
       inputLabel: 'Escribe a Metis',
-      placeholder: 'Pregúntale algo a Metis, como «¿Es $30?»',
+      placeholder: 'Pregunta algo, como «¿Es $30?»',
       send: 'Enviar →',
       off: { text: 'La guía IA está apagada en esta evaluación', turnOn: 'Encender la guía' },
       thatPrice: 'ese precio',

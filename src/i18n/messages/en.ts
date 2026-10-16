@@ -142,7 +142,7 @@ export const en = {
         check40: 'Is it $40?',
       } as Record<Preset, string>,
       inputLabel: 'Message Metis',
-      placeholder: 'Ask Metis something, like “Is it $30?”',
+      placeholder: 'Ask something, like “Is it $30?”',
       send: 'Send →',
       off: { text: 'AI guide is off for this assessment', turnOn: 'Turn the guide on' },
       thatPrice: 'that price',
