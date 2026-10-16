@@ -2,7 +2,8 @@ import { links } from '../../config/links';
 import { useI18n } from '../../i18n/useI18n';
 import { LogoMark } from '../ui/LogoMark';
 
-const YEAR = new Date().getFullYear();
+/** Build year (vite.config.ts), so the prerendered page and the browser print the same year. */
+const YEAR = import.meta.env.VITE_BUILD_YEAR;
 
 export function SiteFooter() {
   const { m } = useI18n();

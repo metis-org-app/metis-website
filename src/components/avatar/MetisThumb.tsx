@@ -13,26 +13,24 @@ export function MetisThumb({
   corner?: boolean;
   className?: string;
 }) {
-  const cornerSize = Math.max(6, Math.round(size / 4));
+  // Sized by the image's own width/height attributes (the border adds 1 px per side), never by a
+  // style attribute: the prerendered HTML must not need inline styles under the CSP.
+  const inner = size - 2;
   return (
     <span
       aria-hidden="true"
       className={`relative inline-block shrink-0 overflow-hidden border border-ink bg-surface ${className}`}
-      style={{ width: size, height: size }}
     >
       <img
         src={thumb}
         alt=""
-        width={size}
-        height={size}
+        width={inner}
+        height={inner}
         decoding="async"
-        className="block size-full object-cover mix-blend-multiply"
+        className="block object-cover mix-blend-multiply"
       />
       {corner && (
-        <span
-          className="absolute right-0 bottom-0 bg-accent"
-          style={{ width: cornerSize, height: cornerSize }}
-        />
+        <span className={`absolute right-0 bottom-0 bg-accent ${size < 28 ? 'size-1.5' : 'size-2'}`} />
       )}
     </span>
   );

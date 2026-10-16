@@ -36,7 +36,14 @@
       }
     ]
   },
-  "ignorePatterns": ["dist/**", "coverage/**", "design/**", "tools/avatar/out/**", "**/*.generated.*"],
+  "ignorePatterns": [
+    "dist/**",
+    "dist-ssr/**",
+    "coverage/**",
+    "design/**",
+    "tools/avatar/out/**",
+    "**/*.generated.*"
+  ],
   "overrides": [
     {
       "files": ["tools/**/*.cjs", "tools/**/*.mjs"],

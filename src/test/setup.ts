@@ -18,6 +18,9 @@ afterEach(() => {
   if (!hasDom) return;
   cleanup();
   resetBrowserMocks();
+  // Language switches push /en/ into the history; start every test from the Spanish root again.
+  window.history.replaceState(null, '', '/');
+  document.cookie = 'nf_lang=; path=/; max-age=0';
   try {
     window.localStorage.clear();
   } catch {

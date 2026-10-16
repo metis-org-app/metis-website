@@ -1,6 +1,9 @@
 import { MetisThumb } from '../../components/avatar/MetisThumb';
 import { useI18n } from '../../i18n/useI18n';
 
+/** Static classes (not inline styles) so the prerendered HTML stays within the CSP. */
+const STEP_DELAYS = ['', '[animation-delay:1.5s]', '[animation-delay:3s]', '[animation-delay:4.5s]'];
+
 /** A → D steps, highlighted in sequence, with a square travelling along the base line. */
 export function Pipeline() {
   const { m } = useI18n();
@@ -13,8 +16,7 @@ export function Pipeline() {
         {m.hero.pipeline.map((step, i) => (
           <li
             key={step.key}
-            className="flex min-h-[120px] flex-col gap-1.5 border-r border-b border-ink bg-surface px-4 py-3.5 motion-safe:animate-highlight"
-            style={{ animationDelay: `${i * 1.5}s` }}
+            className={`flex min-h-[120px] flex-col gap-1.5 border-r border-b border-ink bg-surface px-4 py-3.5 motion-safe:animate-highlight ${STEP_DELAYS[i] ?? ''}`}
           >
             <span aria-hidden="true" className="font-mono text-xs text-soft">
               {step.key}

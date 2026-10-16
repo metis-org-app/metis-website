@@ -8,6 +8,8 @@ interface ImportMetaEnv {
   readonly VITE_TERMS_URL?: string;
   /** Absolute site URL, always defined at build time (see vite.config.ts). */
   readonly VITE_SITE_URL: string;
+  /** Year of the build (see vite.config.ts), so the prerendered page and the browser agree. */
+  readonly VITE_BUILD_YEAR: number;
 }
 
 interface ImportMeta {

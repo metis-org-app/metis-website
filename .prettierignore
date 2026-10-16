@@ -9,3 +9,4 @@ tools/avatar/package-lock.json
 *.generated.*
 tools/avatar/*.cjs
 .claude
+dist-ssr

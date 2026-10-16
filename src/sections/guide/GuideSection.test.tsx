@@ -110,7 +110,7 @@ describe('GuideSection', () => {
 
   it('re-renders the existing conversation when the language changes', async () => {
     const user = setup();
-    await user.click(screen.getByRole('button', { name: 'Español' }));
+    await user.click(screen.getByRole('link', { name: 'Español' }));
     expect(screen.getByRole('log', { name: 'Conversación con Metis' }).textContent).toContain(
       '¿Cuál es el precio de equilibrio? Solo dime el número.',
     );

@@ -37,4 +37,4 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 22. Results and Insights carry a "Sample data" note.
 23. In charts the accent marks only what needs attention (low scores, the flagged item, the question peak), with a legend on the histogram; the "0 answers revealed" figure and the top intent bar are ink.
 24. The hero text is readable from the first frame: it only slides into place (no fade or blur), so the headline and the buttons do not wait for an animation.
-25. The configurator starts with a file-drop demo: drag files in, pick them, or add a sample file. Nothing is uploaded; each file shows sample topics, which feed the preview and its "Sources" line.
+25. The hero has no "Works with Canvas LMS" label above the headline.

@@ -3,6 +3,7 @@ import { MetisThumb } from '../../components/avatar/MetisThumb';
 import { ToggleGroup } from '../../components/ui/ToggleGroup';
 import { SESSIONS, type SessionId } from '../../content/demo-data';
 import { useI18n } from '../../i18n/useI18n';
+import { useHydrated } from '../../hooks/useHydrated';
 
 const TRANSCRIPT_ID = 'insights-transcript';
 
@@ -17,6 +18,8 @@ export function ConversationReview({ active }: { active: boolean }) {
   const session = SESSIONS.find((s) => s.id === selected) ?? SESSIONS[0]!;
   const student = copy.student(session.student);
   const turns = copy.transcripts[session.id];
+  // Inline styles only after hydration: the prerendered HTML must not carry style attributes (CSP).
+  const hydrated = useHydrated();
 
   return (
     <div className="flex min-w-0 flex-col border border-ink bg-surface lg:col-span-8">
@@ -64,7 +67,7 @@ export function ConversationReview({ active }: { active: boolean }) {
           >
             {turns.map((turn, i) => {
               const motion = active ? 'motion-safe:animate-fade-up' : '';
-              const delay = { animationDelay: `${i * 0.14}s` };
+              const delay = hydrated ? { animationDelay: `${i * 0.14}s` } : undefined;
               return turn.from === 'student' ? (
                 <li
                   key={turn.text}

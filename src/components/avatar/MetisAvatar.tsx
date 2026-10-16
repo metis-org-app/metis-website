@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useHydrated } from '../../hooks/useHydrated';
 import { useInView } from '../../hooks/useInView';
 import { expressionClass, type Expression } from './expressions';
 import { MetisAvatarArt } from './MetisAvatarArt.generated';
@@ -19,6 +20,8 @@ interface MetisAvatarProps {
 export function MetisAvatar({ expression, label, still = false, className = '' }: MetisAvatarProps) {
   const ref = useRef<SVGSVGElement>(null);
   const inView = useInView(ref, { rootMargin: '120px' });
+  // The artwork is about 70 KB of paths per avatar: it is drawn by the browser, not shipped in the HTML.
+  const hydrated = useHydrated();
   const a11y = label ? { role: 'img' as const, 'aria-label': label } : { 'aria-hidden': true as const };
 
   return (
@@ -32,7 +35,7 @@ export function MetisAvatar({ expression, label, still = false, className = '' }
       focusable="false"
       {...a11y}
     >
-      <MetisAvatarArt />
+      {hydrated && <MetisAvatarArt />}
     </svg>
   );
 }

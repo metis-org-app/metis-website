@@ -8,6 +8,7 @@ import { useCountUp } from '../../hooks/useCountUp';
 import { useSvgTextSize } from '../../hooks/useSvgTextSize';
 import { useInView } from '../../hooks/useInView';
 import { useI18n } from '../../i18n/useI18n';
+import { useHydrated } from '../../hooks/useHydrated';
 
 function Kpi({ label, children, final }: { label: string; children: React.ReactNode; final: string }) {
   return (
@@ -53,8 +54,10 @@ const BINS = HISTOGRAM_BINS.map((count, score) => ({ count, score }));
 function Histogram({ active }: { active: boolean }) {
   const { m } = useI18n();
   const svgRef = useRef<SVGSVGElement>(null);
-  // Score labels stay at 12 px on screen whatever the chart width.
+  // Score labels stay at 12 px on screen whatever the chart width (SVG attribute, allowed by the CSP).
   const label = useSvgTextSize(svgRef, 560);
+  // Inline styles only after hydration: the prerendered HTML must not carry style attributes (CSP).
+  const hydrated = useHydrated();
   return (
     <figure className="m-0 flex flex-col gap-3 lg:col-span-6">
       <figcaption className="label-mono flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs text-soft">
@@ -82,7 +85,7 @@ function Histogram({ active }: { active: boolean }) {
               width={38}
               height={h}
               className={`origin-bottom [transform-box:fill-box] ${score <= HISTOGRAM_LOW_MAX ? 'fill-accent' : 'fill-ink'} ${active ? 'motion-safe:animate-bar-y' : ''}`}
-              style={{ animationDelay: `${score * 0.05}s` }}
+              style={hydrated ? { animationDelay: `${score * 0.05}s` } : undefined}
             />
           );
         })}
@@ -94,7 +97,7 @@ function Histogram({ active }: { active: boolean }) {
             y={212 + label}
             textAnchor="middle"
             className="fill-soft font-mono"
-            style={{ fontSize: label }}
+            fontSize={label}
           >
             {score}
           </text>
@@ -106,6 +109,7 @@ function Histogram({ active }: { active: boolean }) {
 
 function ItemAccuracy({ active }: { active: boolean }) {
   const { m } = useI18n();
+  const hydrated = useHydrated();
   return (
     <div className="flex flex-col gap-3 lg:col-span-6">
       <h3 className="label-mono m-0 text-xs font-normal text-soft">{m.results.accuracyCaption}</h3>
@@ -129,7 +133,7 @@ function ItemAccuracy({ active }: { active: boolean }) {
               <span aria-hidden="true" className="h-2 bg-line2">
                 <span
                   className={`block h-full origin-left ${flagged ? 'bg-accent' : 'bg-ink'} ${active ? 'motion-safe:animate-bar-x' : ''}`}
-                  style={{ width: `${item.pct}%`, animationDelay: `${i * 0.08}s` }}
+                  style={hydrated ? { width: `${item.pct}%`, animationDelay: `${i * 0.08}s` } : undefined}
                 />
               </span>
               <span className="text-right font-mono text-sm">{m.results.percent(item.pct)}</span>

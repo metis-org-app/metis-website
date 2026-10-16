@@ -5,8 +5,18 @@
 [build.environment]
   NODE_VERSION = "24"
 
-# No SPA catch-all: the site is a single page without client-side routes,
-# so unknown paths should return a real 404 instead of index.html with 200.
+# No SPA catch-all: each language has its own prerendered page (/ and /en/),
+# so unknown paths return a real 404 instead of index.html with 200.
+
+# Visitors whose browser prefers English land on /en/ (Netlify matches the first Accept-Language entry).
+# The language switch sets the nf_lang cookie, which Netlify uses instead, so a chosen language sticks.
+# Crawlers usually send no Accept-Language and get the Spanish page, which is also the x-default.
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  force = true
+  conditions = {Language = ["en"]}
 
 # Keep in sync with SECURITY_HEADERS in vite.config.ts (checked by scripts/headers.test.ts).
 [[headers]]

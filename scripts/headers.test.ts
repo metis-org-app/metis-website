@@ -20,7 +20,14 @@ describe('security headers', () => {
   });
 
   it('does not reintroduce the SPA catch-all redirect', () => {
-    expect(netlify).not.toMatch(/\[\[redirects\]\]/);
+    expect(netlify).not.toMatch(/from = "\/\*"/);
+    expect(netlify).not.toMatch(/to = "\/index\.html"/);
+  });
+
+  it('sends English browsers from / to the prerendered /en/ page, temporarily', () => {
+    expect(netlify).toMatch(
+      /\[\[redirects\]\]\s+from = "\/"\s+to = "\/en\/"\s+status = 302\s+force = true\s+conditions = \{Language = \["en"\]\}/,
+    );
   });
 
   it('caches hashed assets immutably', () => {

@@ -23,7 +23,7 @@ npm run dev
 | Script                  | What it does                                                                     |
 | ----------------------- | -------------------------------------------------------------------------------- |
 | `npm run dev`           | Vite dev server.                                                                 |
-| `npm run build`         | Type-checks (`tsc -b`) and builds to `dist/`.                                    |
+| `npm run build`         | Type-checks, builds to `dist/` and prerenders `/` and `/en/` (see SEO below).    |
 | `npm run preview`       | Serves `dist/` with the same security headers as production (CSP included).      |
 | `npm run typecheck`     | TypeScript 7 (`tsc -b` over `tsconfig.app.json` and `tsconfig.node.json`).       |
 | `npm run lint`          | oxlint (React, hooks, jsx-a11y, Vitest rules); warnings fail.                    |
@@ -86,8 +86,11 @@ call to action.
 - Leaves are plain strings or small functions for interpolation. Never HTML: emphasis and line breaks
   are composed in JSX.
 - Spanish uses informal "tú" and the terms in `design/index-e/glossary.es.md`.
-- Language detection: stored choice (`localStorage["metis-lang"]`) → `navigator.languages` → Spanish.
-  The provider keeps `<html lang>`, the title and the description in sync.
+- The URL sets the language: `/` is Spanish (also the default for other languages) and `/en/` is
+  English. The ES / EN switch changes it in place and updates the URL; back and forward switch it back.
+- On Netlify, a visitor whose browser prefers English and who opens `/` is sent to `/en/`
+  (`netlify.toml`). Picking a language sets the `nf_lang` cookie, which Netlify uses instead of the
+  browser language, so the choice sticks.
 
 ## Metis avatar
 
@@ -112,6 +115,30 @@ run `npm run avatar:build` and commit the regenerated `*.generated.*` files.
 - `App.a11y.test.tsx` runs axe-core over the whole page in both languages and checks landmarks, heading
   order and that every in-page link resolves.
 
+## SEO and prerendering
+
+`npm run build` runs the client build, a server build of `src/entry-server.tsx`, and
+`scripts/prerender.mjs`, which writes:
+
+- `dist/index.html` (Spanish) and `dist/en/index.html` (English), each with the full page markup and
+  its own `lang`, title, description, canonical, Open Graph tags and `hreflang` alternates (Spanish is
+  also `x-default`). The browser then hydrates that markup instead of rendering from scratch.
+- `dist/sitemap.xml` (both pages with their alternates) and `dist/robots.txt`.
+
+Set `VITE_SITE_URL` to the production domain so canonical, `hreflang` and the sitemap use it.
+`scripts/seo.mjs` holds the head and sitemap helpers (tested in `scripts/seo.test.ts`);
+`App.hydration.test.tsx` checks both pages hydrate without mismatches.
+
+Two rules keep the prerendered HTML valid:
+
+- No inline `style` attributes in the server markup: the CSP (`style-src 'self'`) blocks them. Use
+  classes, SVG attributes, or apply the style after hydration (`useHydrated`). The prerender step fails
+  if one slips in.
+- The first client render must match the server: no browser reads (window, storage, media queries)
+  in render or `useState` initialisers. `useReducedMotion`, `useInView` and `useHydrated` already
+  return the server value during hydration. The Metis artwork is drawn after hydration, so it is not
+  repeated in the HTML.
+
 ## Deploy
 
 Netlify builds with `npm run build` and publishes `dist/` (`netlify.toml`, Node 24).
@@ -121,4 +148,6 @@ Netlify builds with `npm run build` and publishes `dist/` (`netlify.toml`, Node 
   `npm run preview`; `scripts/headers.test.ts` fails if the two drift apart.
 - Fonts are self-hosted (Fontsource), so no third-party origins are needed.
 - `/assets/*` is served with an immutable cache. There is no SPA catch-all redirect, so unknown paths
-  return a real 404.
+  return a real 404. The only redirect sends English browsers from `/` to `/en/` (302).
+- After the first deploy, check on a deploy preview that the `/` → `/en/` redirect respects the
+  `nf_lang` cookie: Netlify documents the cookie but not its value format (the site writes `es` / `en`).

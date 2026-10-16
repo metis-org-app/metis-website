@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { QUESTION_TIMELINE, TIMELINE_BLOCK_MINUTES, TIMELINE_PEAK_ITEM } from '../../content/demo-data';
 import { useSvgTextSize } from '../../hooks/useSvgTextSize';
 import { useI18n } from '../../i18n/useI18n';
+import { useHydrated } from '../../hooks/useHydrated';
 
 // Chart geometry (viewBox units). Each value sits at the middle of its 5-minute block.
 const W = 440;
@@ -38,6 +39,10 @@ export function QuestionTimeline({ active }: { active: boolean }) {
   // Labels stay at 12–13 px on screen whatever the chart width.
   const label = useSvgTextSize(svgRef, W);
   const peakLabel = useSvgTextSize(svgRef, W, 13);
+  // Inline styles only after hydration: the prerendered HTML must not carry style attributes (CSP).
+  // Font sizes use the SVG presentation attribute instead, which the CSP allows.
+  const hydrated = useHydrated();
+  const delay = (seconds: number) => (hydrated ? { animationDelay: `${seconds}s` } : undefined);
 
   return (
     <figure className="m-0 flex flex-col gap-3 lg:col-span-6">
@@ -59,7 +64,7 @@ export function QuestionTimeline({ active }: { active: boolean }) {
           width={BLOCK_W}
           height={PLOT.bottom - PLOT.top + 14}
           className={`fill-tint ${animate('motion-safe:animate-fade-up')}`}
-          style={{ animationDelay: `${DRAW_S * 0.6}s` }}
+          style={delay(DRAW_S * 0.6)}
         />
         {[10, 20].map((v) => (
           <g key={v}>
@@ -69,7 +74,7 @@ export function QuestionTimeline({ active }: { active: boolean }) {
               y={y(v) + label / 3}
               textAnchor="end"
               className="fill-soft font-mono"
-              style={{ fontSize: label }}
+              fontSize={label}
             >
               {v}
             </text>
@@ -96,7 +101,7 @@ export function QuestionTimeline({ active }: { active: boolean }) {
               height={size}
               className={`origin-center [transform-box:fill-box] ${peak ? 'fill-accent' : 'fill-surface stroke-ink'} ${animate('motion-safe:animate-ignite')}`}
               strokeWidth={peak ? 0 : 1.5}
-              style={{ animationDelay: `${(p.i / (SERIES.length - 1)) * DRAW_S * 0.9}s` }}
+              style={delay((p.i / (SERIES.length - 1)) * DRAW_S * 0.9)}
             />
           );
         })}
@@ -104,7 +109,8 @@ export function QuestionTimeline({ active }: { active: boolean }) {
           x={PEAK_POINT.cx + 11}
           y={PEAK_POINT.cy + peakLabel / 3}
           className={`fill-accent font-mono font-medium ${animate('motion-safe:animate-fade-up')}`}
-          style={{ fontSize: peakLabel, animationDelay: `${DRAW_S * 0.7}s` }}
+          fontSize={peakLabel}
+          style={delay(DRAW_S * 0.7)}
         >
           {copy.peak(TIMELINE_PEAK_ITEM, SERIES[PEAK]!)}
         </text>
@@ -117,7 +123,7 @@ export function QuestionTimeline({ active }: { active: boolean }) {
               y={PLOT.bottom + 8 + label}
               textAnchor={t.anchor}
               className="fill-soft font-mono"
-              style={{ fontSize: label }}
+              fontSize={label}
             >
               {copy.axis(t.block * TIMELINE_BLOCK_MINUTES)}
             </text>

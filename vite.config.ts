@@ -29,7 +29,7 @@ export const SECURITY_HEADERS: Record<string, string> = {
   'Cross-Origin-Opener-Policy': 'same-origin',
 };
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, isSsrBuild }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
   // Netlify exposes the deploy URL as `URL` at build time.
   const siteUrl = (env.VITE_SITE_URL || process.env.URL || 'http://localhost:5173').replace(/\/+$/, '');
@@ -38,19 +38,23 @@ export default defineConfig(({ mode }) => {
     plugins: [react(), tailwindcss()],
     define: {
       'import.meta.env.VITE_SITE_URL': JSON.stringify(siteUrl),
+      'import.meta.env.VITE_BUILD_YEAR': JSON.stringify(new Date().getFullYear()),
     },
-    build: {
-      rolldownOptions: {
-        output: {
-          codeSplitting: {
-            groups: [
-              { name: 'react', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
-              { name: 'avatar', test: /src[\\/]components[\\/]avatar[\\/]MetisAvatarArt/ },
-            ],
+    // The SSR build (`src/entry-server.tsx`, used by scripts/prerender.mjs) runs in Node only: one file.
+    build: isSsrBuild
+      ? {}
+      : {
+          rolldownOptions: {
+            output: {
+              codeSplitting: {
+                groups: [
+                  { name: 'react', test: /node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
+                  { name: 'avatar', test: /src[\\/]components[\\/]avatar[\\/]MetisAvatarArt/ },
+                ],
+              },
+            },
           },
         },
-      },
-    },
     preview: {
       headers: SECURITY_HEADERS,
     },

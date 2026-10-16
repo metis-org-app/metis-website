@@ -14,6 +14,7 @@ import { useInView } from '../../hooks/useInView';
 import { useI18n } from '../../i18n/useI18n';
 import { ConversationReview } from './ConversationReview';
 import { QuestionTimeline } from './QuestionTimeline';
+import { useHydrated } from '../../hooks/useHydrated';
 
 const SERIES: readonly number[] = QUESTION_TIMELINE;
 const PEAK_START = SERIES.indexOf(Math.max(...SERIES)) * TIMELINE_BLOCK_MINUTES;
@@ -52,6 +53,8 @@ function Stats() {
 
 function IntentShares({ active }: { active: boolean }) {
   const { m } = useI18n();
+  // Inline styles only after hydration: the prerendered HTML must not carry style attributes (CSP).
+  const hydrated = useHydrated();
   const copy = m.insights.intents;
   return (
     <div className="flex flex-col gap-3 lg:col-span-6">
@@ -75,7 +78,11 @@ function IntentShares({ active }: { active: boolean }) {
             <span aria-hidden="true" className="h-2 bg-line2">
               <span
                 className={`block h-full origin-left bg-ink ${active ? 'motion-safe:animate-bar-x' : ''}`}
-                style={{ width: `${(pct / TOP_SHARE) * 100}%`, animationDelay: `${i * 0.08}s` }}
+                style={
+                  hydrated
+                    ? { width: `${(pct / TOP_SHARE) * 100}%`, animationDelay: `${i * 0.08}s` }
+                    : undefined
+                }
               />
             </span>
             <q className="font-mono text-[13px] text-soft">{copy.examples[intent]}</q>

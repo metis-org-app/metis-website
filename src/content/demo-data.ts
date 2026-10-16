@@ -23,9 +23,6 @@ export const TOPIC_IDS = [
 ] as const;
 export type TopicId = (typeof TOPIC_IDS)[number];
 
-/** Sizes (bytes) of the sample files offered in the file-drop demo; their names live in the messages. */
-export const SAMPLE_FILE_SIZES = [2_400_000, 5_100_000] as const;
-
 /** Configurator defaults and limits. */
 export const CONFIG_LIMITS = { min: 4, max: 20, defaultCount: 8, visibleRows: 8 } as const;
 /** Difficulty offsets applied per row around the chosen level (clamped to 1..3). */

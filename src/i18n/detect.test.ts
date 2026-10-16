@@ -1,45 +1,40 @@
-import { describe, expect, it, vi } from 'vitest';
-import { detectLang, readStoredLang, STORAGE_KEY, storeLang } from './detect';
+import { describe, expect, it } from 'vitest';
+import { LANG_COOKIE, langFromPath, pathForLang, storeLangChoice } from './detect';
 
-describe('detectLang', () => {
-  it('prefers a stored choice', () => {
-    expect(detectLang({ stored: 'en', languages: ['es-MX'] })).toBe('en');
+describe('langFromPath', () => {
+  it.each([
+    ['/', 'es'],
+    ['/en', 'en'],
+    ['/en/', 'en'],
+    ['/en/anything', 'en'],
+    ['/english', 'es'],
+    ['/es/', 'es'],
+  ])('%s → %s', (path, lang) => {
+    expect(langFromPath(path)).toBe(lang);
   });
 
-  it('uses the first supported browser language', () => {
-    expect(detectLang({ stored: null, languages: ['fr-FR', 'es-MX', 'en-US'] })).toBe('es');
-    expect(detectLang({ stored: null, languages: ['en-GB'] })).toBe('en');
-  });
-
-  it('falls back to Spanish', () => {
-    expect(detectLang({ stored: null, languages: ['de-DE'] })).toBe('es');
-    expect(detectLang({ stored: null, languages: [] })).toBe('es');
+  it('round-trips with pathForLang', () => {
+    expect(langFromPath(pathForLang('en'))).toBe('en');
+    expect(langFromPath(pathForLang('es'))).toBe('es');
   });
 });
 
-describe('language storage', () => {
-  it('reads only valid values', () => {
-    expect(readStoredLang({ getItem: () => 'en' })).toBe('en');
-    expect(readStoredLang({ getItem: () => 'fr' })).toBeNull();
-    expect(readStoredLang({ getItem: () => null })).toBeNull();
+describe('storeLangChoice', () => {
+  it('writes the cookie Netlify reads for the language redirect', () => {
+    const doc = { cookie: '' };
+    storeLangChoice('en', doc);
+    expect(doc.cookie).toMatch(new RegExp(`^${LANG_COOKIE}=en; path=/; max-age=\\d+; samesite=lax`));
   });
 
-  it('survives a storage that throws', () => {
-    const throwing = {
-      getItem: () => {
-        throw new Error('blocked');
+  it('survives a blocked cookie jar', () => {
+    const blocked = {
+      get cookie() {
+        return '';
       },
-      setItem: () => {
+      set cookie(_value: string) {
         throw new Error('blocked');
       },
     };
-    expect(readStoredLang(throwing)).toBeNull();
-    expect(() => storeLang('en', throwing)).not.toThrow();
-  });
-
-  it('persists the choice', () => {
-    const setItem = vi.fn<(key: string, value: string) => void>();
-    storeLang('en', { setItem });
-    expect(setItem).toHaveBeenCalledWith(STORAGE_KEY, 'en');
+    expect(() => storeLangChoice('es', blocked)).not.toThrow();
   });
 });

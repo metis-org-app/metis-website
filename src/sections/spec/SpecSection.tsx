@@ -2,9 +2,12 @@ import { MetisThumb } from '../../components/avatar/MetisThumb';
 import { SectionIntro } from '../../components/ui/SectionIntro';
 import { SECTION_IDS } from '../../content/demo-data';
 import { useI18n } from '../../i18n/useI18n';
+import { useHydrated } from '../../hooks/useHydrated';
 
 export function SpecSection() {
   const { m } = useI18n();
+  // Inline styles only after hydration: the prerendered HTML must not carry style attributes (CSP).
+  const hydrated = useHydrated();
   return (
     <section id={SECTION_IDS.spec} aria-labelledby="spec-title" className="border-b border-ink">
       <div className="container-page grid grid-cols-1 gap-x-6 gap-y-10 py-[clamp(56px,7vw,88px)] lg:grid-cols-12">
@@ -14,7 +17,7 @@ export function SpecSection() {
             <div
               key={row.id}
               className="grid grid-cols-[minmax(120px,1fr)_minmax(0,2.4fr)] gap-4 border-b border-line py-4 motion-safe:animate-fade-up"
-              style={{ animationDelay: `${i * 0.05}s` }}
+              style={hydrated ? { animationDelay: `${i * 0.05}s` } : undefined}
             >
               <dt className="label-mono pt-0.5 text-[13px] text-soft">{row.k}</dt>
               <dd className="m-0 flex items-center gap-3 text-lg">
