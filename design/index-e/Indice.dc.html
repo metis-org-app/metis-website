@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Metis · Index</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.e *{box-sizing:border-box}
+.e h1,.e h2,.e h3,.e p{margin:0}
+.e button,.e input{font:inherit}
+.e button{cursor:pointer}
+.e a{color:inherit}
+.e-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:40px}
+.e-c4{grid-column:span 4}.e-c5{grid-column:span 5}.e-c6{grid-column:span 6}.e-c7{grid-column:span 7}.e-c8{grid-column:span 8}.e-c3{grid-column:span 3}.e-c9{grid-column:span 9}
+.e input[type=range]{accent-color:var(--ink);width:100%;height:28px}
+.e-mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+@keyframes e-travel{from{left:0%}to{left:100%}}
+@keyframes e-hl{0%{background:var(--surface)}4%,22%{background:var(--tint)}28%,100%{background:var(--surface)}}
+@keyframes e-bar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes e-barx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes e-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes e-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes e-word{from{opacity:0;transform:translateY(.35em);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes e-say{0%{opacity:0;transform:translateY(8px)}4%,29%{opacity:1;transform:none}33%,100%{opacity:0;transform:translateY(-4px)}}
+@keyframes e-scan{0%{top:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:100%;opacity:0}}
+@keyframes e-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+@keyframes e-ticker{to{transform:translateX(-50%)}}
+@keyframes e-in-right{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes e-in-left{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+@keyframes e-flash{0%{opacity:0;transform:scaleX(.4)}35%{opacity:1;transform:none;background:var(--tint)}100%{opacity:1;background:transparent}}
+@keyframes e-ignite{0%{transform:scale(.2) rotate(45deg);opacity:.2}60%{transform:scale(1.35) rotate(0);opacity:1}100%{transform:none;opacity:1}}
+@keyframes e-sq{0%,80%,100%{transform:translateY(0);opacity:.3}40%{transform:translateY(-5px);opacity:1}}
+@keyframes e-think{0%{left:0;width:0}50%{left:0;width:100%}100%{left:100%;width:0}}
+@keyframes e-sweep{0%{left:-30%;opacity:1}100%{left:100%;opacity:1}}
+@keyframes e-nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+@keyframes e-corner{0%,100%{opacity:.35}50%{opacity:1}}
+.e-travel{animation:e-travel 6s linear infinite}
+.e-hl{animation:e-hl 6s linear infinite}
+.e-bar{animation:e-bar .9s cubic-bezier(.2,.8,.2,1) both;transform-origin:bottom center;transform-box:fill-box}
+.e-barx{animation:e-barx .9s cubic-bezier(.2,.8,.2,1) both;transform-origin:left center}
+.e-in{animation:e-in .35s ease both}
+.e-blink{animation:e-blink 1s steps(1) infinite}
+.e-word{display:inline-block;animation:e-word .9s cubic-bezier(.2,.7,.2,1) both}
+.e-say{animation:e-say 12s ease-in-out infinite both}
+.e-scan{animation:e-scan 4.5s cubic-bezier(.45,0,.55,1) infinite}
+.e-pulse{animation:e-pulse 1.6s ease-in-out infinite}
+.e-ticker{animation:e-ticker 46s linear infinite}
+.e-in-right{animation:e-in-right .45s cubic-bezier(.2,.8,.2,1) both}
+.e-in-left{animation:e-in-left .45s cubic-bezier(.2,.8,.2,1) both}
+.e-flash{animation:e-flash .9s ease-out both;transform-origin:center}
+.e-ignite{animation:e-ignite .6s cubic-bezier(.3,1.4,.5,1) both}
+.e-sq{display:inline-block;width:7px;height:7px;background:var(--ink);animation:e-sq 1s ease-in-out infinite}
+.e-think{animation:e-think 1.2s ease-in-out infinite}
+.e-sweep{animation:e-sweep .8s cubic-bezier(.4,0,.2,1) both}
+.e-nudge{display:inline-block;animation:e-nudge 1.4s ease-in-out infinite}
+.e-corner{animation:e-corner 3s ease-in-out infinite}
+.e-btn{transition:background .15s ease,color .15s ease}
+.e-btn:hover{background:var(--accent) !important;color:var(--accent-fg) !important;border-color:var(--accent) !important}
+.e-chip{transition:background .15s ease,color .15s ease}
+.e-chip:hover{background:var(--ink) !important;color:var(--bg) !important}
+.e-link{transition:color .15s}
+.e-link:hover{color:var(--accent)}
+.e-navlinks{display:flex}
+.e-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/*@@MT_CSS@@*/
+.e .mt{--mt-gold:var(--accent);--mt-gold-dark:color-mix(in srgb,var(--accent) 50%,#000);--mt-gold-hi:color-mix(in srgb,var(--accent) 38%,#fff);--mt-gray:#D2CFC8;--mt-paper:#FFFFFF;display:block;width:100%;height:100%}
+@media (max-width: 960px){.e-grid>*{grid-column:1/-1 !important}.e-navlinks{display:none}.e-hide-sm{display:none}}
+@media (prefers-reduced-motion: reduce){.e *{animation:none !important}.e-say{opacity:0}.e-say:first-child{opacity:1}.e-scan{display:none}}
+</style>
+</helmet>
+<div class="e" style="--bg: {{c.bg}}; --surface: {{c.surface}}; --ink: {{c.ink}}; --soft: {{c.soft}}; --line: {{c.line}}; --line2: {{c.line2}}; --accent: {{c.accent}}; --accent-fg: {{c.accentFg}}; --tint: {{c.tint}}; min-height: 100vh; background: var(--bg); color: var(--ink); font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5; overflow-x: hidden">
+
+<!-- NAV -->
+<header style="border-bottom: 1px solid var(--ink); background: var(--bg)">
+<div style="max-width: 1328px; margin: 0 auto; padding: 0 24px">
+<div class="e-hide-sm e-mono" style="display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">
+<span>AI assessments · for instructors and students</span>
+<span>ES / EN</span>
+</div>
+<nav aria-label="Main" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 16px 0">
+<a href="#inicio" style="text-decoration: none; display: flex; align-items: center; gap: 10px">
+<span aria-hidden="true" style="width: 26px; height: 26px; background: var(--ink); display: inline-flex; align-items: flex-end; justify-content: flex-end; padding: 3px"><span style="width: 9px; height: 9px; background: var(--accent)"></span></span>
+<span style="font-weight: 800; font-stretch: 125%; font-size: 19px; letter-spacing: .01em; text-transform: uppercase">Metis</span>
+</a>
+<div class="e-navlinks e-mono" style="gap: 28px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase">
+<a class="e-link" href="#guia" style="text-decoration: none">AI guide</a>
+<a class="e-link" href="#configurar" style="text-decoration: none">Configure</a>
+<a class="e-link" href="#resultados" style="text-decoration: none">Results</a>
+<a class="e-link" href="#ficha" style="text-decoration: none">Spec</a>
+</div>
+<a class="e-btn e-mono" href="#inicio" style="background: var(--ink); color: var(--bg); border: 1px solid var(--ink); text-decoration: none; padding: 11px 18px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap">Create assessment →</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="inicio" style="border-bottom: 1px solid var(--ink)">
+<div style="max-width: 1328px; margin: 0 auto; padding: clamp(40px, 5vw, 72px) 24px clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: clamp(28px, 3.5vw, 40px)">
+<div class="e-mono" style="display: flex; flex-wrap: wrap; gap: 8px 32px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">
+<span style="color: var(--ink)">01 — Platform</span><span>Create · Share · Understand</span><span>Works with Canvas LMS</span>
+</div>
+<div class="e-grid" style="align-items: stretch">
+<div class="e-c8" style="display: flex; flex-direction: column; gap: 32px">
+<h1 style="font-weight: 600; font-stretch: 108%; font-size: clamp(46px, 6.3vw, 98px); line-height: .93; letter-spacing: -.04em; text-wrap: balance"><span class="e-word" style="animation-delay: .1s">From class material</span> <span class="e-word" style="animation-delay: .4s">to learning data<span style="color: var(--accent)">.</span></span></h1>
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end">
+<p class="e-word" style="animation-delay: .7s; flex: 1.3 1 340px; font-size: clamp(18px, 1.5vw, 20px); line-height: 1.5; text-wrap: pretty">Metis generates assessments from your files with AI, shares them through a link, and returns results by item, student, and topic. Inside the student link, it guides without solving for them.</p>
+<div class="e-word" style="animation-delay: .9s; flex: 1 1 260px; display: flex; flex-direction: column; gap: 10px">
+<a class="e-btn e-mono" href="#inicio" style="background: var(--ink); color: var(--bg); border: 1px solid var(--ink); text-decoration: none; padding: 16px 20px; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; text-align: center">Create a free assessment →</a>
+<a class="e-btn e-mono" href="#guia" style="background: transparent; color: var(--ink); border: 1px solid var(--ink); text-decoration: none; padding: 16px 20px; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; text-align: center">Talk to Metis ↓</a>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: auto">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink)">
+<div class="e-hl" style="border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 120px"><span class="e-mono" style="font-size: 12px; color: var(--soft)">A</span><span style="font-weight: 700; font-size: 20px; letter-spacing: -.01em">File</span><span class="e-mono" style="margin-top: auto; font-size: 12px; color: var(--soft)">PDF · DOCX · PPTX</span></div>
+<div class="e-hl" style="animation-delay: 1.5s; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 120px"><span class="e-mono" style="font-size: 12px; color: var(--soft)">B</span><span style="font-weight: 700; font-size: 20px; letter-spacing: -.01em">Items</span><span class="e-mono" style="margin-top: auto; font-size: 12px; color: var(--soft)">Suggested by AI</span></div>
+<div class="e-hl" style="animation-delay: 3s; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 120px"><span class="e-mono" style="font-size: 12px; color: var(--soft)">C</span><span style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 20px; letter-spacing: -.01em">Link + Metis<span style="position: relative; width: 24px; height: 24px; border: 1px solid var(--ink); overflow: hidden; background: var(--surface); flex-shrink: 0"><img src="/_blob/ce6969a34ee17ede9ea74c6f89018e88" alt="" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply"></span></span><span class="e-mono" style="margin-top: auto; font-size: 12px; color: var(--soft)">Hints, never answers</span></div>
+<div class="e-hl" style="animation-delay: 4.5s; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-height: 120px"><span class="e-mono" style="font-size: 12px; color: var(--soft)">D</span><span style="font-weight: 700; font-size: 20px; letter-spacing: -.01em">Results</span><span class="e-mono" style="margin-top: auto; font-size: 12px; color: var(--soft)">By item and student</span></div>
+</div>
+<div aria-hidden="true" style="position: relative; height: 10px">
+<div style="position: absolute; left: 0; right: 0; top: 4px; height: 1px; background: var(--line)"></div>
+<span class="e-travel" style="position: absolute; top: 0; width: 10px; height: 10px; margin-left: -5px; background: var(--accent)"></span>
+</div>
+</div>
+</div>
+
+<!-- Metis card -->
+<aside class="e-c4" aria-label="Metis, the AI guide" style="border: 1px solid var(--ink); background: var(--surface); display: flex; flex-direction: column">
+<div class="e-mono" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--ink); font-size: 12px; letter-spacing: .06em; text-transform: uppercase">
+<span>Metis / {{heroLabel}}</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="e-pulse" style="width: 8px; height: 8px; background: var(--accent)"></span>Online</span>
+</div>
+<div style="position: relative; aspect-ratio: 1; border-bottom: 1px solid var(--ink); background: var(--surface); padding: 5%">
+<svg class="mt mt-e-{{heroExpr}}" viewBox="0 0 1192 1168" role="img" aria-label="{{heroAria}}">@@MT_INNER@@</svg>
+</div>
+<div role="group" aria-label="Metis expressions" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--ink)">
+<sc-for list="{{heroChips}}" as="hc" hint-placeholder-count="6">
+<button type="button" class="e-mono" onClick="{{hc.pick}}" aria-pressed="{{hc.on}}" style="min-height: 44px; border: 0; border-right: {{hc.br}}; border-bottom: {{hc.bb}}; background: {{hc.bg}}; color: {{hc.fg}}; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; transition: background .2s, color .2s">{{hc.label}}</button>
+</sc-for>
+</div>
+<div style="padding: 14px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-weight: 600; font-stretch: 108%; font-size: 28px; line-height: 1; letter-spacing: -.03em">Metis</span><span class="e-mono" style="font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--soft)">In every student link</span></div>
+<div style="min-height: 50px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: var(--bg); padding: 8px 14px; font-weight: 600; font-size: 16px; line-height: 1.3"><span style="width: 8px; height: 8px; background: var(--accent); flex-shrink: 0"></span>{{heroLine}}</div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+
+<!-- TICKER -->
+<div aria-hidden="true" class="e-mono" style="border-bottom: 1px solid var(--ink); overflow: hidden; padding: 12px 0; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; background: var(--ink); color: var(--bg)">
+<div class="e-ticker" style="display: flex; gap: 36px; width: max-content; white-space: nowrap">
+<sc-for list="{{ticker}}" as="tk" hint-placeholder-count="10">
+<span style="display: inline-flex; align-items: center; gap: 36px">{{tk}}<span style="width: 8px; height: 8px; background: var(--accent); display: inline-block"></span></span>
+</sc-for>
+</div>
+</div>
+
+<!-- GUÍA -->
+<section id="guia" style="border-bottom: 1px solid var(--ink); background: var(--surface)">
+<div style="max-width: 1328px; margin: 0 auto; padding: clamp(56px, 7vw, 88px) 24px; display: flex; flex-direction: column; gap: 40px">
+<div class="e-grid" style="align-items: end">
+<div class="e-c7" style="display: flex; flex-direction: column; gap: 14px">
+<span class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase">02 — AI guide</span>
+<h2 style="font-weight: 600; font-stretch: 108%; font-size: clamp(32px, 3.6vw, 52px); line-height: 1; letter-spacing: -.035em; text-wrap: balance">Explicit rules. Predictable behavior.</h2>
+<p style="color: var(--soft); max-width: 620px; text-wrap: pretty">Metis lives inside the student link. Change a rule on the left and the conversation on the right follows it, reply by reply. Type your own question, or watch the demo.</p>
+</div>
+<div class="e-c5" style="display: flex; align-items: center; gap: 18px; border: 1px solid var(--ink); background: var(--bg); padding: 14px 18px 14px 14px">
+<div style="width: 168px; flex-shrink: 0; aspect-ratio: 1192 / 1168"><svg class="mt {{avatarCls}}" viewBox="0 0 1192 1168" role="img" aria-label="Metis, animated">@@MT_INNER@@</svg></div>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+<span class="e-mono" style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent)"><span class="e-pulse" style="width: 7px; height: 7px; background: var(--accent)"></span>Metis · live</span>
+<span style="font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -.01em">{{avatarHeadline}}</span>
+<span class="e-mono" style="font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">{{ruleSummary}}</span>
+</div>
+</div>
+</div>
+
+<div class="e-grid" style="align-items: stretch">
+<!-- Rules -->
+<div class="e-c4" style="display: flex; flex-direction: column; border-top: 1px solid var(--ink)">
+<div class="e-mono" style="padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Instructor rules · Quiz 02</div>
+<div style="padding: 16px 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="display: inline-flex; align-items: center; gap: 10px; font-weight: 700"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><rect x="5" y="11" width="14" height="10"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Never reveal the answer</span>
+<span class="e-mono" style="font-size: 11px; letter-spacing: .06em; padding: 3px 6px; background: var(--ink); color: var(--bg)">ALWAYS ON</span>
+</div>
+<div style="padding: 16px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 600">Help style</span>
+<div role="group" aria-label="Help style" style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="3">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="display: flex; align-items: flex-start; gap: 12px; min-height: 56px; padding: 10px 12px; border: 1px solid {{m.border}}; background: {{m.bg}}; color: var(--ink); text-align: left; transition: background .15s, border-color .15s">
+<span style="width: 16px; height: 16px; margin-top: 3px; border: 1px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0"><span style="width: 8px; height: 8px; background: {{m.dot}}"></span></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 15px">{{m.label}}</span><span style="font-size: 13px; color: var(--soft)">{{m.desc}}</span></span>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="padding: 16px 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-weight: 600">Max hints per item</span>
+<div role="group" aria-label="Max hints per item" style="display: flex; border: 1px solid var(--ink)">
+<sc-for list="{{hintOpts}}" as="h" hint-placeholder-count="3">
+<button type="button" class="e-mono" onClick="{{h.pick}}" aria-pressed="{{h.on}}" style="width: 44px; height: 40px; border: 0; border-right: {{h.sep}}; background: {{h.bg}}; color: {{h.fg}}">{{h.label}}</button>
+</sc-for>
+</div>
+</div>
+<button type="button" onClick="{{toggleCite}}" aria-pressed="{{cite}}" style="padding: 16px 0; border: 0; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; background: transparent; color: var(--ink); font-weight: 600; text-align: left">Cite the course material<span style="width: 48px; height: 26px; border: 1px solid var(--ink); background: {{citeTrack}}; position: relative; display: inline-block; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{citeKnob}}; width: 18px; height: 18px; background: {{citeKnobBg}}; transition: left .15s"></span></span></button>
+<div class="e-mono" style="padding: 16px 0; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); display: flex; align-items: center; gap: 8px">Changes apply to the next reply <span class="e-nudge" style="color: var(--accent)">→</span></div>
+</div>
+
+<!-- Chat -->
+<div class="e-c8" style="position: relative; border: 1px solid var(--ink); background: var(--bg); display: flex; flex-direction: column; min-width: 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--ink); background: var(--surface)">
+<div style="display: flex; align-items: center; gap: 12px; min-width: 0">
+<span style="position: relative; width: 46px; height: 46px; border: 1px solid var(--ink); background: var(--surface); overflow: hidden; flex-shrink: 0"><img src="/_blob/ce6969a34ee17ede9ea74c6f89018e88" alt="" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply"><span style="position: absolute; right: 0; bottom: 0; width: 11px; height: 11px; background: var(--accent)"></span></span>
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-weight: 700; font-size: 17px; line-height: 1.1">Metis <span style="font-weight: 400; color: var(--soft)">· AI guide</span></span>
+<span class="e-mono" style="display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)"><span class="{{statusDotCls}}" style="width: 7px; height: 7px; background: var(--accent)"></span>{{statusLabel}}</span>
+<span aria-hidden="true" style="position: relative; display: block; width: 120px; height: 2px; background: var(--line2); overflow: hidden"><sc-if value="{{busy}}" hint-placeholder-val="{{ false }}"><span class="e-think" style="position: absolute; top: 0; height: 2px; background: var(--accent)"></span></sc-if></span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<div role="img" aria-label="{{hintAria}}" style="display: flex; align-items: center; gap: 8px">
+<span class="e-mono" style="font-size: 11px; letter-spacing: .06em; color: var(--soft)">HINTS</span>
+<sc-for list="{{hintSquares}}" as="hq" hint-placeholder-count="3">
+<span class="{{hq.cls}}" style="width: 14px; height: 14px; border: 1px solid var(--ink); background: {{hq.bg}}"></span>
+</sc-for>
+</div>
+<button type="button" class="e-chip e-mono" onClick="{{reset}}" style="min-height: 36px; border: 1px solid var(--ink); background: transparent; color: var(--ink); padding: 6px 10px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase">Reset</button>
+<button type="button" class="e-btn e-mono" onClick="{{demo}}" style="min-height: 36px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); padding: 6px 12px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px"><svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" fill="currentColor"><path d="M7 5v14l12-7z"></path></svg>Watch demo</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--line)">
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 4px">
+<span class="e-mono" style="font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent)">Item 03 · Equilibrium price</span>
+<span style="font-weight: 600">Using the table from Lesson 4, find the equilibrium price.</span>
+</div>
+<table class="e-mono" style="border-collapse: collapse; font-size: 12px; border: 1px solid var(--ink)">
+<thead><tr style="background: var(--surface)"><th scope="col" style="padding: 5px 10px; text-align: left; font-weight: 500; border-bottom: 1px solid var(--ink)">Price</th><th scope="col" style="padding: 5px 10px; text-align: right; font-weight: 500; border-bottom: 1px solid var(--ink)">Supplied</th><th scope="col" style="padding: 5px 10px; text-align: right; font-weight: 500; border-bottom: 1px solid var(--ink)">Demanded</th></tr></thead>
+<tbody>
+<sc-for list="{{priceRows}}" as="pr" hint-placeholder-count="4">
+<tr style="background: {{pr.bg}}; transition: background .3s"><td style="padding: 4px 10px; border-bottom: 1px solid var(--line2); font-weight: {{pr.w}}">{{pr.price}}</td><td style="padding: 4px 10px; text-align: right; border-bottom: 1px solid var(--line2)">{{pr.s}}</td><td style="padding: 4px 10px; text-align: right; border-bottom: 1px solid var(--line2)">{{pr.d}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+
+<div style="position: relative; height: 430px; padding: 18px 16px; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 52px); mask-image: linear-gradient(to bottom, transparent 0, #000 52px)">
+<sc-for list="{{messages}}" as="msg" hint-placeholder-count="2">
+<sc-if value="{{msg.isSystem}}" hint-placeholder-val="{{ false }}">
+<div class="e-flash e-mono" style="flex-shrink: 0; display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase"><span style="flex: 1; height: 1px; background: var(--accent)"></span><span style="padding: 3px 8px; border: 1px solid var(--accent); color: var(--ink)">{{msg.text}}</span><span style="flex: 1; height: 1px; background: var(--accent)"></span></div>
+</sc-if>
+<sc-if value="{{msg.isStudent}}" hint-placeholder-val="{{ true }}">
+<div class="e-in-right" style="flex-shrink: 0; align-self: flex-end; max-width: 78%; display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
+<span class="e-mono" style="font-size: 10.5px; letter-spacing: .08em; color: var(--soft)">STUDENT</span>
+<div style="background: var(--ink); color: var(--bg); padding: 11px 14px; font-size: 15px; line-height: 1.45">{{msg.text}}</div>
+</div>
+</sc-if>
+<sc-if value="{{msg.isMetis}}" hint-placeholder-val="{{ false }}">
+<div class="e-in-left" style="flex-shrink: 0; align-self: flex-start; max-width: 88%; display: flex; align-items: flex-start; gap: 10px">
+<span style="position: relative; width: 32px; height: 32px; border: 1px solid var(--ink); background: var(--surface); overflow: hidden; flex-shrink: 0"><img src="/_blob/ce6969a34ee17ede9ea74c6f89018e88" alt="" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply"><span style="position: absolute; right: 0; bottom: 0; width: 8px; height: 8px; background: var(--accent)"></span></span>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<div style="background: var(--surface); border: 1px solid var(--ink); border-left: 3px solid var(--accent); padding: 11px 14px; font-size: 15px; line-height: 1.5">{{msg.text}}<sc-if value="{{msg.caret}}" hint-placeholder-val="{{ false }}"><span class="e-blink" aria-hidden="true" style="display: inline-block; width: 7px; height: 14px; margin-left: 3px; vertical-align: -2px; background: var(--ink)"></span></sc-if></div>
+<sc-if value="{{msg.showTag}}" hint-placeholder-val="{{ true }}">
+<span class="e-in e-mono" style="display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 10.5px; letter-spacing: .08em; color: var(--soft)"><span style="width: 6px; height: 6px; background: var(--accent)"></span>{{msg.tag}}</span>
+</sc-if>
+</div>
+</div>
+</sc-if>
+</sc-for>
+<sc-if value="{{typing}}" hint-placeholder-val="{{ false }}">
+<div class="e-in-left" style="flex-shrink: 0; align-self: flex-start; display: flex; align-items: center; gap: 10px">
+<span style="position: relative; width: 32px; height: 32px; border: 1px solid var(--ink); background: var(--surface); overflow: hidden; flex-shrink: 0"><img src="/_blob/ce6969a34ee17ede9ea74c6f89018e88" alt="" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply"></span>
+<div aria-label="Metis is thinking" style="display: inline-flex; gap: 5px; padding: 13px 14px; border: 1px solid var(--ink); background: var(--surface)"><span class="e-sq"></span><span class="e-sq" style="animation-delay: .15s"></span><span class="e-sq" style="animation-delay: .3s"></span></div>
+</div>
+</sc-if>
+<sc-if value="{{guideOff}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px; background: color-mix(in srgb, var(--bg) 94%, transparent)">
+<span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">AI guide is off for this assessment</span>
+<button type="button" class="e-btn e-mono" onClick="{{toggleGuide}}" style="min-height: 44px; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); padding: 10px 16px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase">Turn the guide on</button>
+</div>
+</sc-if>
+</div>
+
+<div style="border-top: 1px solid var(--ink); padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 10px; background: var(--surface)">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{prompts}}" as="p" hint-placeholder-count="3">
+<button type="button" class="e-chip" onClick="{{p.send}}" style="min-height: 40px; border: 1px solid var(--ink); background: transparent; color: var(--ink); padding: 7px 12px; font-size: 14px; font-weight: 600">{{p.text}}</button>
+</sc-for>
+</div>
+<form onSubmit="{{onSubmit}}" style="display: flex; gap: 0; border: 1px solid var(--ink); background: var(--bg)">
+<label for="e-msg" class="e-sr">Message Metis</label>
+<input id="e-msg" type="text" value="{{draft}}" onChange="{{onDraft}}" placeholder="Ask Metis something, like “Is it $30?”" style="flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); padding: 13px 14px; font-size: 16px; outline-offset: -2px">
+<button type="submit" class="e-btn e-mono" style="border: 0; border-left: 1px solid var(--ink); background: var(--ink); color: var(--bg); padding: 0 18px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; min-height: 48px">Send →</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CONFIGURADOR -->
+<section id="configurar" style="border-bottom: 1px solid var(--ink)">
+<div style="max-width: 1328px; margin: 0 auto; padding: clamp(56px, 7vw, 88px) 24px; display: flex; flex-direction: column; gap: 40px">
+<div class="e-grid" style="align-items: end">
+<div class="e-c8" style="display: flex; flex-direction: column; gap: 14px">
+<span class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase">03 — Configure</span>
+<h2 style="font-weight: 600; font-stretch: 108%; font-size: clamp(32px, 3.6vw, 52px); line-height: 1; letter-spacing: -.035em; text-wrap: balance">You define the structure. Metis fills in the items.</h2>
+</div>
+<p class="e-c4" style="color: var(--soft); text-wrap: pretty">Adjust the controls. The preview is built from topics detected in the sample material, and the guide settings are shared with the chat above.</p>
+</div>
+<div class="e-grid">
+<div class="e-c4" style="display: flex; flex-direction: column; border-top: 1px solid var(--ink)">
+<div style="padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px">
+<label for="e-n" style="display: flex; justify-content: space-between; font-weight: 600"><span>Number of items</span><span class="e-mono">{{nLabel}}</span></label>
+<input id="e-n" type="range" min="4" max="20" step="1" value="{{n}}" onChange="{{onN}}">
+</div>
+<div style="padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 600">Item types</span>
+<div role="group" aria-label="Item types" style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{types}}" as="t" hint-placeholder-count="4">
+<button type="button" onClick="{{t.toggle}}" aria-pressed="{{t.on}}" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 8px 10px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: var(--ink); text-align: left">
+<span style="width: 18px; height: 18px; border: 1px solid var(--ink); background: {{t.box}}; display: inline-flex; align-items: center; justify-content: center; color: var(--bg); flex-shrink: 0"><sc-if value="{{t.on}}" hint-placeholder-val="{{ true }}"><svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><path d="M5 12l5 5L20 7"></path></svg></sc-if></span>{{t.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 600">Difficulty</span>
+<div role="group" aria-label="Difficulty" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ink)">
+<sc-for list="{{levels}}" as="l" hint-placeholder-count="3">
+<button type="button" class="e-mono" onClick="{{l.pick}}" aria-pressed="{{l.on}}" style="min-height: 44px; border: 0; border-right: {{l.sep}}; background: {{l.bg}}; color: {{l.fg}}; font-size: 13px; letter-spacing: .04em; text-transform: uppercase">{{l.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="padding: 18px 0; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px">
+<button type="button" onClick="{{toggleGuide}}" aria-pressed="{{guide}}" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--ink); font-weight: 600; text-align: left">Metis in the student link<span style="width: 48px; height: 26px; border: 1px solid var(--ink); background: {{guideTrack}}; position: relative; display: inline-block; flex-shrink: 0"><span style="position: absolute; top: 3px; left: {{guideKnob}}; width: 18px; height: 18px; background: {{guideKnobBg}}; transition: left .15s"></span></span></button>
+<sc-if value="{{guide}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="color: var(--soft); font-size: 15px">Max hints per item</span>
+<div role="group" aria-label="Max hints" style="display: flex; border: 1px solid var(--ink)">
+<sc-for list="{{hintOpts}}" as="h" hint-placeholder-count="3">
+<button type="button" class="e-mono" onClick="{{h.pick}}" aria-pressed="{{h.on}}" style="width: 44px; height: 40px; border: 0; border-right: {{h.sep}}; background: {{h.bg}}; color: {{h.fg}}">{{h.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+
+<div class="e-c8" style="border: 1px solid var(--ink); background: var(--surface); display: flex; flex-direction: column">
+<div style="position: relative; overflow: hidden; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; padding: 16px 18px; border-bottom: 1px solid var(--ink)">
+<sc-if value="{{regenA}}" hint-placeholder-val="{{ false }}"><span class="e-sweep" aria-hidden="true" style="position: absolute; bottom: -1px; width: 30%; height: 2px; background: var(--accent)"></span></sc-if>
+<sc-if value="{{regenB}}" hint-placeholder-val="{{ false }}"><span class="e-sweep" aria-hidden="true" style="position: absolute; bottom: -1px; width: 30%; height: 2px; background: var(--accent)"></span></sc-if>
+<span style="font-weight: 700; font-size: 19px">Economics · Supply and demand</span>
+<span class="e-mono" style="font-size: 12px; letter-spacing: .06em; color: var(--soft)">{{summary}}</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 560px; border-collapse: collapse; font-size: 16px">
+<thead>
+<tr class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); text-align: left">
+<th scope="col" style="padding: 10px 18px; font-weight: 500; border-bottom: 1px solid var(--line); width: 64px">No.</th>
+<th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid var(--line)">Type</th>
+<th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid var(--line)">Topic</th>
+<th scope="col" style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid var(--line); width: 90px">Level</th>
+<th scope="col" style="padding: 10px 18px; font-weight: 500; border-bottom: 1px solid var(--line); width: 90px; text-align: right">Source</th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<tr class="e-in" style="animation-delay: {{r.delay}}">
+<td class="e-mono" style="padding: 12px 18px; border-bottom: 1px solid var(--line2); color: var(--soft)">{{r.num}}</td>
+<td style="padding: 12px; border-bottom: 1px solid var(--line2); font-weight: 600">{{r.type}}</td>
+<td style="padding: 12px; border-bottom: 1px solid var(--line2)">{{r.topic}}</td>
+<td style="padding: 12px; border-bottom: 1px solid var(--line2)"><span role="img" aria-label="{{r.levelLabel}}" style="display: inline-flex; gap: 3px"><span style="width: 12px; height: 12px; border: 1px solid var(--ink); background: {{r.l1}}"></span><span style="width: 12px; height: 12px; border: 1px solid var(--ink); background: {{r.l2}}"></span><span style="width: 12px; height: 12px; border: 1px solid var(--ink); background: {{r.l3}}"></span></span></td>
+<td class="e-mono" style="padding: 12px 18px; border-bottom: 1px solid var(--line2); text-align: right; color: var(--soft)">{{r.page}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<sc-if value="{{hasMore}}" hint-placeholder-val="{{ false }}">
+<div class="e-mono" style="padding: 12px 18px; border-bottom: 1px solid var(--line2); font-size: 13px; color: var(--soft)">{{moreLabel}}</div>
+</sc-if>
+<div class="e-mono" style="margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; border-top: 1px solid var(--ink); font-size: 12px; letter-spacing: .04em">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="position: relative; width: 26px; height: 26px; border: 1px solid var(--ink); background: var(--surface); overflow: hidden; flex-shrink: 0; opacity: {{guideOpacity}}"><img src="/_blob/ce6969a34ee17ede9ea74c6f89018e88" alt="" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply"></span>{{guideLine}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; color: var(--soft)">Ready to share<span class="e-blink" style="width: 8px; height: 14px; background: var(--accent)"></span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RESULTADOS -->
+<section id="resultados" style="border-bottom: 1px solid var(--ink); background: var(--surface)">
+<div style="max-width: 1328px; margin: 0 auto; padding: clamp(56px, 7vw, 88px) 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 820px">
+<span class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase">04 — Results</span>
+<h2 style="font-weight: 600; font-stretch: 108%; font-size: clamp(32px, 3.6vw, 52px); line-height: 1; letter-spacing: -.035em; text-wrap: balance">What happened, item by item, as soon as it&#39;s submitted.</h2>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink)">
+<div style="padding: 20px 20px 20px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px"><span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Submissions</span><span style="font-weight: 600; font-stretch: 108%; font-size: 52px; line-height: 1; letter-spacing: -.04em">{{k.subs}}<span style="color: var(--soft); font-size: 28px">/28</span></span></div>
+<div style="padding: 20px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px"><span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Average accuracy</span><span style="font-weight: 600; font-stretch: 108%; font-size: 52px; line-height: 1; letter-spacing: -.04em">{{k.acc}}%</span></div>
+<div style="padding: 20px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px"><span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Hints from Metis</span><span style="font-weight: 600; font-stretch: 108%; font-size: 52px; line-height: 1; letter-spacing: -.04em">{{k.hints}}</span></div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 4px"><span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Answers revealed</span><span style="font-weight: 600; font-stretch: 108%; font-size: 52px; line-height: 1; letter-spacing: -.04em; color: var(--accent)">0</span></div>
+</div>
+<div class="e-grid">
+<figure class="e-c6" style="margin: 0; display: flex; flex-direction: column; gap: 12px">
+<figcaption class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Score distribution (0–10)</figcaption>
+<svg viewBox="0 0 560 240" role="img" aria-label="Score histogram: most students scored between 6 and 9 points" style="width: 100%; height: auto; color: var(--ink)">
+<g style="fill: var(--ink)">
+<sc-for list="{{hist}}" as="h" hint-placeholder-count="11">
+<rect class="e-bar" x="{{h.x}}" y="{{h.y}}" width="38" height="{{h.h}}" style="animation-delay: {{h.d}}; fill: {{h.fill}}"></rect>
+</sc-for>
+</g>
+<line x1="0" y1="210" x2="560" y2="210" stroke="currentColor" stroke-width="1"></line>
+<sc-for list="{{hist}}" as="h" hint-placeholder-count="11">
+<text x="{{h.tx}}" y="230" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" style="fill: var(--soft)">{{h.label}}</text>
+</sc-for>
+</svg>
+</figure>
+<div class="e-c6" style="display: flex; flex-direction: column; gap: 12px">
+<span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">Accuracy by item · sorted lowest to highest</span>
+<div style="display: flex; flex-direction: column; border-top: 1px solid var(--ink)">
+<sc-for list="{{itemRows}}" as="it" hint-placeholder-count="6">
+<div style="display: grid; grid-template-columns: 44px minmax(0, 1.4fr) minmax(0, 1fr) 56px; gap: 12px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--line)">
+<span class="e-mono" style="font-size: 13px; color: var(--soft)">{{it.num}}</span>
+<span style="font-weight: 600; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 8px">{{it.topic}}<sc-if value="{{it.flag}}" hint-placeholder-val="{{ false }}"><span class="e-mono" style="background: var(--accent); color: var(--accent-fg); font-size: 11px; letter-spacing: .06em; padding: 2px 6px">REVIEW</span></sc-if></span>
+<span style="height: 8px; background: var(--line2)"><span class="e-barx" style="display: block; height: 100%; width: {{it.w}}; background: {{it.color}}; animation-delay: {{it.d}}"></span></span>
+<span class="e-mono" style="font-size: 14px; text-align: right">{{it.pct}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; border: 1px solid var(--ink); background: var(--bg); padding: 14px 16px">
+<span style="position: relative; width: 124px; height: 122px; border: 1px solid var(--ink); background: var(--surface); flex-shrink: 0; padding: 6px"><svg class="mt mt-e-reviewing" viewBox="0 0 1192 1168" role="img" aria-label="Metis reviewing the results, with reading glasses">@@MT_INNER@@</svg></span>
+<div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 2px">
+<span class="e-mono" style="font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent)">Metis · summary for the instructor</span>
+<span style="font-size: 17px">Item 05 drew 6 of the 11 hints. Consumer surplus is worth revisiting before the next unit.</span>
+</div>
+<a class="e-btn e-mono" href="#resultados" style="border: 1px solid var(--ink); text-decoration: none; padding: 12px 16px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase">See the hint log →</a>
+</div>
+</div>
+</section>
+
+<!-- FICHA -->
+<section id="ficha" style="border-bottom: 1px solid var(--ink)">
+<div class="e-grid" style="max-width: 1328px; margin: 0 auto; padding: clamp(56px, 7vw, 88px) 24px">
+<div class="e-c4" style="display: flex; flex-direction: column; gap: 14px">
+<span class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase">05 — Spec sheet</span>
+<h2 style="font-weight: 600; font-stretch: 108%; font-size: clamp(32px, 3.4vw, 46px); line-height: 1; letter-spacing: -.035em; text-wrap: balance">What Metis does, without adjectives.</h2>
+</div>
+<dl class="e-c8" style="margin: 0; border-top: 1px solid var(--ink)">
+<sc-for list="{{spec}}" as="r" hint-placeholder-count="8">
+<div class="e-in" style="animation-delay: {{r.delay}}; display: grid; grid-template-columns: minmax(120px, 1fr) minmax(0, 2.4fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line)">
+<dt class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft); padding-top: 2px">{{r.k}}</dt>
+<dd style="margin: 0; font-size: 18px; display: flex; align-items: center; gap: 12px"><sc-if value="{{r.metis}}" hint-placeholder-val="{{ false }}"><span style="position: relative; width: 30px; height: 30px; border: 1px solid var(--ink); background: var(--surface); overflow: hidden; flex-shrink: 0"><img src="/_blob/ce6969a34ee17ede9ea74c6f89018e88" alt="" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); mix-blend-mode: multiply"></span></sc-if><span>{{r.v}}</span></dd>
+</div>
+</sc-for>
+</dl>
+</div>
+</section>
+
+<!-- CTA -->
+<section style="background: var(--ink); color: var(--bg)">
+<div style="max-width: 1328px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) 24px; display: flex; flex-direction: column; gap: 32px">
+<span class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase; opacity: .7">06 — Get started</span>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px">
+<h2 style="flex: 1 1 560px; font-weight: 600; font-stretch: 108%; font-size: clamp(52px, 8vw, 128px); line-height: .9; letter-spacing: -.045em; text-wrap: balance">Start with one file<span style="color: var(--accent); filter: brightness(1.35)">.</span></h2>
+<div style="flex: 0 0 auto; display: flex; flex-direction: column; gap: 10px; width: 200px">
+<span style="position: relative; display: block; width: 200px; height: 200px; border: 1px solid var(--bg); background: var(--bg); padding: 10px"><svg class="mt mt-e-celebrating" viewBox="0 0 1192 1168" role="img" aria-label="Metis celebrating">@@MT_INNER@@</svg></span>
+<span class="e-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .8">Metis comes with every link</span>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; border-top: 1px solid rgba(255,255,255,.25); padding-top: 24px">
+<span class="e-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase; opacity: .8">No credit card · set up in 2 minutes</span>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a class="e-btn e-mono" href="#inicio" style="background: var(--accent); color: var(--accent-fg); border: 1px solid var(--accent); text-decoration: none; padding: 16px 22px; font-size: 14px; letter-spacing: .06em; text-transform: uppercase">Create a free assessment →</a>
+<a class="e-mono" href="#inicio" style="background: transparent; color: var(--bg); border: 1px solid var(--bg); text-decoration: none; padding: 16px 22px; font-size: 14px; letter-spacing: .06em; text-transform: uppercase">Talk to our team</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="e-mono" style="max-width: 1328px; margin: 0 auto; padding: 22px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--soft)">
+<span style="color: var(--ink); font-family: 'Archivo', sans-serif; font-weight: 800; font-stretch: 125%; letter-spacing: .01em">Metis</span>
+<div style="display: flex; gap: 22px">
+<a class="e-link" href="#inicio" style="text-decoration: none">Privacy</a>
+<a class="e-link" href="#inicio" style="text-decoration: none">Terms</a>
+<a class="e-link" href="#inicio" style="text-decoration: none">Contact</a>
+</div>
+<span>© 2026 Metis</span>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"palette":{"editor":"enum","options":["Vermilion","Cobalt","Pine"],"default":"Vermilion"},"$preview":{"width":1440,"height":5900}}'>
+class Component extends DCLogic {
+  state = {
+    n: 8, types: { mc: true, tf: true, short: true, match: false }, level: 'Medium', guide: true, hints: 3, regen: 0,
+    mode: 'socratic', cite: true, used: 1, typing: false, messages: null, twId: -1, tw: 0, draft: '', hl: null, kp: 0,
+    hero: 0, heroAuto: true
+  };
+  timers = [];
+  tw = null;
+  kpTimer = null;
+  heroTimer = null;
+  nextId = 10;
+
+  componentDidMount() {
+    const t0 = Date.now();
+    this.kpTimer = setInterval(() => {
+      const p = Math.min(1, (Date.now() - t0) / 1500);
+      this.setState({ kp: p });
+      if (p >= 1) { clearInterval(this.kpTimer); this.kpTimer = null; }
+    }, 40);
+    this.heroTimer = setInterval(() => {
+      if (this.state.heroAuto) this.setState({ hero: (this.state.hero + 1) % 6 });
+    }, 3600);
+  }
+
+  componentWillUnmount() {
+    this.stopAll();
+    if (this.kpTimer) clearInterval(this.kpTimer);
+    if (this.heroTimer) clearInterval(this.heroTimer);
+  }
+
+  palette(name) {
+    const base = { bg: '#F3F2EE', surface: '#FBFAF8', ink: '#111111', soft: '#55534E', line: '#CFCCC4', line2: '#E4E2DC', accentFg: '#FFFFFF' };
+    const P = {
+      Vermilion: { accent: '#C9321F', tint: '#F6D9D2' },
+      Cobalt: { accent: '#1F48D6', tint: '#DCE4FB' },
+      Pine: { accent: '#2F6B4F', tint: '#D7E8DE' }
+    };
+    return { ...base, ...(P[name] || P.Vermilion) };
+  }
+
+  // ---- guide chat ----
+  reply(kind, mode, num) {
+    const at = num ? '$' + num : 'that price';
+    const R = {
+      answer: {
+        socratic: "I can't give you the number, but we can find it together. What has to be true about supply and demand at the equilibrium price?",
+        hints: 'Hint: the equilibrium price is where quantity supplied equals quantity demanded. Look for that row in the table.',
+        example: 'Worked example: if at $8 sellers offer 15 units and buyers want 15, then $8 is the equilibrium. Run the same check on your table.'
+      },
+      start: {
+        socratic: 'Start with the table. What happens to quantity demanded as the price goes up? And to quantity supplied?',
+        hints: 'Hint: go row by row and compare the two quantity columns. One row is different from the rest.',
+        example: 'Here is the method: 1) read a row, 2) compare supplied and demanded, 3) stop where they match. Try step 1 with the first row.'
+      },
+      check: {
+        socratic: "I won't confirm it yet. At " + at + ', how many units are supplied and how many are demanded? Are they equal?',
+        hints: 'Hint: find the ' + at + ' row and compare both quantity columns. If they match, you have your answer.',
+        example: 'Example: at $8, 15 supplied and 15 demanded means $8 is the equilibrium. Do the same check at ' + at + '.'
+      },
+      other: {
+        socratic: 'Good question to think through. What does the table tell you about buyers and sellers when the price changes?',
+        hints: 'Hint: this item is about the point where both quantity columns meet.',
+        example: 'Picture a market where 15 units are both offered and wanted at $8: that price is the equilibrium. Look for the same pattern here.'
+      }
+    };
+    return R[kind][mode];
+  }
+
+  classify(t) {
+    const x = t.toLowerCase();
+    if (/\d/.test(x) || /is it|correct|right\b|am i|did i/.test(x)) return 'check';
+    if (/answer|tell me|give me|just say|what is the|what's the/.test(x)) return 'answer';
+    if (/start|begin|how do|don.?t know|stuck|lost|help|confus/.test(x)) return 'start';
+    return 'other';
+  }
+
+  tagFor(mode, used, max, cite) {
+    const M = { socratic: 'SOCRATIC', hints: 'DIRECT HINT', example: 'WORKED EXAMPLE' };
+    return M[mode] + ' · HINT ' + used + '/' + max + (cite ? ' · SOURCE P. 06' : '') + ' · ANSWER WITHHELD';
+  }
+
+  initial() {
+    return [
+      { id: 1, from: 'student', text: "What's the equilibrium price? Just give me the number." },
+      { id: 2, from: 'metis', text: this.reply('answer', 'socratic', null) + ' Source: Lesson 4, p. 06.', tag: this.tagFor('socratic', 1, 3, true) }
+    ];
+  }
+
+  msgs() { return this.state.messages || this.initial(); }
+
+  withMsg(m) { return this.msgs().concat([{ ...m, id: this.nextId++ }]).slice(-30); }
+
+  sys(text) { return { messages: this.withMsg({ from: 'system', text }) }; }
+
+  typewrite(id, len) {
+    if (this.tw) clearInterval(this.tw);
+    this.setState({ twId: id, tw: 0 });
+    this.tw = setInterval(() => {
+      const n = this.state.tw + 3;
+      if (n >= len) { clearInterval(this.tw); this.tw = null; this.setState({ twId: -1, tw: 0 }); }
+      else this.setState({ tw: n });
+    }, 20);
+  }
+
+  send(raw) {
+    const t = (raw || '').trim();
+    const s = this.state;
+    if (!t || s.typing || s.twId > 0 || !s.guide) return;
+    const kind = this.classify(t);
+    const m = t.match(/\d+(?:[.,]\d+)?/);
+    const num = m ? m[0] : null;
+    this.setState({ messages: this.withMsg({ from: 'student', text: t }), typing: true, draft: '' });
+    this.timers.push(setTimeout(() => {
+      const st = this.state;
+      const atLimit = st.used >= st.hints;
+      let text, tag, hl = st.hl;
+      if (atLimit) {
+        text = 'You have used the ' + st.hints + ' hints your instructor allows on this item. Give it your best answer; you will see feedback when you submit.';
+        tag = 'LIMIT REACHED · ANSWER WITHHELD';
+      } else {
+        text = this.reply(kind, st.mode, num) + (st.cite ? ' Source: Lesson 4, p. 06.' : '');
+        tag = this.tagFor(st.mode, st.used + 1, st.hints, st.cite);
+        if (kind === 'check' && num && [20, 30, 40, 50].indexOf(Number(num)) >= 0) hl = Number(num);
+      }
+      const msg = { from: 'metis', text, tag, id: this.nextId++ };
+      this.setState({ typing: false, hl, used: atLimit ? st.used : st.used + 1, messages: this.msgs().concat([msg]).slice(-30) });
+      this.typewrite(msg.id, text.length);
+    }, 1100));
+  }
+
+  stopAll() {
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
+    if (this.tw) { clearInterval(this.tw); this.tw = null; }
+  }
+
+  demo() {
+    this.stopAll();
+    this.setState({ messages: [], used: 0, typing: false, twId: -1, tw: 0, hl: null, guide: true });
+    const steps = ['Just tell me the answer.', "I don't know where to start.", 'Is it $40?'];
+    steps.forEach((txt, i) => this.timers.push(setTimeout(() => this.send(txt), 500 + i * 5200)));
+  }
+
+  cfg(patch, note) {
+    const extra = note ? this.sys(note) : {};
+    this.setState({ ...patch, ...extra, regen: this.state.regen + 1 });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const pad = (x) => (x < 10 ? '0' + x : '' + x);
+
+    // configurator
+    const TYPES = [
+      { id: 'mc', label: 'Multiple choice' },
+      { id: 'tf', label: 'True or false' },
+      { id: 'short', label: 'Short answer' },
+      { id: 'match', label: 'Matching' }
+    ];
+    const activeCount = TYPES.filter((t) => s.types[t.id]).length;
+    const types = TYPES.map((t) => {
+      const on = !!s.types[t.id];
+      return {
+        ...t, on,
+        bg: on ? 'var(--surface)' : 'transparent',
+        border: on ? 'var(--ink)' : 'var(--line)',
+        box: on ? 'var(--ink)' : 'transparent',
+        toggle: () => {
+          if (on && activeCount === 1) return;
+          this.cfg({ types: { ...this.state.types, [t.id]: !on } });
+        }
+      };
+    });
+    const active = TYPES.filter((t) => s.types[t.id]);
+    const LV = ['Basic', 'Medium', 'Advanced'];
+    const levels = LV.map((label, i) => {
+      const on = s.level === label;
+      return { label, on, bg: on ? 'var(--ink)' : 'transparent', fg: on ? 'var(--bg)' : 'var(--ink)', sep: i < 2 ? '1px solid var(--ink)' : '0', pick: () => this.cfg({ level: label }) };
+    });
+    const hintOpts = [1, 2, 3].map((v, i) => {
+      const on = s.hints === v;
+      return {
+        label: '' + v, on, bg: on ? 'var(--ink)' : 'transparent', fg: on ? 'var(--bg)' : 'var(--ink)', sep: i < 2 ? '1px solid var(--ink)' : '0',
+        pick: () => { if (this.state.hints !== v) this.cfg({ hints: v }, 'Rule updated — max hints: ' + v); }
+      };
+    });
+    const TOPICS = ['Law of demand', 'Law of supply', 'Equilibrium price', 'Price elasticity', 'Consumer surplus', 'Curve shifts', 'Substitute goods', 'Complementary goods', 'Price ceilings', 'Shortage and surplus'];
+    const lvl = LV.indexOf(s.level) + 1;
+    const OFF = [0, 0, 1, -1, 0, 1, 0, -1];
+    const VISIBLE = 8;
+    const rows = [];
+    for (let i = 0; i < Math.min(s.n, VISIBLE); i++) {
+      const d = Math.max(1, Math.min(3, lvl + OFF[i % OFF.length]));
+      rows.push({
+        num: pad(i + 1),
+        type: active[i % active.length].label,
+        topic: TOPICS[(i * 7) % 10],
+        l1: 'var(--ink)', l2: d >= 2 ? 'var(--ink)' : 'transparent', l3: d >= 3 ? 'var(--ink)' : 'transparent',
+        levelLabel: 'Level ' + d + ' of 3',
+        page: 'p. ' + pad(2 + ((i * 5) % 14)),
+        delay: (i * 0.04).toFixed(2) + 's'
+      });
+    }
+    const more = s.n - VISIBLE;
+
+    // guide
+    const MODES = [
+      { id: 'socratic', label: 'Socratic questions', desc: 'Replies with questions that lead to the reasoning' },
+      { id: 'hints', label: 'Direct hints', desc: 'Points to the next step without solving it' },
+      { id: 'example', label: 'Worked example', desc: 'Solves a similar case so the method can be copied' }
+    ];
+    const modes = MODES.map((m) => {
+      const on = s.mode === m.id;
+      return {
+        ...m, on,
+        bg: on ? 'var(--bg)' : 'transparent',
+        border: on ? 'var(--ink)' : 'var(--line)',
+        dot: on ? 'var(--accent)' : 'transparent',
+        pick: () => { if (this.state.mode !== m.id) this.setState({ mode: m.id, ...this.sys('Rule updated — ' + m.label) }); }
+      };
+    });
+    const msgs = this.msgs().map((m) => {
+      const typingThis = m.id === s.twId;
+      return {
+        isSystem: m.from === 'system',
+        isStudent: m.from === 'student',
+        isMetis: m.from === 'metis',
+        text: typingThis ? m.text.slice(0, s.tw) : m.text,
+        caret: typingThis,
+        showTag: m.from === 'metis' && !typingThis,
+        tag: m.tag || ''
+      };
+    });
+    const used = Math.min(s.used, s.hints);
+    const hintSquares = Array.from({ length: s.hints }, (_, i) => {
+      const lit = i < used;
+      return { cls: lit ? 'e-ignite' : '', bg: lit ? 'var(--accent)' : 'transparent' };
+    });
+    const busy = s.typing || s.twId > 0;
+    const allMsgs = this.msgs();
+    const lastMetis = allMsgs.filter((m) => m.from === 'metis').slice(-1)[0];
+    const lastLimit = !!(lastMetis && lastMetis.tag && lastMetis.tag.indexOf('LIMIT') === 0);
+    const HERO = [
+      { id: 'happy', label: 'Happy', line: 'I give hints, never answers.' },
+      { id: 'listening', label: 'Listening', line: 'Ask me anything about this item.' },
+      { id: 'thinking', label: 'Thinking', line: 'Let me find a hint that fits your rules.' },
+      { id: 'reviewing', label: 'Reviewing', line: 'Checking the work against your rubric.' },
+      { id: 'guiding', label: 'Guiding', line: 'Try comparing both columns first.' },
+      { id: 'celebrating', label: 'Celebrating', line: 'You got there yourself. Nice work.' }
+    ];
+    const prompts = ['Just tell me the answer.', "I don't know where to start.", 'Is it $40?'].map((text) => ({ text, send: () => this.send(text) }));
+    const priceRows = [[20, 10, 50], [30, 20, 40], [40, 30, 30], [50, 40, 20]].map((r) => ({
+      price: '$' + r[0], s: r[1], d: r[2], bg: s.hl === r[0] ? 'var(--tint)' : 'transparent', w: s.hl === r[0] ? 700 : 400
+    }));
+
+    // results
+    const e = 1 - Math.pow(1 - s.kp, 3);
+    const BINS = [0, 0, 1, 1, 2, 3, 4, 5, 5, 3, 2];
+    const hist = BINS.map((v, i) => {
+      const h = v * 38;
+      return { x: 6 + i * 50, y: 210 - h, h, tx: 25 + i * 50, label: '' + i, d: (i * 0.05).toFixed(2) + 's', fill: i <= 4 ? 'var(--accent)' : 'var(--ink)' };
+    });
+    const ITEMS = [
+      { num: '05', topic: 'Consumer surplus', p: 46 },
+      { num: '03', topic: 'Equilibrium price', p: 62 },
+      { num: '04', topic: 'Price elasticity', p: 71 },
+      { num: '06', topic: 'Curve shifts', p: 78 },
+      { num: '02', topic: 'Law of supply', p: 88 },
+      { num: '01', topic: 'Law of demand', p: 93 }
+    ];
+    const itemRows = ITEMS.map((it, i) => ({ ...it, pct: it.p + '%', w: it.p + '%', flag: i === 0, color: i === 0 ? 'var(--accent)' : 'var(--ink)', d: (i * 0.08).toFixed(2) + 's' }));
+    const ticker = [
+      'Quiz 02 · Supply and demand — 26 of 28 submitted',
+      'Metis gave 11 hints · 0 answers revealed',
+      'Item 05 flagged for review',
+      'Lesson_06.pdf → 12 items suggested',
+      'Average accuracy 74%'
+    ];
+
+    const SPEC = [
+      { k: 'Input', v: 'PDFs, documents, slides, and notes. Drag and drop.' },
+      { k: 'Generation', v: 'AI suggests items from your material. You approve, edit, or discard each one.' },
+      { k: 'Item types', v: 'Multiple choice, true or false, short answer, and matching.' },
+      { k: 'Distribution', v: 'One link per assessment. Students respond from any device.' },
+      { k: 'AI guide', v: 'Metis, an agent in the student link that gives hints following your rules. Never reveals the answer.', metis: true },
+      { k: 'Results', v: "By item, by student, and by topic, as soon as it's submitted." },
+      { k: 'Sources', v: 'Each item points to its passage in the source material.' },
+      { k: 'Integration', v: 'Works with Canvas LMS. Exports to PDF and Word.' }
+    ];
+
+    return {
+      c: this.palette(this.props.palette),
+      ticker: ticker.concat(ticker),
+      spec: SPEC.map((r, i) => ({ ...r, metis: !!r.metis, delay: (i * 0.05).toFixed(2) + 's' })),
+
+      n: s.n,
+      nLabel: pad(s.n),
+      onN: (ev) => this.cfg({ n: Number(ev.target.value) }),
+      types,
+      levels,
+      guide: s.guide,
+      guideOff: !s.guide,
+      toggleGuide: () => this.cfg({ guide: !this.state.guide }, this.state.guide ? 'AI guide turned off' : 'AI guide turned on'),
+      guideTrack: s.guide ? 'var(--ink)' : 'transparent',
+      guideKnob: s.guide ? '25px' : '3px',
+      guideKnobBg: s.guide ? 'var(--accent)' : 'var(--ink)',
+      guideOpacity: s.guide ? 1 : 0.35,
+      hintOpts,
+      rows,
+      hasMore: more > 0,
+      moreLabel: '+ ' + pad(Math.max(more, 0)) + ' more items',
+      summary: pad(s.n) + ' ITEMS · ' + active.length + ' TYPES · ' + s.level.toUpperCase() + ' · GUIDE ' + (s.guide ? 'ON' : 'OFF'),
+      guideLine: s.guide ? 'METIS: ON · MAX ' + s.hints + ' HINTS · NEVER REVEALS THE ANSWER' : 'METIS: OFF',
+      regenA: s.regen % 2 === 0,
+      regenB: s.regen % 2 === 1,
+
+      modes,
+      cite: s.cite,
+      citeTrack: s.cite ? 'var(--ink)' : 'transparent',
+      citeKnob: s.cite ? '25px' : '3px',
+      citeKnobBg: s.cite ? 'var(--accent)' : 'var(--ink)',
+      toggleCite: () => this.setState({ cite: !this.state.cite, ...this.sys('Rule updated — cite material: ' + (this.state.cite ? 'off' : 'on')) }),
+      messages: msgs,
+      typing: s.typing,
+      busy,
+      statusLabel: s.typing ? 'Thinking' : (s.twId > 0 ? 'Writing' : 'Online · following your rules'),
+      avatarCls: !s.guide ? 'mt-e-happy' : (s.typing ? 'mt-e-thinking' : (s.twId > 0 ? 'mt-e-guiding' : (lastLimit ? 'mt-e-reviewing' : 'mt-e-listening'))),
+      avatarHeadline: !s.guide ? 'Off for this assessment' : (s.typing ? 'Thinking about a hint…' : (s.twId > 0 ? 'Writing a hint…' : (lastLimit ? 'Holding back the answer' : 'Listening for a question'))),
+      heroExpr: HERO[s.hero].id,
+      heroLabel: HERO[s.hero].label,
+      heroLine: HERO[s.hero].line,
+      heroAria: 'Metis, the AI guide, ' + HERO[s.hero].label.toLowerCase(),
+      heroChips: HERO.map((h, i) => {
+        const on = i === s.hero;
+        return { label: h.label, on, bg: on ? 'var(--ink)' : 'transparent', fg: on ? 'var(--bg)' : 'var(--ink)', br: i % 3 < 2 ? '1px solid var(--line)' : '0', bb: i < 3 ? '1px solid var(--line)' : '0', pick: () => this.setState({ hero: i, heroAuto: false }) };
+      }),
+      ruleSummary: ({ socratic: 'Socratic', hints: 'Direct hints', example: 'Worked example' })[s.mode] + ' · max ' + s.hints + ' hints · ' + (s.cite ? 'cites source' : 'no citations'),
+      statusDotCls: busy ? 'e-pulse' : '',
+      hintSquares,
+      hintAria: 'Hints used: ' + used + ' of ' + s.hints,
+      prompts,
+      priceRows,
+      draft: s.draft,
+      onDraft: (ev) => this.setState({ draft: ev.target.value }),
+      onSubmit: (ev) => { ev.preventDefault(); this.send(this.state.draft); },
+      demo: () => this.demo(),
+      reset: () => { this.stopAll(); this.setState({ messages: [], used: 0, typing: false, twId: -1, tw: 0, hl: null }); },
+
+      k: { subs: Math.round(26 * e), acc: Math.round(74 * e), hints: Math.round(11 * e) },
+      hist,
+      itemRows
+    };
+  }
+}
+</script>
+</body>
+</html>

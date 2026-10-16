@@ -1,0 +1,18 @@
+{
+  "name": "metis-avatar-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Generator for the Metis vector avatar (trace → assemble → emit). Isolated from the site's dependency tree.",
+  "type": "commonjs",
+  "scripts": {
+    "trace": "node trace.cjs",
+    "assemble": "node assemble.cjs",
+    "emit": "node emit.mjs",
+    "raster": "node raster.cjs",
+    "build": "node assemble.cjs && node emit.mjs"
+  },
+  "dependencies": {
+    "pngjs": "7.0.0",
+    "potrace": "2.1.8"
+  }
+}
