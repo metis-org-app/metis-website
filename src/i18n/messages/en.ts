@@ -38,7 +38,7 @@ export const en = {
     },
   },
   hero: {
-    meta: ['01 — Platform', 'Works with Canvas LMS'],
+    canvas: 'Works with Canvas LMS',
     titleLead: 'From class material',
     titleTail: 'to learning data',
     lead: "Metis uses AI to turn your files into an assessment, shares it through a link, and reports results by item, student, and topic. Inside the link, students can ask Metis for hints; it won't give them the answer.",
@@ -71,7 +71,6 @@ export const en = {
     } as Record<Expression, { label: string; line: string }>,
   },
   guide: {
-    kicker: '02 — AI guide',
     title: 'Metis follows the rules you set.',
     lead: 'Metis works inside the student link. Change a rule and the next reply in the chat follows it. Ask your own question or watch the demo.',
     presence: {
@@ -198,7 +197,6 @@ export const en = {
     },
   },
   configure: {
-    kicker: '03 — Configure',
     title: 'You set the structure and Metis writes the items.',
     lead: 'The preview uses topics Metis found in the sample material. The guide settings here are the same ones the chat above uses.',
     count: 'Number of items',
@@ -240,7 +238,6 @@ export const en = {
     shortage: 'Shortage and surplus',
   } as Record<TopicId, string>,
   results: {
-    kicker: '04 — Results',
     title: 'See how each item went as soon as students submit.',
     kpis: {
       submissions: 'Submissions',
@@ -259,7 +256,6 @@ export const en = {
     avatarLabel: 'Metis reviewing the results, with reading glasses',
   },
   insights: {
-    kicker: '05 — Conversation insights',
     title: 'Every question students ask Metis is saved.',
     lead: "Chats are stored with the assessment results. You can read any student's conversation, see what the class asked most, and find the point in the exam where questions piled up.",
     stats: {
@@ -368,7 +364,6 @@ export const en = {
     },
   },
   spec: {
-    kicker: '06 — Spec sheet',
     title: 'What Metis does, without adjectives.',
     rows: [
       { id: 'input', k: 'Input', v: 'PDFs, documents, slides, and notes. Drag and drop.' },
@@ -399,7 +394,6 @@ export const en = {
     ],
   },
   cta: {
-    kicker: '07 — Get started',
     title: 'Start with one file',
     note: 'No credit card · set up in 2 minutes',
     primary: 'Create a free assessment →',

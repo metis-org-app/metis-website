@@ -134,12 +134,7 @@ export function ResultsSection() {
       className="border-b border-ink bg-surface"
     >
       <div ref={ref} className="container-page flex flex-col gap-10 py-[clamp(56px,7vw,88px)]">
-        <SectionIntro
-          id="results-title"
-          kicker={m.results.kicker}
-          title={m.results.title}
-          className="max-w-[820px]"
-        />
+        <SectionIntro id="results-title" title={m.results.title} className="max-w-[820px]" />
         <KpiRow active={inView} />
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
           <Histogram active={inView} />

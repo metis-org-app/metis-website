@@ -8,7 +8,6 @@ export function CtaSection() {
   return (
     <section aria-labelledby="cta-title" className="on-dark bg-ink text-bg">
       <div className="container-page flex flex-col gap-8 py-[clamp(64px,9vw,120px)]">
-        <span className="label-mono text-[13px] text-bg/70">{m.cta.kicker}</span>
         <div className="flex flex-wrap items-end justify-between gap-8">
           <h2
             id="cta-title"

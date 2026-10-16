@@ -27,7 +27,7 @@ export const es: Messages = {
     },
   },
   hero: {
-    meta: ['01 — Plataforma', 'Compatible con Canvas LMS'],
+    canvas: 'Compatible con Canvas LMS',
     titleLead: 'Del material de clase',
     titleTail: 'al dato de aprendizaje',
     lead: 'Metis usa IA para convertir tus archivos en una evaluación, la comparte con un enlace y te muestra los resultados por ítem, estudiante y tema. Dentro del enlace, los estudiantes pueden pedirle pistas a Metis; no les dará la respuesta.',
@@ -60,7 +60,6 @@ export const es: Messages = {
     },
   },
   guide: {
-    kicker: '02 — Guía IA',
     title: 'Metis sigue las reglas que tú defines.',
     lead: 'Metis trabaja dentro del enlace del estudiante. Cambia una regla y la siguiente respuesta del chat la seguirá. Escribe tu propia pregunta o mira la demostración.',
     presence: {
@@ -186,7 +185,6 @@ export const es: Messages = {
     },
   },
   configure: {
-    kicker: '03 — Configurar',
     title: 'Tú defines la estructura y Metis redacta los ítems.',
     lead: 'La vista previa usa los temas que Metis encontró en el material de ejemplo. Los ajustes de la guía son los mismos que usa el chat de arriba.',
     count: 'Número de ítems',
@@ -228,7 +226,6 @@ export const es: Messages = {
     shortage: 'Escasez y excedente',
   },
   results: {
-    kicker: '04 — Resultados',
     title: 'Mira cómo salió cada ítem apenas los estudiantes entregan.',
     kpis: {
       submissions: 'Entregas',
@@ -248,7 +245,6 @@ export const es: Messages = {
     avatarLabel: 'Metis revisando los resultados, con lentes de lectura',
   },
   insights: {
-    kicker: '05 — Conversaciones',
     title: 'Cada pregunta que le hacen a Metis queda guardada.',
     lead: 'Los chats se guardan junto con los resultados de la evaluación. Puedes leer la conversación de cualquier estudiante, ver qué preguntó más el grupo y encontrar el momento del examen en que se acumularon las preguntas.',
     stats: {
@@ -357,7 +353,6 @@ export const es: Messages = {
     },
   },
   spec: {
-    kicker: '06 — Ficha técnica',
     title: 'Qué hace Metis, sin adjetivos.',
     rows: [
       { id: 'input', k: 'Entrada', v: 'PDF, documentos, presentaciones y notas. Arrástralos y suéltalos.' },
@@ -396,7 +391,6 @@ export const es: Messages = {
     ],
   },
   cta: {
-    kicker: '07 — Empezar',
     title: 'Empieza con un archivo',
     note: 'Sin tarjeta de crédito · configuración en 2 minutos',
     primary: 'Crear evaluación gratis →',

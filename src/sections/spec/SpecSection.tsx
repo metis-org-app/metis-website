@@ -8,7 +8,7 @@ export function SpecSection() {
   return (
     <section id={SECTION_IDS.spec} aria-labelledby="spec-title" className="border-b border-ink">
       <div className="container-page grid grid-cols-1 gap-x-6 gap-y-10 py-[clamp(56px,7vw,88px)] lg:grid-cols-12">
-        <SectionIntro id="spec-title" kicker={m.spec.kicker} title={m.spec.title} className="lg:col-span-4" />
+        <SectionIntro id="spec-title" title={m.spec.title} className="lg:col-span-4" />
         <dl className="m-0 border-t border-ink lg:col-span-8">
           {m.spec.rows.map((row, i) => (
             <div

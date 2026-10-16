@@ -77,7 +77,9 @@ describe('InsightsSection', () => {
   it('speaks Spanish', async () => {
     const user = userEvent.setup();
     renderWithProviders(<InsightsSection />, { lang: 'es' });
-    expect(screen.getByText('05 — Conversaciones')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Cada pregunta que le hacen a Metis queda guardada.' }),
+    ).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: /^Estudiante 19/ }));
     expect(screen.getByRole('list', { name: 'Conversación entre Estudiante 19 y Metis' })).toHaveTextContent(
       'RESPUESTA RESERVADA',

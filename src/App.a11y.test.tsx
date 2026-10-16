@@ -21,15 +21,16 @@ describe.each<Lang>(['en', 'es'])('App (%s)', (lang) => {
     expect(skip).toHaveAttribute('href', '#main');
   });
 
-  it('has one h1 and numbered h2 sections in order', () => {
+  it('has one h1 and one h2 per section, in page order', () => {
     renderWithProviders(<App />, { lang });
     expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1);
-    // Each section's kicker ("02 — AI guide") comes before its h2.
-    const kickers = Array.from(
-      document.querySelectorAll('h2'),
-      (h2) => /(\d\d) —/.exec(h2.closest('section')?.textContent ?? '')?.[1],
-    );
-    expect(kickers).toEqual(['02', '03', '04', '05', '06', '07']);
+    // Each h2 names its section (aria-labelledby), and the sections keep their order.
+    const sections = Array.from(document.querySelectorAll('h2'), (h2) => {
+      const section = h2.closest('section');
+      expect(section).toHaveAttribute('aria-labelledby', h2.id);
+      return section?.id || h2.id;
+    });
+    expect(sections).toEqual(['guide', 'configure', 'results', 'insights', 'spec', 'cta-title']);
   });
 
   it('only links to anchors that exist, never to a bare "#"', () => {

@@ -10,13 +10,7 @@ export function HeroSection() {
   return (
     <section id={SECTION_IDS.home} aria-labelledby="hero-title" className="border-b border-ink">
       <div className="container-page flex flex-col gap-[clamp(28px,3.5vw,40px)] pt-[clamp(40px,5vw,72px)] pb-[clamp(48px,6vw,80px)]">
-        <ul className="label-mono m-0 flex list-none flex-wrap gap-x-8 gap-y-2 p-0 text-[13px] text-soft">
-          {m.hero.meta.map((item, i) => (
-            <li key={item} className={i === 0 ? 'text-ink' : undefined}>
-              {item}
-            </li>
-          ))}
-        </ul>
+        <p className="label-mono m-0 text-[13px] text-soft">{m.hero.canvas}</p>
         <div className="grid grid-cols-1 items-stretch gap-x-6 gap-y-10 lg:grid-cols-12">
           <div className="flex flex-col gap-8 lg:col-span-8">
             <h1

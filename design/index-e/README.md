@@ -26,7 +26,8 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 11. Unused keyframes from the prototype (scan, corner, say) are dropped.
 12. The brand is "Metis" (no "Campus").
 13. The hero card cycles through Metis's six expressions on its own, with a pause button and progress segments, instead of expression buttons.
-14. A "Conversation insights" section (05) follows Results: saved student chats, common questions, a question timeline and a Metis trend note. Spec and CTA become 06 and 07.
+14. A "Conversation insights" section follows Results: saved student chats, common questions, a question timeline and a Metis trend note.
 15. The scrolling ticker band under the hero is removed: it repeated the Results figures and added constant motion next to the hero carousel.
 16. Section anchors are in English (`#guide`, `#configure`, `#results`, `#insights`, `#spec`) instead of the prototype's Spanish ids (`#guia`, `#configurar`…), for both languages.
 17. The header strip drops the tagline ("AI assessments · for instructors and students"); it only holds "Log in" and the language switch.
+18. The numbered section labels ("01 — Platform" through "07 — Get started") are removed; each section opens with its heading.

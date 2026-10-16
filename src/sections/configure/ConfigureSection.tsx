@@ -219,12 +219,7 @@ export function ConfigureSection() {
     <section id={SECTION_IDS.configure} aria-labelledby="configure-title" className="border-b border-ink">
       <div className="container-page flex flex-col gap-10 py-[clamp(56px,7vw,88px)]">
         <div className="grid grid-cols-1 items-end gap-x-6 gap-y-6 lg:grid-cols-12">
-          <SectionIntro
-            id="configure-title"
-            kicker={m.configure.kicker}
-            title={m.configure.title}
-            className="lg:col-span-8"
-          />
+          <SectionIntro id="configure-title" title={m.configure.title} className="lg:col-span-8" />
           <p className="m-0 text-soft text-pretty lg:col-span-4">{m.configure.lead}</p>
         </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
