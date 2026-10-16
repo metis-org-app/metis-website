@@ -28,8 +28,12 @@ function levelIndex(level: Level): number {
   return LEVELS.indexOf(level) + 1;
 }
 
-/** Rows of the configurator preview (same formulas as the approved prototype). */
-export function previewRows(config: ConfigState): PreviewRow[] {
+/**
+ * Rows of the configurator preview (same formulas as the approved prototype). `topics` narrows the
+ * topics to the ones found in the dropped files; by default it is the whole sample material.
+ */
+export function previewRows(config: ConfigState, topics: readonly TopicId[] = TOPIC_IDS): PreviewRow[] {
+  const pool = topics.length ? topics : TOPIC_IDS;
   const active = activeTypes(config.types);
   const base = levelIndex(config.level);
   const visible = Math.min(config.count, CONFIG_LIMITS.visibleRows);
@@ -38,7 +42,7 @@ export function previewRows(config: ConfigState): PreviewRow[] {
     return {
       num: pad2(i + 1),
       type: active[i % active.length]!,
-      topic: TOPIC_IDS[(i * 7) % TOPIC_IDS.length]!,
+      topic: pool[(i * 7) % pool.length]!,
       level,
       page: pad2(2 + ((i * 5) % 14)),
     };

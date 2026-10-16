@@ -17,24 +17,22 @@ export function HeroSection() {
               id="hero-title"
               className="display-type text-[clamp(46px,6.3vw,98px)] leading-[0.93] tracking-[-0.04em] text-balance"
             >
-              <span className="inline-block motion-safe:animate-word" style={{ animationDelay: '0.1s' }}>
-                {m.hero.titleLead}
-              </span>{' '}
-              <span className="inline-block motion-safe:animate-word" style={{ animationDelay: '0.4s' }}>
+              <span className="inline-block motion-safe:animate-rise">{m.hero.titleLead}</span>{' '}
+              <span className="inline-block motion-safe:animate-rise" style={{ animationDelay: '0.06s' }}>
                 {m.hero.titleTail}
                 <span className="text-accent">.</span>
               </span>
             </h1>
             <div className="flex flex-wrap items-end gap-6">
               <p
-                className="m-0 flex-[1.3_1_340px] text-[clamp(18px,1.5vw,20px)] leading-normal text-pretty motion-safe:animate-word"
-                style={{ animationDelay: '0.7s' }}
+                className="m-0 flex-[1.3_1_340px] text-[clamp(18px,1.5vw,20px)] leading-normal text-pretty motion-safe:animate-rise"
+                style={{ animationDelay: '0.12s' }}
               >
                 {m.hero.lead}
               </p>
               <div
-                className="flex flex-[1_1_260px] flex-col gap-2.5 motion-safe:animate-word"
-                style={{ animationDelay: '0.9s' }}
+                className="flex flex-[1_1_260px] flex-col gap-2.5 motion-safe:animate-rise"
+                style={{ animationDelay: '0.18s' }}
               >
                 <ButtonLink href={links.app}>{m.hero.primaryCta}</ButtonLink>
                 <ButtonLink href={`#${SECTION_IDS.guide}`} variant="outline">

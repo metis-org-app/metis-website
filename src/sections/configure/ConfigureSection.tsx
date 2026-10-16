@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useId, useReducer } from 'react';
 import { MetisThumb } from '../../components/avatar/MetisThumb';
 import { Segmented } from '../../components/ui/Segmented';
 import { SectionIntro } from '../../components/ui/SectionIntro';
@@ -7,8 +7,16 @@ import { ToggleGroup } from '../../components/ui/ToggleGroup';
 import { CONFIG_LIMITS, ITEM_TYPES, LEVELS, SECTION_IDS } from '../../content/demo-data';
 import { activeTypes, moreCount, pad2, previewRows } from '../../features/configure/preview';
 import { useDemo } from '../../features/guide/demo-context';
+import {
+  initialMaterial,
+  materialReducer,
+  readyFiles,
+  readyTopics,
+  type MaterialState,
+} from '../../features/material/material';
 import { useI18n } from '../../i18n/useI18n';
 import { MAX_HINT_OPTIONS } from '../guide/RulesPanel';
+import { DetectedTopics, MaterialDrop } from './MaterialDrop';
 
 function Controls() {
   const { m } = useI18n();
@@ -116,12 +124,15 @@ function Controls() {
   );
 }
 
-function Preview() {
+function Preview({ material }: { material: MaterialState }) {
   const { m } = useI18n();
   const { state } = useDemo();
   const { config, rules } = state;
   const copy = m.configure;
-  const rows = previewRows(config);
+  const rows = previewRows(config, readyTopics(material));
+  const sources = readyFiles(material).map((file) => file.name);
+  // Replays the sweep and the row entrance when the structure or the material changes.
+  const regen = `${config.regen}-${material.version}`;
   const more = moreCount(config);
   const summary = copy.summary(
     pad2(config.count),
@@ -134,11 +145,16 @@ function Preview() {
     <div className="flex min-w-0 flex-col border border-ink bg-surface lg:col-span-8">
       <div className="relative flex flex-wrap items-baseline justify-between gap-x-5 gap-y-2 overflow-hidden border-b border-ink px-[18px] py-4">
         <span
-          key={config.regen}
+          key={regen}
           aria-hidden="true"
           className="absolute -bottom-px left-[-30%] h-0.5 w-[30%] bg-accent motion-safe:animate-sweep"
         />
-        <h3 className="m-0 text-[19px] font-bold">{copy.previewTitle}</h3>
+        <div className="flex min-w-0 flex-col gap-1">
+          <h3 className="m-0 text-[19px] font-bold">{copy.previewTitle}</h3>
+          <p className="label-mono m-0 truncate text-xs text-soft">
+            {sources.length ? `${copy.material.sources}: ${sources.join(' · ')}` : copy.material.sampleSource}
+          </p>
+        </div>
         <output className="label-mono text-xs text-soft">{summary}</output>
       </div>
       <div role="region" aria-label={copy.previewLabel} tabIndex={0} className="overflow-x-auto">
@@ -168,7 +184,7 @@ function Preview() {
           <tbody>
             {rows.map((row, i) => (
               <tr
-                key={`${config.regen}-${row.num}`}
+                key={`${regen}-${row.num}`}
                 className="motion-safe:animate-fade-up"
                 style={{ animationDelay: `${i * 0.04}s` }}
               >
@@ -218,6 +234,7 @@ function Preview() {
 
 export function ConfigureSection() {
   const { m } = useI18n();
+  const [material, dispatchMaterial] = useReducer(materialReducer, initialMaterial);
   return (
     <section id={SECTION_IDS.configure} aria-labelledby="configure-title" className="border-b border-ink">
       <div className="container-page flex flex-col gap-10 py-[clamp(56px,7vw,88px)]">
@@ -225,9 +242,13 @@ export function ConfigureSection() {
           <SectionIntro id="configure-title" title={m.configure.title} className="lg:col-span-8" />
           <p className="m-0 text-soft text-pretty lg:col-span-4">{m.configure.lead}</p>
         </div>
+        <div className="grid grid-cols-1 gap-x-6 gap-y-6 lg:grid-cols-12">
+          <MaterialDrop state={material} dispatch={dispatchMaterial} />
+          <DetectedTopics state={material} />
+        </div>
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
           <Controls />
-          <Preview />
+          <Preview material={material} />
         </div>
       </div>
     </section>
