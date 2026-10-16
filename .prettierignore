@@ -8,3 +8,4 @@ tools/avatar/parts.json
 tools/avatar/package-lock.json
 *.generated.*
 tools/avatar/*.cjs
+.claude

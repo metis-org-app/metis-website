@@ -8,7 +8,7 @@
 # No SPA catch-all: the site is a single page without client-side routes,
 # so unknown paths should return a real 404 instead of index.html with 200.
 
-# Keep in sync with SECURITY_HEADERS in vite.config.ts (checked by src/config/headers.test.ts).
+# Keep in sync with SECURITY_HEADERS in vite.config.ts (checked by scripts/headers.test.ts).
 [[headers]]
   for = "/*"
   [headers.values]

@@ -133,63 +133,66 @@ function MessageLog() {
   const { state } = useDemo();
   const chat = m.guide.chat;
   return (
-    <ol
+    // The live region wraps the list: role="log" on the <ol> itself would drop its list semantics.
+    <div
       role="log"
       aria-live="polite"
       aria-relevant="additions"
       aria-label={chat.log}
-      className="m-0 flex h-[430px] list-none flex-col justify-end gap-3.5 overflow-hidden px-4 py-[18px] [mask-image:linear-gradient(to_bottom,transparent_0,#000_52px)]"
+      className="h-[430px] overflow-hidden px-4 py-[18px] [mask-image:linear-gradient(to_bottom,transparent_0,#000_52px)]"
     >
-      {state.chat.messages.map((message) => {
-        if (message.from === 'system') {
-          return (
-            <li
-              key={message.id}
-              className="label-mono flex shrink-0 items-center gap-2.5 text-[11px] tracking-[0.08em] motion-safe:animate-flash"
+      <ol className="m-0 flex h-full list-none flex-col justify-end gap-3.5 p-0">
+        {state.chat.messages.map((message) => {
+          if (message.from === 'system') {
+            return (
+              <li
+                key={message.id}
+                className="label-mono flex shrink-0 items-center gap-2.5 text-[11px] tracking-[0.08em] motion-safe:animate-flash"
+              >
+                <span aria-hidden="true" className="h-px flex-1 bg-accent" />
+                <span className="border border-accent px-2 py-[3px] text-ink">
+                  {noticeText(message.notice, m)}
+                </span>
+                <span aria-hidden="true" className="h-px flex-1 bg-accent" />
+              </li>
+            );
+          }
+          if (message.from === 'student') {
+            return (
+              <li
+                key={message.id}
+                className="flex max-w-[78%] shrink-0 flex-col items-end gap-1 self-end motion-safe:animate-in-right"
+              >
+                <span className="label-mono text-[10.5px] tracking-[0.08em] text-soft">{chat.student}</span>
+                <p className="m-0 bg-ink px-3.5 py-[11px] text-[15px] leading-snug text-bg">
+                  {studentText(message, m)}
+                </p>
+              </li>
+            );
+          }
+          return <MetisMessage key={message.id} id={message.id} body={message.body} />;
+        })}
+        {state.chat.phase === 'thinking' && (
+          <li className="flex shrink-0 items-center gap-2.5 self-start motion-safe:animate-in-left">
+            <MetisThumb size={32} />
+            <span
+              role="img"
+              aria-label={chat.thinkingAria}
+              className="inline-flex gap-[5px] border border-ink bg-surface px-3.5 py-[13px]"
             >
-              <span aria-hidden="true" className="h-px flex-1 bg-accent" />
-              <span className="border border-accent px-2 py-[3px] text-ink">
-                {noticeText(message.notice, m)}
-              </span>
-              <span aria-hidden="true" className="h-px flex-1 bg-accent" />
-            </li>
-          );
-        }
-        if (message.from === 'student') {
-          return (
-            <li
-              key={message.id}
-              className="flex max-w-[78%] shrink-0 flex-col items-end gap-1 self-end motion-safe:animate-in-right"
-            >
-              <span className="label-mono text-[10.5px] tracking-[0.08em] text-soft">{chat.student}</span>
-              <p className="m-0 bg-ink px-3.5 py-[11px] text-[15px] leading-snug text-bg">
-                {studentText(message, m)}
-              </p>
-            </li>
-          );
-        }
-        return <MetisMessage key={message.id} id={message.id} body={message.body} />;
-      })}
-      {state.chat.phase === 'thinking' && (
-        <li className="flex shrink-0 items-center gap-2.5 self-start motion-safe:animate-in-left">
-          <MetisThumb size={32} />
-          <span
-            role="img"
-            aria-label={chat.thinkingAria}
-            className="inline-flex gap-[5px] border border-ink bg-surface px-3.5 py-[13px]"
-          >
-            {[0, 0.15, 0.3].map((delay) => (
-              <span
-                key={delay}
-                aria-hidden="true"
-                className="inline-block size-[7px] bg-ink motion-safe:animate-dot"
-                style={{ animationDelay: `${delay}s` }}
-              />
-            ))}
-          </span>
-        </li>
-      )}
-    </ol>
+              {[0, 0.15, 0.3].map((delay) => (
+                <span
+                  key={delay}
+                  aria-hidden="true"
+                  className="inline-block size-[7px] bg-ink motion-safe:animate-dot"
+                  style={{ animationDelay: `${delay}s` }}
+                />
+              ))}
+            </span>
+          </li>
+        )}
+      </ol>
+    </div>
   );
 }
 
