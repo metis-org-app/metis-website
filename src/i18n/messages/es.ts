@@ -393,7 +393,7 @@ export const es: Messages = {
         v: 'Cada chat con Metis se guarda con los resultados. Puedes leerlo, ver las preguntas más frecuentes y seguir tendencias.',
       },
       { id: 'sources', k: 'Fuentes', v: 'Cada ítem remite al pasaje del material de origen.' },
-      { id: 'integration', k: 'Integración', v: 'Compatible con Canvas LMS. Exporta a PDF y Word.' },
+      { id: 'export', k: 'Exportación', v: 'PDF y Word.' },
     ],
   },
   cta: {

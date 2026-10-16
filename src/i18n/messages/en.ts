@@ -396,7 +396,7 @@ export const en = {
         v: 'Each chat with Metis is saved with the results. You can read it, see the most common questions, and follow trends.',
       },
       { id: 'sources', k: 'Sources', v: 'Each item points to its passage in the source material.' },
-      { id: 'integration', k: 'Integration', v: 'Works with Canvas LMS. Exports to PDF and Word.' },
+      { id: 'export', k: 'Export', v: 'PDF and Word.' },
     ],
   },
   cta: {
