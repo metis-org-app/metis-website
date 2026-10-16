@@ -18,9 +18,8 @@ export function SiteHeader() {
   return (
     <header className="border-b border-ink bg-bg">
       <div className="container-page">
-        <div className="label-mono flex items-center justify-between gap-4 border-b border-line text-xs text-soft">
-          <span className="hidden py-2 lg:inline">{m.header.tagline}</span>
-          <div className="ml-auto flex items-center gap-3">
+        <div className="label-mono flex items-center justify-end gap-4 border-b border-line text-xs text-soft">
+          <div className="flex items-center gap-3">
             {links.login && (
               <a href={links.login} className="flex min-h-11 items-center px-1 text-soft hover:text-ink">
                 {m.header.login}

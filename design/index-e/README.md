@@ -29,3 +29,4 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 14. A "Conversation insights" section (05) follows Results: saved student chats, common questions, a question timeline and a Metis trend note. Spec and CTA become 06 and 07.
 15. The scrolling ticker band under the hero is removed: it repeated the Results figures and added constant motion next to the hero carousel.
 16. Section anchors are in English (`#guide`, `#configure`, `#results`, `#insights`, `#spec`) instead of the prototype's Spanish ids (`#guia`, `#configurar`…), for both languages.
+17. The header strip drops the tagline ("AI assessments · for instructors and students"); it only holds "Log in" and the language switch.

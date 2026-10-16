@@ -16,7 +16,6 @@ export const es: Messages = {
     langNames: { es: 'Español', en: 'English' },
   },
   header: {
-    tagline: 'Evaluación con IA · para instructores y estudiantes',
     login: 'Entrar',
     cta: 'Crear evaluación →',
     nav: {

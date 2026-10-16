@@ -27,7 +27,6 @@ export const en = {
     langNames: { es: 'Español', en: 'English' },
   },
   header: {
-    tagline: 'AI assessments · for instructors and students',
     login: 'Log in',
     cta: 'Create assessment →',
     nav: {
