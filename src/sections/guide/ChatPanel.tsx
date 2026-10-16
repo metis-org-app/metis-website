@@ -33,7 +33,7 @@ function ChatHeader() {
           <span className="text-[17px] leading-tight font-bold">
             {chat.name} <span className="font-normal text-soft">· {chat.role}</span>
           </span>
-          <span className="label-mono inline-flex items-center gap-2 text-[11px] text-soft">
+          <span className="label-mono inline-flex items-center gap-2 text-xs text-soft">
             <span
               aria-hidden="true"
               className={`size-[7px] bg-accent ${busy ? 'motion-safe:animate-beacon' : ''}`}
@@ -47,7 +47,7 @@ function ChatHeader() {
       </div>
       <div className="flex flex-wrap items-center gap-3">
         <div role="img" aria-label={chat.hintsAria(used, squares.length)} className="flex items-center gap-2">
-          <span aria-hidden="true" className="label-mono text-[11px] text-soft">
+          <span aria-hidden="true" className="label-mono text-xs text-soft">
             {chat.hints}
           </span>
           {squares.map(({ lit, key }) => (
@@ -87,7 +87,7 @@ function ItemContext() {
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-4 border-b border-line px-4 py-3.5">
       <div className="flex flex-[1_1_240px] flex-col gap-1">
-        <span className="label-mono text-[11px] text-accent">{item.label}</span>
+        <span className="label-mono text-xs text-accent">{item.label}</span>
         <span className="font-semibold">{item.prompt}</span>
       </div>
       <table className="border-collapse border border-ink font-mono text-xs">
@@ -147,7 +147,7 @@ function MessageLog() {
             return (
               <li
                 key={message.id}
-                className="label-mono flex shrink-0 items-center gap-2.5 text-[11px] tracking-[0.08em] motion-safe:animate-flash"
+                className="label-mono flex shrink-0 items-center gap-2.5 text-xs tracking-[0.08em] motion-safe:animate-flash"
               >
                 <span aria-hidden="true" className="h-px flex-1 bg-accent" />
                 <span className="border border-accent px-2 py-[3px] text-ink">
@@ -163,7 +163,7 @@ function MessageLog() {
                 key={message.id}
                 className="flex max-w-[78%] shrink-0 flex-col items-end gap-1 self-end motion-safe:animate-in-right"
               >
-                <span className="label-mono text-[10.5px] tracking-[0.08em] text-soft">{chat.student}</span>
+                <span className="label-mono text-xs tracking-[0.08em] text-soft">{chat.student}</span>
                 <p className="m-0 bg-ink px-3.5 py-[11px] text-[15px] leading-snug text-bg">
                   {studentText(message, m)}
                 </p>
@@ -261,7 +261,8 @@ export function ChatPanel() {
   const off = !state.rules.enabled;
 
   return (
-    <div className="relative flex min-w-0 flex-col border border-ink bg-bg lg:col-span-8">
+    // Below `lg` the chat is shown before the rules (the DOM keeps rules first: change a rule, see the reply).
+    <div className="relative flex min-w-0 flex-col border border-ink bg-bg max-lg:order-first lg:col-span-8">
       <ChatHeader />
       <ItemContext />
       <div className="relative">

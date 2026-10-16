@@ -36,7 +36,7 @@ export function RulesPanel() {
           </svg>
           {copy.locked}
         </span>
-        <span className="label-mono shrink-0 bg-ink px-1.5 py-[3px] text-[11px] whitespace-nowrap text-bg">
+        <span className="label-mono shrink-0 bg-ink px-1.5 py-[3px] text-xs whitespace-nowrap text-bg">
           {copy.alwaysOn}
         </span>
       </div>

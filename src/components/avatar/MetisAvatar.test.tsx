@@ -35,4 +35,12 @@ describe('MetisAvatar', () => {
     act(() => triggerIntersection(svg, true));
     expect(svg).not.toHaveAttribute('data-paused');
   });
+
+  it('can be still: the static drawing, without idle loops', () => {
+    const { container, rerender } = render(<MetisAvatar expression="thinking" />);
+    const svg = container.querySelector('svg')!;
+    expect(svg).not.toHaveAttribute('data-still');
+    rerender(<MetisAvatar expression="thinking" still />);
+    expect(svg).toHaveAttribute('data-still');
+  });
 });

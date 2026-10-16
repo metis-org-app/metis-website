@@ -103,7 +103,10 @@ run `npm run avatar:build` and commit the regenerated `*.generated.*` files.
 
 - All CSS animation is `motion-safe:`; with reduced motion the hero carousel stays still, the chat
   types instantly and the numbers show their final values.
-- The hero carousel pauses on hover or focus, off-screen, and with its pause button.
+- The hero carousel pauses on hover or focus, off-screen, and with its pause button. Other decorative
+  motion runs a few times and stops; only loading indicators (typing, "thinking") loop.
+- No text is smaller than 12 px; SVG chart labels are resized with `useSvgTextSize` to stay that size.
+- The header is sticky; `html { scroll-padding-top }` keeps anchors and focused elements below it.
 - Live regions announce each Metis reply once; animated numbers expose their final value to screen
   readers; the chat is `inert` while the guide is off; touch targets are at least 44 px.
 - `App.a11y.test.tsx` runs axe-core over the whole page in both languages and checks landmarks, heading

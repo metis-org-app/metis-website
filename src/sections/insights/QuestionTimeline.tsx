@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import { QUESTION_TIMELINE, TIMELINE_BLOCK_MINUTES, TIMELINE_PEAK_ITEM } from '../../content/demo-data';
+import { useSvgTextSize } from '../../hooks/useSvgTextSize';
 import { useI18n } from '../../i18n/useI18n';
 
 // Chart geometry (viewBox units). Each value sits at the middle of its 5-minute block.
@@ -32,14 +34,24 @@ export function QuestionTimeline({ active }: { active: boolean }) {
   const { m } = useI18n();
   const copy = m.insights.timeline;
   const animate = (cls: string) => (active ? cls : '');
+  const svgRef = useRef<SVGSVGElement>(null);
+  // Labels stay at 12–13 px on screen whatever the chart width.
+  const label = useSvgTextSize(svgRef, W);
+  const peakLabel = useSvgTextSize(svgRef, W, 13);
 
   return (
     <figure className="m-0 flex flex-col gap-3 lg:col-span-6">
       <figcaption className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-ink pb-3">
         <span className="label-mono text-xs text-soft">{copy.heading}</span>
-        <span className="label-mono text-[11px] text-soft">{copy.caption}</span>
+        <span className="label-mono text-xs text-soft">{copy.caption}</span>
       </figcaption>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={copy.label} className="h-auto w-full">
+      <svg
+        ref={svgRef}
+        viewBox={`0 0 ${W} ${H}`}
+        role="img"
+        aria-label={copy.label}
+        className="h-auto w-full"
+      >
         {/* Peak block */}
         <rect
           x={PLOT.left + PEAK * BLOCK_W}
@@ -52,7 +64,13 @@ export function QuestionTimeline({ active }: { active: boolean }) {
         {[10, 20].map((v) => (
           <g key={v}>
             <line x1={PLOT.left} x2={PLOT.right} y1={y(v)} y2={y(v)} className="stroke-line2" />
-            <text x={PLOT.left - 8} y={y(v) + 4} textAnchor="end" className="fill-soft font-mono text-[12px]">
+            <text
+              x={PLOT.left - 8}
+              y={y(v) + label / 3}
+              textAnchor="end"
+              className="fill-soft font-mono"
+              style={{ fontSize: label }}
+            >
               {v}
             </text>
           </g>
@@ -84,9 +102,9 @@ export function QuestionTimeline({ active }: { active: boolean }) {
         })}
         <text
           x={PEAK_POINT.cx + 11}
-          y={PEAK_POINT.cy + 4}
-          className={`fill-accent font-mono text-[13px] font-medium ${animate('motion-safe:animate-fade-up')}`}
-          style={{ animationDelay: `${DRAW_S * 0.7}s` }}
+          y={PEAK_POINT.cy + peakLabel / 3}
+          className={`fill-accent font-mono font-medium ${animate('motion-safe:animate-fade-up')}`}
+          style={{ fontSize: peakLabel, animationDelay: `${DRAW_S * 0.7}s` }}
         >
           {copy.peak(TIMELINE_PEAK_ITEM, SERIES[PEAK]!)}
         </text>
@@ -96,9 +114,10 @@ export function QuestionTimeline({ active }: { active: boolean }) {
             <line x1={t.tx} x2={t.tx} y1={PLOT.bottom} y2={PLOT.bottom + 5} className="stroke-ink" />
             <text
               x={t.tx}
-              y={PLOT.bottom + 22}
+              y={PLOT.bottom + 8 + label}
               textAnchor={t.anchor}
-              className="fill-soft font-mono text-[12px]"
+              className="fill-soft font-mono"
+              style={{ fontSize: label }}
             >
               {copy.axis(t.block * TIMELINE_BLOCK_MINUTES)}
             </text>

@@ -26,9 +26,12 @@ export const en = {
     home: 'Metis, home',
     langNames: { es: 'Español', en: 'English' },
   },
+  sampleData: 'Sample data · Quiz 02, Supply and demand',
   header: {
     login: 'Log in',
     cta: 'Create assessment →',
+    ctaShort: 'Start free →',
+    menu: 'Menu',
     nav: {
       guide: 'AI guide',
       configure: 'Configure',
@@ -247,6 +250,7 @@ export const en = {
     },
     percent: (n: number) => `${n}%`,
     histogramCaption: 'Score distribution (0–10)',
+    histogramLegend: 'Score of 4 or less',
     histogramLabel: 'Score histogram: most students scored between 6 and 9 points out of 10',
     accuracyCaption: 'Accuracy by item · sorted lowest to highest',
     review: 'Review',

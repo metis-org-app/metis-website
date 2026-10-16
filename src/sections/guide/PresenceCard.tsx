@@ -15,14 +15,14 @@ export function PresenceCard() {
         <MetisAvatar expression={presenceExpression(state)} />
       </div>
       <div className="flex min-w-0 flex-col gap-2">
-        <span className="label-mono inline-flex items-center gap-2 text-[11px] tracking-[0.08em] text-accent">
-          <span aria-hidden="true" className="size-[7px] bg-accent motion-safe:animate-beacon" />
+        <span className="label-mono inline-flex items-center gap-2 text-xs tracking-[0.08em] text-accent">
+          <span aria-hidden="true" className="size-[7px] bg-accent motion-safe:animate-beacon-brief" />
           {m.guide.presence.live}
         </span>
         <output className="block m-0 text-[21px] leading-tight font-bold tracking-[-0.01em]">
           {m.guide.presence.headline[now]}
         </output>
-        <span className="label-mono text-[11.5px] text-soft">{ruleSummary(state.rules, m)}</span>
+        <span className="label-mono text-xs text-soft">{ruleSummary(state.rules, m)}</span>
       </div>
     </div>
   );

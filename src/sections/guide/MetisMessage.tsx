@@ -33,7 +33,7 @@ export function MetisMessage({ id, body }: { id: number; body: MetisBody }) {
           <span className="sr-only">{full}</span>
         </p>
         {done && (
-          <span className="label-mono inline-flex flex-wrap items-center gap-1.5 text-[10.5px] tracking-[0.08em] text-soft motion-safe:animate-fade-up">
+          <span className="label-mono inline-flex flex-wrap items-center gap-1.5 text-xs tracking-[0.08em] text-soft motion-safe:animate-fade-up">
             <span aria-hidden="true" className="size-1.5 bg-accent" />
             {tagText(body, m)}
           </span>

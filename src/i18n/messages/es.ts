@@ -15,9 +15,12 @@ export const es: Messages = {
     home: 'Metis, inicio',
     langNames: { es: 'Español', en: 'English' },
   },
+  sampleData: 'Datos de ejemplo · Quiz 02, Oferta y demanda',
   header: {
     login: 'Entrar',
     cta: 'Crear evaluación →',
+    ctaShort: 'Crear gratis →',
+    menu: 'Menú',
     nav: {
       guide: 'Guía IA',
       configure: 'Configurar',
@@ -235,6 +238,7 @@ export const es: Messages = {
     },
     percent: (n: number) => `${n} %`,
     histogramCaption: 'Distribución de puntajes (0–10)',
+    histogramLegend: 'Puntaje de 4 o menos',
     histogramLabel: 'Histograma de puntajes: la mayoría obtuvo entre 6 y 9 puntos de 10',
     accuracyCaption: 'Acierto por ítem · de menor a mayor',
     review: 'Repasar',

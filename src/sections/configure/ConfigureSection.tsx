@@ -206,7 +206,10 @@ function Preview() {
         </span>
         <span className="inline-flex items-center gap-1.5 text-soft">
           {copy.ready}
-          <span aria-hidden="true" className="inline-block h-3.5 w-2 bg-accent motion-safe:animate-blink" />
+          <span
+            aria-hidden="true"
+            className="inline-block h-3.5 w-2 bg-accent motion-safe:animate-blink-brief"
+          />
         </span>
       </div>
     </div>

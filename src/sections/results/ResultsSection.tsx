@@ -1,9 +1,11 @@
 import { useRef } from 'react';
 import { MetisAvatar } from '../../components/avatar/MetisAvatar';
 import { ButtonLink } from '../../components/ui/ButtonLink';
+import { SampleDataNote } from '../../components/ui/SampleDataNote';
 import { SectionIntro } from '../../components/ui/SectionIntro';
 import { HISTOGRAM_BINS, HISTOGRAM_LOW_MAX, ITEM_ACCURACY, KPI, SECTION_IDS } from '../../content/demo-data';
 import { useCountUp } from '../../hooks/useCountUp';
+import { useSvgTextSize } from '../../hooks/useSvgTextSize';
 import { useInView } from '../../hooks/useInView';
 import { useI18n } from '../../i18n/useI18n';
 
@@ -40,7 +42,7 @@ function KpiRow({ active }: { active: boolean }) {
         {hints}
       </Kpi>
       <Kpi label={copy.kpis.revealed} final={String(KPI.revealed)}>
-        <span className="text-accent">{KPI.revealed}</span>
+        {KPI.revealed}
       </Kpi>
     </dl>
   );
@@ -50,10 +52,26 @@ const BINS = HISTOGRAM_BINS.map((count, score) => ({ count, score }));
 
 function Histogram({ active }: { active: boolean }) {
   const { m } = useI18n();
+  const svgRef = useRef<SVGSVGElement>(null);
+  // Score labels stay at 12 px on screen whatever the chart width.
+  const label = useSvgTextSize(svgRef, 560);
   return (
     <figure className="m-0 flex flex-col gap-3 lg:col-span-6">
-      <figcaption className="label-mono text-xs text-soft">{m.results.histogramCaption}</figcaption>
-      <svg viewBox="0 0 560 240" role="img" aria-label={m.results.histogramLabel} className="h-auto w-full">
+      <figcaption className="label-mono flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-xs text-soft">
+        <span>{m.results.histogramCaption}</span>
+        {/* The accent marks what needs attention; say so instead of relying on colour alone. */}
+        <span className="inline-flex items-center gap-2">
+          <span aria-hidden="true" className="size-2.5 bg-accent" />
+          {m.results.histogramLegend}
+        </span>
+      </figcaption>
+      <svg
+        ref={svgRef}
+        viewBox="0 0 560 240"
+        role="img"
+        aria-label={m.results.histogramLabel}
+        className="h-auto w-full"
+      >
         {BINS.map(({ count, score }) => {
           const h = count * 38;
           return (
@@ -73,9 +91,10 @@ function Histogram({ active }: { active: boolean }) {
           <text
             key={score}
             x={25 + score * 50}
-            y={230}
+            y={212 + label}
             textAnchor="middle"
-            className="fill-soft font-mono text-[12px]"
+            className="fill-soft font-mono"
+            style={{ fontSize: label }}
           >
             {score}
           </text>
@@ -102,7 +121,7 @@ function ItemAccuracy({ active }: { active: boolean }) {
               <span className="inline-flex flex-wrap items-center gap-2 font-semibold">
                 {m.topics[item.topic]}
                 {flagged && (
-                  <span className="label-mono bg-accent px-1.5 py-0.5 text-[11px] text-accent-fg">
+                  <span className="label-mono bg-accent px-1.5 py-0.5 text-xs text-accent-fg">
                     {m.results.review}
                   </span>
                 )}
@@ -134,7 +153,9 @@ export function ResultsSection() {
       className="border-b border-ink bg-surface"
     >
       <div ref={ref} className="container-page flex flex-col gap-10 py-[clamp(56px,7vw,88px)]">
-        <SectionIntro id="results-title" title={m.results.title} className="max-w-[820px]" />
+        <SectionIntro id="results-title" title={m.results.title} className="max-w-[820px]">
+          <SampleDataNote />
+        </SectionIntro>
         <KpiRow active={inView} />
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
           <Histogram active={inView} />
@@ -142,12 +163,10 @@ export function ResultsSection() {
         </div>
         <div className="flex flex-wrap items-center gap-4 border border-ink bg-bg px-4 py-3.5">
           <span className="h-[122px] w-[124px] shrink-0 border border-ink bg-surface p-1.5">
-            <MetisAvatar expression="reviewing" label={m.results.avatarLabel} />
+            <MetisAvatar expression="reviewing" label={m.results.avatarLabel} still />
           </span>
           <div className="flex flex-[1_1_320px] flex-col gap-0.5">
-            <span className="label-mono text-[11px] tracking-[0.08em] text-accent">
-              {m.results.summaryLabel}
-            </span>
+            <span className="label-mono text-xs tracking-[0.08em] text-accent">{m.results.summaryLabel}</span>
             <p className="m-0 text-[17px]">{m.results.summary}</p>
           </div>
           <ButtonLink href={`#${SECTION_IDS.insights}`} variant="outline" size="sm">

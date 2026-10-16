@@ -26,13 +26,16 @@
   --breakpoint-lg: 60rem;
 
   --animate-word: word 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  --animate-travel: travel 6s linear infinite;
-  --animate-highlight: highlight 6s linear infinite;
+  /* Decorative motion runs a few times and settles; only loading indicators loop. */
+  --animate-travel: travel 6s linear 2 forwards;
+  --animate-highlight: highlight 6s linear 2;
   --animate-bar-y: bar-y 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-bar-x: bar-x 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-fade-up: fade-up 0.35s ease both;
   --animate-blink: blink 1s steps(1) infinite;
+  --animate-blink-brief: blink 1s steps(1) 4;
   --animate-beacon: beacon 1.6s ease-in-out infinite;
+  --animate-beacon-brief: beacon 1.6s ease-in-out 3;
   --animate-in-left: in-left 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-in-right: in-right 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-flash: flash 0.9s ease-out both;
@@ -40,7 +43,7 @@
   --animate-dot: dot 1s ease-in-out infinite;
   --animate-think: think 1.2s ease-in-out infinite;
   --animate-sweep: sweep 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
-  --animate-nudge: nudge 1.4s ease-in-out infinite;
+  --animate-nudge: nudge 1.4s ease-in-out 3;
   --animate-progress: progress 3.6s linear both;
   --animate-draw: draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 
@@ -258,6 +261,10 @@
   html {
     -webkit-text-size-adjust: 100%;
   }
+  /* Anchors and focused elements stop below the sticky header. */
+  html {
+    scroll-padding-top: 5rem;
+  }
   @media (prefers-reduced-motion: no-preference) {
     html {
       scroll-behavior: smooth;
@@ -283,9 +290,6 @@
   ::selection {
     background-color: var(--color-tint);
   }
-  [id] {
-    scroll-margin-top: 1rem;
-  }
   input[type='range'] {
     accent-color: var(--color-ink);
   }
@@ -305,5 +309,12 @@
   }
   .mt[data-paused] * {
     animation-play-state: paused !important;
+  }
+  /* Still avatars show the static drawing, as with reduced motion. */
+  .mt[data-still] * {
+    animation: none !important;
+  }
+  .mt[data-still] .mt-check {
+    stroke-dashoffset: 0;
   }
 }

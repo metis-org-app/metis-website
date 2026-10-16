@@ -22,7 +22,7 @@ export function ConversationReview({ active }: { active: boolean }) {
     <div className="flex min-w-0 flex-col border border-ink bg-surface lg:col-span-8">
       <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-b border-ink px-4 py-3">
         <h3 className="m-0 text-[17px] leading-tight font-bold">{copy.heading}</h3>
-        <span className="label-mono inline-flex items-center gap-2 text-[11px] text-soft">
+        <span className="label-mono inline-flex items-center gap-2 text-xs text-soft">
           <span aria-hidden="true" className="size-1.5 bg-accent" />
           {copy.saved}
         </span>
@@ -42,7 +42,7 @@ export function ConversationReview({ active }: { active: boolean }) {
                     className={`flex min-h-11 w-full flex-col items-start gap-0.5 px-4 py-3 text-left transition-colors ${pressed ? 'bg-ink text-bg' : 'text-ink hover:bg-bg'}`}
                   >
                     <span className="font-semibold">{copy.student(s.student)}</span>{' '}
-                    <span className={`label-mono text-[11px] ${pressed ? 'text-bg/80' : 'text-soft'}`}>
+                    <span className={`label-mono text-xs ${pressed ? 'text-bg/80' : 'text-soft'}`}>
                       {copy.meta(s.item, s.minute, copy.transcripts[s.id].length)}
                     </span>
                   </button>
@@ -52,7 +52,7 @@ export function ConversationReview({ active }: { active: boolean }) {
           </ul>
         </ToggleGroup>
         <div id={TRANSCRIPT_ID} className="flex min-w-0 flex-col bg-bg">
-          <div className="label-mono flex flex-wrap justify-between gap-x-3 gap-y-1 border-b border-line bg-surface px-4 py-2.5 text-[11px]">
+          <div className="label-mono flex flex-wrap justify-between gap-x-3 gap-y-1 border-b border-line bg-surface px-4 py-2.5 text-xs">
             <span className="text-accent">{copy.item(session.item, m.topics[session.topic])}</span>
             <span className="text-soft">{student}</span>
           </div>
@@ -71,7 +71,7 @@ export function ConversationReview({ active }: { active: boolean }) {
                   className={`flex max-w-[82%] flex-col items-end gap-1 self-end ${motion}`}
                   style={delay}
                 >
-                  <span className="label-mono text-[10.5px] tracking-[0.08em] text-soft">{student}</span>
+                  <span className="label-mono text-xs tracking-[0.08em] text-soft">{student}</span>
                   <p className="m-0 bg-ink px-3.5 py-2.5 text-[15px] leading-snug text-bg">{turn.text}</p>
                 </li>
               ) : (
@@ -87,7 +87,7 @@ export function ConversationReview({ active }: { active: boolean }) {
                       {turn.text}
                     </p>
                     {turn.tag && (
-                      <span className="label-mono inline-flex items-center gap-1.5 text-[10.5px] tracking-[0.08em] text-soft">
+                      <span className="label-mono inline-flex items-center gap-1.5 text-xs tracking-[0.08em] text-soft">
                         <span aria-hidden="true" className="size-1.5 bg-accent" />
                         {turn.tag}
                       </span>

@@ -17,7 +17,7 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 2. Small avatar thumbnails (24–46 px) use a generated 96 px grayscale PNG instead of the full raster.
 3. Results KPIs and bars animate when the section enters the viewport, not on page load.
 4. The "Watch demo" steps chain off each finished reply instead of fixed 5.2 s offsets, so no step is dropped.
-5. "Log in" and the "ES / EN" switch live in the top strip, which stays visible on mobile.
+5. The header is a single sticky row. Below 1280 px the navigation, "Log in" and the "ES / EN" switch move into a menu button, so the CTA stays in reach while scrolling.
 6. Every button is at least 44 px tall (some were 36–40 px).
 7. Turning the AI guide off cancels any pending reply and the demo.
 8. The hero Metis card is a labelled group, not an `<aside>`.
@@ -29,5 +29,10 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 14. A "Conversation insights" section follows Results: saved student chats, common questions, a question timeline and a Metis trend note.
 15. The scrolling ticker band under the hero is removed: it repeated the Results figures and added constant motion next to the hero carousel.
 16. Section anchors are in English (`#guide`, `#configure`, `#results`, `#insights`, `#spec`) instead of the prototype's Spanish ids (`#guia`, `#configurar`…), for both languages.
-17. The header strip drops the tagline ("AI assessments · for instructors and students"); it only holds "Log in" and the language switch.
+17. The header tagline ("AI assessments · for instructors and students") is removed.
 18. The numbered section labels ("01 — Platform" through "07 — Get started") are removed; each section opens with its heading.
+19. Below 960 px the guide chat comes before the instructor rules (the reading order keeps the rules first).
+20. No text is smaller than 12 px; chart labels are resized so they stay 12 px on narrow screens.
+21. Decorative motion runs a few times and stops (pipeline, status dots, "ready" cursor, rule arrow); only loading indicators loop. The Metis avatars in Results and Insights are still drawings.
+22. Results and Insights carry a "Sample data" note.
+23. In charts the accent marks only what needs attention (low scores, the flagged item, the question peak), with a legend on the histogram; the "0 answers revealed" figure and the top intent bar are ink.

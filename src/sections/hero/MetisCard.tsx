@@ -56,7 +56,7 @@ export function MetisCard() {
         </span>
         <span className="inline-flex items-center gap-1">
           <span className="inline-flex items-center gap-2">
-            <span aria-hidden="true" className="size-2 bg-accent motion-safe:animate-beacon" />
+            <span aria-hidden="true" className="size-2 bg-accent motion-safe:animate-beacon-brief" />
             {m.hero.card.online}
           </span>
           {!reduced && (
