@@ -23,7 +23,7 @@ const BUDGETS = [
     metric: 'raw',
     max: 10 * KB,
   },
-  { label: 'Open Graph image (raw)', match: (f) => /og-image\.png$/.test(f), metric: 'raw', max: 300 * KB },
+  { label: 'Open Graph image (raw)', match: (f) => f.endsWith('og-image.png'), metric: 'raw', max: 300 * KB },
 ];
 
 if (!existsSync(DIST)) {
@@ -52,7 +52,7 @@ const fmt = (n) => `${(n / KB).toFixed(1)} KB`;
 console.log('\nBuild output');
 console.table(
   files
-    .sort((a, b) => b.raw - a.raw)
+    .toSorted((a, b) => b.raw - a.raw)
     .map(({ file, raw, gzip, brotli }) => ({ file, raw: fmt(raw), gzip: fmt(gzip), brotli: fmt(brotli) })),
 );
 

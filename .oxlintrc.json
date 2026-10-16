@@ -14,7 +14,23 @@
     "react/jsx-key": "error",
     "jsx-a11y/anchor-is-valid": "error",
     "jsx-a11y/alt-text": "error",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "import/no-unassigned-import": [
+      "warn",
+      {
+        "allow": ["**/*.css", "@fontsource*/**", "@testing-library/jest-dom/vitest"]
+      }
+    ]
   },
-  "ignorePatterns": ["dist/**", "coverage/**", "design/**", "tools/avatar/out/**", "**/*.generated.*"]
+  "ignorePatterns": ["dist/**", "coverage/**", "design/**", "tools/avatar/out/**", "**/*.generated.*"],
+  "overrides": [
+    {
+      "files": ["tools/**/*.cjs", "tools/**/*.mjs"],
+      "rules": {
+        "no-await-in-loop": "off",
+        "unicorn/consistent-function-scoping": "off",
+        "unicorn/no-array-sort": "off"
+      }
+    }
+  ]
 }

@@ -1,13 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { LangProvider } from './i18n/LangContext';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+// Self-hosted fonts (no third-party requests; works with the strict CSP).
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
 import './index.css';
+import App from './App';
+import { LangProvider } from './i18n/LangProvider';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing #root element');
+
+createRoot(root).render(
+  <StrictMode>
     <LangProvider>
       <App />
     </LangProvider>
-  </React.StrictMode>,
+  </StrictMode>,
 );
