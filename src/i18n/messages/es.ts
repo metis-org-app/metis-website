@@ -39,10 +39,10 @@ export const es: Messages = {
     primaryCta: 'Crear evaluación gratis →',
     secondaryCta: 'Habla con Metis ↓',
     pipeline: [
-      { key: 'A', title: 'Archivo', note: 'PDF · DOCX · PPTX' },
-      { key: 'B', title: 'Ítems', note: 'Sugeridos por IA' },
-      { key: 'C', title: 'Enlace + Metis', note: 'Pistas, nunca respuestas' },
-      { key: 'D', title: 'Resultados', note: 'Por ítem y estudiante' },
+      { key: 'file', title: 'Archivo', note: 'PDF · DOCX · PPTX' },
+      { key: 'items', title: 'Ítems', note: 'Sugeridos por IA' },
+      { key: 'link', title: 'Enlace + Metis', note: 'Pistas, nunca respuestas' },
+      { key: 'results', title: 'Resultados', note: 'Por ítem y estudiante' },
     ],
     pipelineLabel: 'Del archivo a los resultados en cuatro pasos',
     card: {

@@ -50,10 +50,10 @@ export const en = {
     primaryCta: 'Create a free assessment →',
     secondaryCta: 'Talk to Metis ↓',
     pipeline: [
-      { key: 'A', title: 'File', note: 'PDF · DOCX · PPTX' },
-      { key: 'B', title: 'Items', note: 'Suggested by AI' },
-      { key: 'C', title: 'Link + Metis', note: 'Hints, never answers' },
-      { key: 'D', title: 'Results', note: 'By item and student' },
+      { key: 'file', title: 'File', note: 'PDF · DOCX · PPTX' },
+      { key: 'items', title: 'Items', note: 'Suggested by AI' },
+      { key: 'link', title: 'Link + Metis', note: 'Hints, never answers' },
+      { key: 'results', title: 'Results', note: 'By item and student' },
     ],
     pipelineLabel: 'From file to results in four steps',
     card: {

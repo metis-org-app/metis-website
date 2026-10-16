@@ -4,7 +4,7 @@ import { useI18n } from '../../i18n/useI18n';
 /** Static classes (not inline styles) so the prerendered HTML stays within the CSP. */
 const STEP_DELAYS = ['', '[animation-delay:1.5s]', '[animation-delay:3s]', '[animation-delay:4.5s]'];
 
-/** A → D steps, highlighted in sequence, with a square travelling along the base line. */
+/** File → items → link → results, highlighted in sequence, with a square travelling along the base line. */
 export function Pipeline() {
   const { m } = useI18n();
   return (
@@ -18,12 +18,9 @@ export function Pipeline() {
             key={step.key}
             className={`flex min-h-[120px] flex-col gap-1.5 border-r border-b border-ink bg-surface px-4 py-3.5 motion-safe:animate-highlight ${STEP_DELAYS[i] ?? ''}`}
           >
-            <span aria-hidden="true" className="font-mono text-xs text-soft">
-              {step.key}
-            </span>
             <span className="flex items-center gap-2 text-xl font-bold tracking-[-0.01em]">
               {step.title}
-              {step.key === 'C' && <MetisThumb size={24} />}
+              {step.key === 'link' && <MetisThumb size={24} />}
             </span>
             <span className="mt-auto font-mono text-xs text-soft">{step.note}</span>
           </li>
