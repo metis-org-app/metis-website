@@ -51,7 +51,7 @@ export interface ChatState {
   pending: { kind: Kind; num: string | null } | null;
   writingId: number | null;
   highlight: HighlightPrice | null;
-  demo: { queue: Preset[] } | null;
+  demo: { queue: Exclude<Preset, 'initial'>[] } | null;
   nextId: number;
 }
 
