@@ -14,9 +14,9 @@ type Turn = { from: 'student' | 'metis'; text: string; tag?: string };
  */
 export const en = {
   meta: {
-    title: 'Metis — From class material to learning data',
+    title: 'Metis: from class material to learning data',
     description:
-      'Metis generates assessments from your files with AI, shares them through a link and returns results by item, student and topic, with an AI guide that helps without solving.',
+      "Metis uses AI to turn your class files into assessments, shares them through a link, and reports results by item, student, and topic. Students can ask its AI guide for hints, and it won't give them the answer.",
   },
   a11y: {
     skipToContent: 'Skip to content',
@@ -39,10 +39,10 @@ export const en = {
     },
   },
   hero: {
-    meta: ['01 — Platform', 'Create · Share · Understand', 'Works with Canvas LMS'],
+    meta: ['01 — Platform', 'Works with Canvas LMS'],
     titleLead: 'From class material',
     titleTail: 'to learning data',
-    lead: 'Metis generates assessments from your files with AI, shares them through a link, and returns results by item, student, and topic. Inside the student link, it guides without solving for them.',
+    lead: "Metis uses AI to turn your files into an assessment, shares it through a link, and reports results by item, student, and topic. Inside the link, students can ask Metis for hints; it won't give them the answer.",
     primaryCta: 'Create a free assessment →',
     secondaryCta: 'Talk to Metis ↓',
     pipeline: [
@@ -71,18 +71,10 @@ export const en = {
       celebrating: { label: 'Celebrating', line: 'You got there yourself. Nice work.' },
     } as Record<Expression, { label: string; line: string }>,
   },
-  ticker: [
-    'Quiz 02 · Supply and demand — 26 of 28 submitted',
-    'Metis gave 11 hints · 0 answers revealed',
-    'Item 05 flagged for review',
-    'Lesson_06.pdf → 12 items suggested',
-    'Average accuracy 74%',
-    '17 conversations saved · most asked: consumer surplus',
-  ],
   guide: {
     kicker: '02 — AI guide',
-    title: 'Explicit rules. Predictable behavior.',
-    lead: 'Metis lives inside the student link. Change a rule on the left and the conversation on the right follows it, reply by reply. Type your own question, or watch the demo.',
+    title: 'Metis follows the rules you set.',
+    lead: 'Metis works inside the student link. Change a rule and the next reply in the chat follows it. Ask your own question or watch the demo.',
     presence: {
       live: 'Metis · live',
       headline: {
@@ -116,7 +108,7 @@ export const en = {
         },
         example: {
           label: 'Worked example',
-          desc: 'Solves a similar case so the method can be copied',
+          desc: 'Solves a similar case so the student can copy the method',
           short: 'Worked example',
           tag: 'WORKED EXAMPLE',
         },
@@ -183,7 +175,7 @@ export const en = {
         },
         other: {
           socratic:
-            'Good question to think through. What does the table tell you about buyers and sellers when the price changes?',
+            'Look at the table. What does it tell you about buyers and sellers when the price changes?',
           hints: 'Hint: this item is about the point where both quantity columns meet.',
           example:
             'Picture a market where 15 units are both offered and wanted at $8: that price is the equilibrium. Look for the same pattern here.',
@@ -199,17 +191,17 @@ export const en = {
         limit: 'LIMIT REACHED',
       },
       notices: {
-        mode: (label: string) => `Rule updated — ${label}`,
-        maxHints: (n: number) => `Rule updated — max hints: ${n}`,
-        cite: (on: boolean) => `Rule updated — cite material: ${on ? 'on' : 'off'}`,
+        mode: (label: string) => `Rule updated: ${label}`,
+        maxHints: (n: number) => `Rule updated: max hints ${n}`,
+        cite: (on: boolean) => `Rule updated: cite material ${on ? 'on' : 'off'}`,
         guide: (on: boolean): string => (on ? 'AI guide turned on' : 'AI guide turned off'),
       },
     },
   },
   configure: {
     kicker: '03 — Configure',
-    title: 'You define the structure. Metis fills in the items.',
-    lead: 'Adjust the controls. The preview is built from topics detected in the sample material, and the guide settings are shared with the chat above.',
+    title: 'You set the structure and Metis writes the items.',
+    lead: 'The preview uses topics Metis found in the sample material. The guide settings here are the same ones the chat above uses.',
     count: 'Number of items',
     countValueText: (n: number) => `${n} items`,
     types: 'Item types',
@@ -250,7 +242,7 @@ export const en = {
   } as Record<TopicId, string>,
   results: {
     kicker: '04 — Results',
-    title: "What happened, item by item, as soon as it's submitted.",
+    title: 'See how each item went as soon as students submit.',
     kpis: {
       submissions: 'Submissions',
       accuracy: 'Average accuracy',
@@ -269,8 +261,8 @@ export const en = {
   },
   insights: {
     kicker: '05 — Conversation insights',
-    title: 'Every question to Metis is saved. Read them as data.',
-    lead: "Each student's chat with Metis is stored with the assessment results. Open any conversation, see what the class asked most, and find the moment the exam got hard.",
+    title: 'Every question students ask Metis is saved.',
+    lead: "Chats are stored with the assessment results. You can read any student's conversation, see what the class asked most, and find the point in the exam where questions piled up.",
     stats: {
       asked: 'Students who asked',
       questions: 'Questions to Metis',
@@ -395,13 +387,13 @@ export const en = {
       {
         id: 'guide',
         k: 'AI guide',
-        v: 'Metis, an agent in the student link that gives hints following your rules. Never reveals the answer.',
+        v: 'Metis, an agent in the student link. It gives hints under your rules and never reveals the answer.',
       },
-      { id: 'results', k: 'Results', v: "By item, by student, and by topic, as soon as it's submitted." },
+      { id: 'results', k: 'Results', v: 'By item, student, and topic, as soon as students submit.' },
       {
         id: 'conversations',
         k: 'Conversations',
-        v: 'Every chat with Metis is saved with the results. Review it by student, see the most common questions, and spot trends.',
+        v: 'Each chat with Metis is saved with the results. You can read it, see the most common questions, and follow trends.',
       },
       { id: 'sources', k: 'Sources', v: 'Each item points to its passage in the source material.' },
       { id: 'integration', k: 'Integration', v: 'Works with Canvas LMS. Exports to PDF and Word.' },

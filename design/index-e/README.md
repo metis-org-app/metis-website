@@ -27,3 +27,4 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 12. The brand is "Metis" (no "Campus").
 13. The hero card cycles through Metis's six expressions on its own, with a pause button and progress segments, instead of expression buttons.
 14. A "Conversation insights" section (05) follows Results: saved student chats, common questions, a question timeline and a Metis trend note. Spec and CTA become 06 and 07.
+15. The scrolling ticker band under the hero is removed: it repeated the Results figures and added constant motion next to the hero carousel.

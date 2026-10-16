@@ -13,7 +13,7 @@ describe('InsightsSection', () => {
   it('summarises who asked Metis, how much, and when', () => {
     renderWithProviders(<InsightsSection />);
     expect(
-      screen.getByRole('heading', { level: 2, name: 'Every question to Metis is saved. Read them as data.' }),
+      screen.getByRole('heading', { level: 2, name: 'Every question students ask Metis is saved.' }),
     ).toBeInTheDocument();
     const stats = screen.getByText('Students who asked').closest('dl')!;
     expect(stats).toHaveTextContent('17/26');

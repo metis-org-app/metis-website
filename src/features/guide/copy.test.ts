@@ -62,9 +62,9 @@ describe('tagText', () => {
 
 describe('noticeText and studentText', () => {
   it('renders rule-change notices', () => {
-    expect(noticeText({ t: 'mode', mode: 'hints' }, en)).toBe('Rule updated — Direct hints');
-    expect(noticeText({ t: 'maxHints', value: 1 }, en)).toBe('Rule updated — max hints: 1');
-    expect(noticeText({ t: 'cite', on: false }, es)).toBe('Regla actualizada — citar material: no');
+    expect(noticeText({ t: 'mode', mode: 'hints' }, en)).toBe('Rule updated: Direct hints');
+    expect(noticeText({ t: 'maxHints', value: 1 }, en)).toBe('Rule updated: max hints 1');
+    expect(noticeText({ t: 'cite', on: false }, es)).toBe('Regla actualizada: citar material no');
     expect(noticeText({ t: 'guide', on: false }, en)).toBe('AI guide turned off');
   });
 

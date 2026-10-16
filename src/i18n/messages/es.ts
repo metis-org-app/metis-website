@@ -3,9 +3,9 @@ import type { Messages } from './en';
 /** Spanish copy. Tone and terms: design/index-e/glossary.es.md (informal "tú"). */
 export const es: Messages = {
   meta: {
-    title: 'Metis — Del material de clase al dato de aprendizaje',
+    title: 'Metis: del material de clase al dato de aprendizaje',
     description:
-      'Metis genera evaluaciones con IA a partir de tus archivos, las comparte con un enlace y devuelve resultados por ítem, estudiante y tema, con una guía IA que acompaña sin resolver.',
+      'Metis usa IA para convertir tus archivos de clase en evaluaciones, las comparte con un enlace y muestra los resultados por ítem, estudiante y tema. Los estudiantes pueden pedirle pistas a su guía IA, que no les da la respuesta.',
   },
   a11y: {
     skipToContent: 'Saltar al contenido',
@@ -28,10 +28,10 @@ export const es: Messages = {
     },
   },
   hero: {
-    meta: ['01 — Plataforma', 'Crear · Compartir · Comprender', 'Compatible con Canvas LMS'],
+    meta: ['01 — Plataforma', 'Compatible con Canvas LMS'],
     titleLead: 'Del material de clase',
     titleTail: 'al dato de aprendizaje',
-    lead: 'Metis genera evaluaciones con IA a partir de tus archivos, las comparte con un enlace y devuelve resultados por ítem, estudiante y tema. Dentro del enlace del estudiante, guía sin dar la respuesta.',
+    lead: 'Metis usa IA para convertir tus archivos en una evaluación, la comparte con un enlace y te muestra los resultados por ítem, estudiante y tema. Dentro del enlace, los estudiantes pueden pedirle pistas a Metis; no les dará la respuesta.',
     primaryCta: 'Crear evaluación gratis →',
     secondaryCta: 'Habla con Metis ↓',
     pipeline: [
@@ -60,18 +60,10 @@ export const es: Messages = {
       celebrating: { label: 'Celebrando', line: 'Llegaste por tu cuenta. ¡Bien hecho!' },
     },
   },
-  ticker: [
-    'Quiz 02 · Oferta y demanda — 26 de 28 entregas',
-    'Metis dio 11 pistas · 0 respuestas reveladas',
-    'Ítem 05 marcado para repasar',
-    'Leccion_06.pdf → 12 ítems sugeridos',
-    'Acierto medio 74 %',
-    '17 conversaciones guardadas · lo más preguntado: excedente del consumidor',
-  ],
   guide: {
     kicker: '02 — Guía IA',
-    title: 'Reglas explícitas. Comportamiento predecible.',
-    lead: 'Metis vive dentro del enlace del estudiante. Cambia una regla a la izquierda y la conversación de la derecha la sigue, respuesta a respuesta. Escribe tu propia pregunta o mira la demostración.',
+    title: 'Metis sigue las reglas que tú defines.',
+    lead: 'Metis trabaja dentro del enlace del estudiante. Cambia una regla y la siguiente respuesta del chat la seguirá. Escribe tu propia pregunta o mira la demostración.',
     presence: {
       live: 'Metis · en vivo',
       headline: {
@@ -105,7 +97,7 @@ export const es: Messages = {
         },
         example: {
           label: 'Ejemplo resuelto',
-          desc: 'Resuelve un caso parecido para imitar el método',
+          desc: 'Resuelve un caso parecido para que el estudiante imite el método',
           short: 'Ejemplo resuelto',
           tag: 'EJEMPLO RESUELTO',
         },
@@ -171,8 +163,7 @@ export const es: Messages = {
             `Ejemplo: a $8, 15 ofrecidas y 15 demandadas significa que $8 es el equilibrio. Haz la misma comprobación a ${at}.`,
         },
         other: {
-          socratic:
-            'Buena pregunta para pensarla. ¿Qué te dice la tabla sobre compradores y vendedores cuando cambia el precio?',
+          socratic: 'Mira la tabla. ¿Qué te dice sobre compradores y vendedores cuando cambia el precio?',
           hints: 'Pista: este ítem trata del punto donde se encuentran las dos columnas de cantidad.',
           example:
             'Imagina un mercado donde a $8 se ofrecen y se quieren 15 unidades: ese precio es el equilibrio. Busca el mismo patrón aquí.',
@@ -188,17 +179,17 @@ export const es: Messages = {
         limit: 'LÍMITE ALCANZADO',
       },
       notices: {
-        mode: (label: string) => `Regla actualizada — ${label}`,
-        maxHints: (n: number) => `Regla actualizada — pistas máximas: ${n}`,
-        cite: (on: boolean) => `Regla actualizada — citar material: ${on ? 'sí' : 'no'}`,
+        mode: (label: string) => `Regla actualizada: ${label}`,
+        maxHints: (n: number) => `Regla actualizada: pistas máximas ${n}`,
+        cite: (on: boolean) => `Regla actualizada: citar material ${on ? 'sí' : 'no'}`,
         guide: (on: boolean) => (on ? 'Guía IA encendida' : 'Guía IA apagada'),
       },
     },
   },
   configure: {
     kicker: '03 — Configurar',
-    title: 'Tú defines la estructura. Metis llena los ítems.',
-    lead: 'Ajusta los controles. La vista previa se arma con temas detectados en el material de ejemplo, y la configuración de la guía se comparte con el chat de arriba.',
+    title: 'Tú defines la estructura y Metis redacta los ítems.',
+    lead: 'La vista previa usa los temas que Metis encontró en el material de ejemplo. Los ajustes de la guía son los mismos que usa el chat de arriba.',
     count: 'Número de ítems',
     countValueText: (n: number) => `${n} ítems`,
     types: 'Tipos de ítem',
@@ -239,7 +230,7 @@ export const es: Messages = {
   },
   results: {
     kicker: '04 — Resultados',
-    title: 'Lo que pasó, ítem por ítem, en cuanto se envía.',
+    title: 'Mira cómo salió cada ítem apenas los estudiantes entregan.',
     kpis: {
       submissions: 'Entregas',
       accuracy: 'Acierto medio',
@@ -259,8 +250,8 @@ export const es: Messages = {
   },
   insights: {
     kicker: '05 — Conversaciones',
-    title: 'Cada pregunta a Metis se guarda. Léelas como datos.',
-    lead: 'El chat de cada estudiante con Metis se guarda junto con los resultados de la evaluación. Abre cualquier conversación, mira qué preguntó más el grupo y encuentra el momento en que el examen se puso difícil.',
+    title: 'Cada pregunta que le hacen a Metis queda guardada.',
+    lead: 'Los chats se guardan junto con los resultados de la evaluación. Puedes leer la conversación de cualquier estudiante, ver qué preguntó más el grupo y encontrar el momento del examen en que se acumularon las preguntas.',
     stats: {
       asked: 'Estudiantes que preguntaron',
       questions: 'Preguntas a Metis',
@@ -370,7 +361,7 @@ export const es: Messages = {
     kicker: '06 — Ficha técnica',
     title: 'Qué hace Metis, sin adjetivos.',
     rows: [
-      { id: 'input', k: 'Entrada', v: 'PDF, documentos, presentaciones y notas. Se arrastran y se sueltan.' },
+      { id: 'input', k: 'Entrada', v: 'PDF, documentos, presentaciones y notas. Arrástralos y suéltalos.' },
       {
         id: 'generation',
         k: 'Generación',
@@ -384,18 +375,22 @@ export const es: Messages = {
       {
         id: 'distribution',
         k: 'Distribución',
-        v: 'Un enlace por evaluación. Se responde desde cualquier dispositivo.',
+        v: 'Un enlace por evaluación. Los estudiantes responden desde cualquier dispositivo.',
       },
       {
         id: 'guide',
         k: 'Guía IA',
-        v: 'Metis, un agente en el enlace del estudiante que da pistas según tus reglas. Nunca revela la respuesta.',
+        v: 'Metis, un agente en el enlace del estudiante. Da pistas según tus reglas y nunca revela la respuesta.',
       },
-      { id: 'results', k: 'Resultados', v: 'Por ítem, por estudiante y por tema, en cuanto se envía.' },
+      {
+        id: 'results',
+        k: 'Resultados',
+        v: 'Por ítem, estudiante y tema, en cuanto los estudiantes entregan.',
+      },
       {
         id: 'conversations',
         k: 'Conversaciones',
-        v: 'Cada chat con Metis se guarda con los resultados. Revísalo por estudiante, mira las preguntas más frecuentes y detecta tendencias.',
+        v: 'Cada chat con Metis se guarda con los resultados. Puedes leerlo, ver las preguntas más frecuentes y seguir tendencias.',
       },
       { id: 'sources', k: 'Fuentes', v: 'Cada ítem remite al pasaje del material de origen.' },
       { id: 'integration', k: 'Integración', v: 'Compatible con Canvas LMS. Exporta a PDF y Word.' },

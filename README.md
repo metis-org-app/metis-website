@@ -70,7 +70,7 @@ src/
   hooks/               reduced motion, in-view, interval, count-up, typewriter, hover/focus
   components/avatar/   <MetisAvatar expression label?> and the generated artwork
   components/ui|layout header, footer, skip link, buttons, toggles, switch
-  sections/            hero, ticker, guide, configure, results, insights, spec, cta
+  sections/            hero, guide, configure, results, insights, spec, cta
   test/                setup (browser mocks), axe helper, render with providers
 ```
 

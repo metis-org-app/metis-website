@@ -33,7 +33,6 @@
   --animate-fade-up: fade-up 0.35s ease both;
   --animate-blink: blink 1s steps(1) infinite;
   --animate-beacon: beacon 1.6s ease-in-out infinite;
-  --animate-ticker: ticker 46s linear infinite;
   --animate-in-left: in-left 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-in-right: in-right 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
   --animate-flash: flash 0.9s ease-out both;
@@ -123,11 +122,6 @@
     50% {
       opacity: 0.35;
       transform: scale(0.7);
-    }
-  }
-  @keyframes ticker {
-    to {
-      transform: translateX(-50%);
     }
   }
   @keyframes in-right {

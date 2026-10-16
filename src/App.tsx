@@ -9,7 +9,6 @@ import { HeroSection } from './sections/hero/HeroSection';
 import { InsightsSection } from './sections/insights/InsightsSection';
 import { ResultsSection } from './sections/results/ResultsSection';
 import { SpecSection } from './sections/spec/SpecSection';
-import { TickerStrip } from './sections/TickerStrip';
 
 export default function App() {
   return (
@@ -18,7 +17,6 @@ export default function App() {
       <SiteHeader />
       <main id="main" tabIndex={-1} className="outline-none">
         <HeroSection />
-        <TickerStrip />
         {/* The guide chat and the configurator share the guide rules. */}
         <DemoProvider>
           <GuideSection />

@@ -62,7 +62,7 @@ describe('GuideSection', () => {
     const user = setup();
     const rules = screen.getAllByRole('group', { name: 'Max hints per item' })[0]!;
     await user.click(within(rules).getByRole('button', { name: '1' }));
-    expect(within(log()).getByText('Rule updated — max hints: 1')).toBeInTheDocument();
+    expect(within(log()).getByText('Rule updated: max hints 1')).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: 'Just tell me the answer.' }));
     await waitForReply();
