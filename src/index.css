@@ -42,6 +42,8 @@
   --animate-think: think 1.2s ease-in-out infinite;
   --animate-sweep: sweep 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
   --animate-nudge: nudge 1.4s ease-in-out infinite;
+  --animate-progress: progress 3.6s linear both;
+  --animate-draw: draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 
   @keyframes word {
     from {
@@ -209,6 +211,22 @@
     }
     to {
       left: 100%;
+    }
+  }
+  @keyframes progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
     }
   }
   @keyframes nudge {

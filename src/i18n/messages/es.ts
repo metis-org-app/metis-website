@@ -19,7 +19,13 @@ export const es: Messages = {
     tagline: 'Evaluación con IA · para instructores y estudiantes',
     login: 'Entrar',
     cta: 'Crear evaluación →',
-    nav: { guide: 'Guía IA', configure: 'Configurar', results: 'Resultados', spec: 'Ficha' },
+    nav: {
+      guide: 'Guía IA',
+      configure: 'Configurar',
+      results: 'Resultados',
+      insights: 'Conversaciones',
+      spec: 'Ficha',
+    },
   },
   hero: {
     meta: ['01 — Plataforma', 'Crear · Compartir · Comprender', 'Compatible con Canvas LMS'],
@@ -41,7 +47,8 @@ export const es: Messages = {
       online: 'En línea',
       name: 'Metis',
       inEveryLink: 'En cada enlace',
-      expressionsLabel: 'Expresiones de Metis',
+      pause: 'Pausar el carrusel de Metis',
+      play: 'Reanudar el carrusel de Metis',
       aria: (expression: string) => `Metis, la guía IA, ${expression}`,
     },
     expressions: {
@@ -59,6 +66,7 @@ export const es: Messages = {
     'Ítem 05 marcado para repasar',
     'Leccion_06.pdf → 12 ítems sugeridos',
     'Acierto medio 74 %',
+    '17 conversaciones guardadas · lo más preguntado: excedente del consumidor',
   ],
   guide: {
     kicker: '02 — Guía IA',
@@ -246,11 +254,120 @@ export const es: Messages = {
     summaryLabel: 'Metis · resumen para el instructor',
     summary:
       'El ítem 05 concentró 6 de las 11 pistas. Conviene repasar el excedente del consumidor antes de la próxima unidad.',
-    hintLog: 'Ver el registro de pistas →',
+    seeConversations: 'Ver las conversaciones →',
     avatarLabel: 'Metis revisando los resultados, con lentes de lectura',
   },
+  insights: {
+    kicker: '05 — Conversaciones',
+    title: 'Cada pregunta a Metis se guarda. Léelas como datos.',
+    lead: 'El chat de cada estudiante con Metis se guarda junto con los resultados de la evaluación. Abre cualquier conversación, mira qué preguntó más el grupo y encuentra el momento en que el examen se puso difícil.',
+    stats: {
+      asked: 'Estudiantes que preguntaron',
+      questions: 'Preguntas a Metis',
+      peak: (item: string) => `Pico · ítem ${item}`,
+      minutes: 'min',
+    },
+    intents: {
+      heading: 'Qué le preguntan a Metis',
+      names: {
+        concept: 'Explicar un concepto',
+        check: 'Comprobar una respuesta',
+        answer: 'Pedir la respuesta',
+        start: 'Saber por dónde empezar',
+      },
+      examples: {
+        concept: '¿Qué significa excedente del consumidor?',
+        check: '¿Es $40?',
+        answer: 'Solo dime la respuesta.',
+        start: 'No sé por dónde empezar.',
+      },
+      withheld: 'Respuesta reservada siempre',
+    },
+    timeline: {
+      heading: 'Preguntas durante el examen',
+      caption: 'Preguntas a Metis por bloque de 5 minutos',
+      label:
+        'Gráfica de línea: las preguntas a Metis subieron hasta un pico de 17 entre los minutos 20 y 25, mientras el grupo resolvía el ítem 05, y bajaron hacia el final del examen.',
+      axis: (minute: number) => `${minute} min`,
+      peak: (item: string, n: number) => `Ítem ${item} · ${n}`,
+    },
+    sessions: {
+      heading: 'Revisa cualquier conversación',
+      listLabel: 'Conversaciones guardadas',
+      student: (n: string) => `Estudiante ${n}`,
+      meta: (item: string, minute: number, count: number) =>
+        `Ítem ${item} · min ${minute} · ${count} mensajes`,
+      transcriptLabel: (student: string) => `Conversación entre ${student} y Metis`,
+      item: (item: string, topic: string) => `Ítem ${item} · ${topic}`,
+      saved: 'Guardada con los resultados de la evaluación · solo lectura',
+      transcripts: {
+        s07: [
+          { from: 'student', text: '¿Qué significa excedente del consumidor?' },
+          {
+            from: 'metis',
+            text: 'Compara lo que los compradores estaban dispuestos a pagar con lo que pagaron. ¿En qué parte de la curva de demanda puedes ver esa diferencia?',
+            tag: 'PISTA 1/3',
+          },
+          { from: 'student', text: '¿El área debajo de la curva y arriba del precio?' },
+          {
+            from: 'metis',
+            text: 'Bien. ¿Qué forma tiene esa área y cómo calcularías su tamaño?',
+            tag: 'SOCRÁTICO',
+          },
+        ],
+        s12: [
+          { from: 'student', text: '¿Es $40?' },
+          {
+            from: 'metis',
+            text: 'Todavía no te lo confirmo. A $40, ¿cuántas unidades se ofrecen y cuántas se demandan?',
+            tag: 'RESPUESTA RESERVADA',
+          },
+          { from: 'student', text: '30 y 30.' },
+          {
+            from: 'metis',
+            text: 'Entonces, ¿qué te dice eso de $40? Escribe tu razonamiento en la respuesta.',
+            tag: 'PISTA 2/3',
+          },
+        ],
+        s19: [
+          { from: 'student', text: 'Solo dame la respuesta del ítem 05.' },
+          {
+            from: 'metis',
+            text: 'No puedo darte la respuesta, pero podemos llegar juntos. ¿Qué precio pagaron los compradores y cuánto estaban dispuestos a pagar?',
+            tag: 'RESPUESTA RESERVADA',
+          },
+          { from: 'student', text: 'Pagaron $30 y pagarían hasta $50.' },
+          {
+            from: 'metis',
+            text: 'Entonces cada comprador se quedó con parte de esa diferencia. ¿Cómo la sumarías para todo el grupo?',
+            tag: 'PISTA 1/3',
+          },
+        ],
+        s23: [
+          { from: 'student', text: 'No sé por dónde empezar.' },
+          {
+            from: 'metis',
+            text: 'Empieza por la tabla. ¿Qué pasa con la cantidad demandada cuando sube el precio?',
+            tag: 'PISTA 1/3',
+          },
+          { from: 'student', text: 'Baja.' },
+          {
+            from: 'metis',
+            text: 'Exacto. Esa es la ley de la demanda. La Lección 4, p. 04, explica por qué.',
+            tag: 'FUENTE P. 04',
+          },
+        ],
+      },
+    },
+    trend: {
+      label: 'Metis · tendencia para el instructor',
+      text: '8 de los 17 estudiantes que usaron a Metis preguntaron qué es el excedente del consumidor, todos durante el ítem 05, donde se concentró el pico de preguntas. Repasa la definición antes de la próxima unidad.',
+      basis: 'Basado en 64 preguntas de 17 conversaciones',
+      avatarLabel: 'Metis pensando en las conversaciones del grupo',
+    },
+  },
   spec: {
-    kicker: '05 — Ficha técnica',
+    kicker: '06 — Ficha técnica',
     title: 'Qué hace Metis, sin adjetivos.',
     rows: [
       { id: 'input', k: 'Entrada', v: 'PDF, documentos, presentaciones y notas. Se arrastran y se sueltan.' },
@@ -275,12 +392,17 @@ export const es: Messages = {
         v: 'Metis, un agente en el enlace del estudiante que da pistas según tus reglas. Nunca revela la respuesta.',
       },
       { id: 'results', k: 'Resultados', v: 'Por ítem, por estudiante y por tema, en cuanto se envía.' },
+      {
+        id: 'conversations',
+        k: 'Conversaciones',
+        v: 'Cada chat con Metis se guarda con los resultados. Revísalo por estudiante, mira las preguntas más frecuentes y detecta tendencias.',
+      },
       { id: 'sources', k: 'Fuentes', v: 'Cada ítem remite al pasaje del material de origen.' },
       { id: 'integration', k: 'Integración', v: 'Compatible con Canvas LMS. Exporta a PDF y Word.' },
     ],
   },
   cta: {
-    kicker: '06 — Empezar',
+    kicker: '07 — Empezar',
     title: 'Empieza con un archivo',
     note: 'Sin tarjeta de crédito · configuración en 2 minutos',
     primary: 'Crear evaluación gratis →',

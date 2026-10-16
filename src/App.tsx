@@ -6,6 +6,7 @@ import { ConfigureSection } from './sections/configure/ConfigureSection';
 import { CtaSection } from './sections/cta/CtaSection';
 import { GuideSection } from './sections/guide/GuideSection';
 import { HeroSection } from './sections/hero/HeroSection';
+import { InsightsSection } from './sections/insights/InsightsSection';
 import { ResultsSection } from './sections/results/ResultsSection';
 import { SpecSection } from './sections/spec/SpecSection';
 import { TickerStrip } from './sections/TickerStrip';
@@ -24,6 +25,7 @@ export default function App() {
           <ConfigureSection />
         </DemoProvider>
         <ResultsSection />
+        <InsightsSection />
         <SpecSection />
         <CtaSection />
       </main>

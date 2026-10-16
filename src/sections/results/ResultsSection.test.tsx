@@ -43,6 +43,9 @@ describe('ResultsSection', () => {
     expect(
       screen.getByRole('img', { name: 'Metis reviewing the results, with reading glasses' }),
     ).toHaveClass('mt-e-reviewing');
-    expect(screen.getByRole('link', { name: 'See the hint log →' })).toHaveAttribute('href', '#guia');
+    expect(screen.getByRole('link', { name: 'See the conversations →' })).toHaveAttribute(
+      'href',
+      '#conversaciones',
+    );
   });
 });

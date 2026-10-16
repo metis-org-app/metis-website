@@ -57,5 +57,38 @@ export const SECTION_IDS = {
   guide: 'guia',
   configure: 'configurar',
   results: 'resultados',
+  insights: 'conversaciones',
   spec: 'ficha',
 } as const;
+
+/** Conversation insights: what students asked Metis during the assessment (Quiz 02, 45 minutes). */
+export const INSIGHTS = { studentsAsked: 17, students: 26, questions: 64 } as const;
+export const INTENTS = ['concept', 'check', 'answer', 'start'] as const;
+export type Intent = (typeof INTENTS)[number];
+/** Share of questions by intent (sums to 100), highest first. */
+export const INTENT_SHARES: ReadonlyArray<{ intent: Intent; pct: number }> = [
+  { intent: 'concept', pct: 31 },
+  { intent: 'check', pct: 29 },
+  { intent: 'answer', pct: 22 },
+  { intent: 'start', pct: 18 },
+];
+/** Questions to Metis per 5-minute block of the exam (sums to INSIGHTS.questions). */
+export const QUESTION_TIMELINE = [3, 5, 6, 9, 17, 11, 7, 4, 2] as const;
+export const TIMELINE_BLOCK_MINUTES = 5;
+/** The item students were on when questions peaked. */
+export const TIMELINE_PEAK_ITEM = '05';
+/** Saved conversations shown in the review panel (their text lives in the messages). */
+export const SESSION_IDS = ['s07', 's12', 's19', 's23'] as const;
+export type SessionId = (typeof SESSION_IDS)[number];
+export const SESSIONS: ReadonlyArray<{
+  id: SessionId;
+  student: string;
+  item: string;
+  topic: TopicId;
+  minute: number;
+}> = [
+  { id: 's07', student: '07', item: '05', topic: 'surplus', minute: 21 },
+  { id: 's12', student: '12', item: '03', topic: 'equilibrium', minute: 14 },
+  { id: 's19', student: '19', item: '05', topic: 'surplus', minute: 23 },
+  { id: 's23', student: '23', item: '01', topic: 'demand', minute: 4 },
+];

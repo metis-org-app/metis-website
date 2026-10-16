@@ -1,9 +1,11 @@
 import type { Expression } from '../../components/avatar/expressions';
-import type { ItemType, Level, TopicId } from '../../content/demo-data';
+import type { Intent, ItemType, Level, SessionId, TopicId } from '../../content/demo-data';
 import type { HelpMode, Kind, Preset } from '../../features/guide/types';
 
 type ModeCopy = { label: string; desc: string; short: string; tag: string };
 type Reply = string | ((at: string) => string);
+/** One turn of a saved conversation; Metis turns carry the rule tag they were sent with. */
+type Turn = { from: 'student' | 'metis'; text: string; tag?: string };
 
 /**
  * English copy (base language). Leaves are plain strings or functions for interpolation — never HTML.
@@ -28,7 +30,13 @@ export const en = {
     tagline: 'AI assessments · for instructors and students',
     login: 'Log in',
     cta: 'Create assessment →',
-    nav: { guide: 'AI guide', configure: 'Configure', results: 'Results', spec: 'Spec' },
+    nav: {
+      guide: 'AI guide',
+      configure: 'Configure',
+      results: 'Results',
+      insights: 'Insights',
+      spec: 'Spec',
+    },
   },
   hero: {
     meta: ['01 — Platform', 'Create · Share · Understand', 'Works with Canvas LMS'],
@@ -50,7 +58,8 @@ export const en = {
       online: 'Online',
       name: 'Metis',
       inEveryLink: 'In every student link',
-      expressionsLabel: 'Metis expressions',
+      pause: 'Pause the Metis carousel',
+      play: 'Play the Metis carousel',
       aria: (expression: string) => `Metis, the AI guide, ${expression}`,
     },
     expressions: {
@@ -68,6 +77,7 @@ export const en = {
     'Item 05 flagged for review',
     'Lesson_06.pdf → 12 items suggested',
     'Average accuracy 74%',
+    '17 conversations saved · most asked: consumer surplus',
   ],
   guide: {
     kicker: '02 — AI guide',
@@ -254,11 +264,120 @@ export const en = {
     review: 'Review',
     summaryLabel: 'Metis · summary for the instructor',
     summary: 'Item 05 drew 6 of the 11 hints. Consumer surplus is worth revisiting before the next unit.',
-    hintLog: 'See the hint log →',
+    seeConversations: 'See the conversations →',
     avatarLabel: 'Metis reviewing the results, with reading glasses',
   },
+  insights: {
+    kicker: '05 — Conversation insights',
+    title: 'Every question to Metis is saved. Read them as data.',
+    lead: "Each student's chat with Metis is stored with the assessment results. Open any conversation, see what the class asked most, and find the moment the exam got hard.",
+    stats: {
+      asked: 'Students who asked',
+      questions: 'Questions to Metis',
+      peak: (item: string) => `Peak · item ${item}`,
+      minutes: 'min',
+    },
+    intents: {
+      heading: 'What students ask Metis',
+      names: {
+        concept: 'Explain a concept',
+        check: 'Check an answer',
+        answer: 'Ask for the answer',
+        start: 'Know where to start',
+      } as Record<Intent, string>,
+      examples: {
+        concept: 'What does consumer surplus mean?',
+        check: 'Is it $40?',
+        answer: 'Just tell me the answer.',
+        start: "I don't know where to start.",
+      } as Record<Intent, string>,
+      withheld: 'Answer withheld every time',
+    },
+    timeline: {
+      heading: 'Questions during the exam',
+      caption: 'Questions to Metis per 5-minute block',
+      label:
+        'Line chart: questions to Metis rose to a peak of 17 between minutes 20 and 25, while students worked on item 05, then fell toward the end of the exam.',
+      axis: (minute: number) => `${minute} min`,
+      peak: (item: string, n: number) => `Item ${item} · ${n}`,
+    },
+    sessions: {
+      heading: 'Review any conversation',
+      listLabel: 'Saved conversations',
+      student: (n: string) => `Student ${n}`,
+      meta: (item: string, minute: number, count: number) =>
+        `Item ${item} · min ${minute} · ${count} messages`,
+      transcriptLabel: (student: string) => `Conversation between ${student} and Metis`,
+      item: (item: string, topic: string) => `Item ${item} · ${topic}`,
+      saved: 'Saved with the assessment results · read-only',
+      transcripts: {
+        s07: [
+          { from: 'student', text: 'What does consumer surplus mean?' },
+          {
+            from: 'metis',
+            text: 'It compares what buyers were willing to pay with what they actually paid. Where on the demand curve could you see that gap?',
+            tag: 'HINT 1/3',
+          },
+          { from: 'student', text: 'The area under the curve and above the price?' },
+          {
+            from: 'metis',
+            text: 'Good. What shape is that area, and how would you find its size?',
+            tag: 'SOCRATIC',
+          },
+        ],
+        s12: [
+          { from: 'student', text: 'Is it $40?' },
+          {
+            from: 'metis',
+            text: "I won't confirm it yet. At $40, how many units are supplied and how many are demanded?",
+            tag: 'ANSWER WITHHELD',
+          },
+          { from: 'student', text: '30 and 30.' },
+          {
+            from: 'metis',
+            text: 'Then what does that tell you about $40? Write your reasoning in the answer box.',
+            tag: 'HINT 2/3',
+          },
+        ],
+        s19: [
+          { from: 'student', text: 'Just give me the answer for item 05.' },
+          {
+            from: 'metis',
+            text: "I can't give you the answer, but we can get there. What price did buyers pay, and how much were they willing to pay?",
+            tag: 'ANSWER WITHHELD',
+          },
+          { from: 'student', text: 'They paid $30 and would pay up to $50.' },
+          {
+            from: 'metis',
+            text: 'So each buyer kept part of that difference. How would you add it up for everyone?',
+            tag: 'HINT 1/3',
+          },
+        ],
+        s23: [
+          { from: 'student', text: "I don't know where to start." },
+          {
+            from: 'metis',
+            text: 'Start with the table. What happens to quantity demanded as the price goes up?',
+            tag: 'HINT 1/3',
+          },
+          { from: 'student', text: 'It goes down.' },
+          {
+            from: 'metis',
+            text: 'Right. That is the law of demand. Lesson 4, p. 04 explains why.',
+            tag: 'SOURCE P. 04',
+          },
+        ],
+      } as Record<SessionId, Turn[]>,
+    },
+    trend: {
+      label: 'Metis · trend for the instructor',
+      text: '8 of the 17 students who used Metis asked what consumer surplus means, all during item 05, where questions peaked. Revisit the definition before the next unit.',
+      basis: 'Based on 64 questions from 17 conversations',
+      avatarLabel: 'Metis thinking about the class conversations',
+    },
+  },
   spec: {
-    kicker: '05 — Spec sheet',
+    kicker: '06 — Spec sheet',
     title: 'What Metis does, without adjectives.',
     rows: [
       { id: 'input', k: 'Input', v: 'PDFs, documents, slides, and notes. Drag and drop.' },
@@ -279,12 +398,17 @@ export const en = {
         v: 'Metis, an agent in the student link that gives hints following your rules. Never reveals the answer.',
       },
       { id: 'results', k: 'Results', v: "By item, by student, and by topic, as soon as it's submitted." },
+      {
+        id: 'conversations',
+        k: 'Conversations',
+        v: 'Every chat with Metis is saved with the results. Review it by student, see the most common questions, and spot trends.',
+      },
       { id: 'sources', k: 'Sources', v: 'Each item points to its passage in the source material.' },
       { id: 'integration', k: 'Integration', v: 'Works with Canvas LMS. Exports to PDF and Word.' },
     ],
   },
   cta: {
-    kicker: '06 — Get started',
+    kicker: '07 — Get started',
     title: 'Start with one file',
     note: 'No credit card · set up in 2 minutes',
     primary: 'Create a free assessment →',

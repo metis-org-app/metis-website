@@ -22,6 +22,8 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 7. Turning the AI guide off cancels any pending reply and the demo.
 8. The hero Metis card is a labelled group, not an `<aside>`.
 9. The travelling square in the pipeline animates `transform` instead of `left`.
-10. "See the hint log" links to the guide section.
+10. The results summary links to the new conversation-insights section ("See the conversations"), which is not in the prototype.
 11. Unused keyframes from the prototype (scan, corner, say) are dropped.
 12. The brand is "Metis" (no "Campus").
+13. The hero card cycles through Metis's six expressions on its own, with a pause button and progress segments, instead of expression buttons.
+14. A "Conversation insights" section (05) follows Results: saved student chats, common questions, a question timeline and a Metis trend note. Spec and CTA become 06 and 07.

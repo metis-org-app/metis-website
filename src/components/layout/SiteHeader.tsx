@@ -11,6 +11,7 @@ export function SiteHeader() {
     { href: `#${SECTION_IDS.guide}`, label: m.header.nav.guide },
     { href: `#${SECTION_IDS.configure}`, label: m.header.nav.configure },
     { href: `#${SECTION_IDS.results}`, label: m.header.nav.results },
+    { href: `#${SECTION_IDS.insights}`, label: m.header.nav.insights },
     { href: `#${SECTION_IDS.spec}`, label: m.header.nav.spec },
   ];
 

@@ -155,8 +155,8 @@ export function ResultsSection() {
             </span>
             <p className="m-0 text-[17px]">{m.results.summary}</p>
           </div>
-          <ButtonLink href={`#${SECTION_IDS.guide}`} variant="outline" size="sm">
-            {m.results.hintLog}
+          <ButtonLink href={`#${SECTION_IDS.insights}`} variant="outline" size="sm">
+            {m.results.seeConversations}
           </ButtonLink>
         </div>
       </div>
