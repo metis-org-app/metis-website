@@ -74,8 +74,8 @@ src/
   test/                setup (browser mocks), axe helper, render with providers
 ```
 
-Sections and their anchors: `#inicio` (hero), `#guia` (02, AI guide chat), `#configurar` (03),
-`#resultados` (04), `#conversaciones` (05, saved conversations and insights), `#ficha` (06, spec sheet),
+Sections and their anchors (English in both languages): `#home` (hero), `#guide` (02, AI guide chat),
+`#configure` (03), `#results` (04), `#insights` (05, saved conversations), `#spec` (06, spec sheet),
 then the call to action (07).
 
 ## Text and languages

@@ -1,3 +1,5 @@
+import { SECTION_IDS } from '../content/demo-data';
+
 /**
  * Outbound links, configured through `VITE_*` environment variables (see `.env.example`).
  * Only safe schemes are accepted, and a missing link is never rendered as a dead `#`.
@@ -20,7 +22,7 @@ export interface SiteLinks {
   terms: string | null;
 }
 
-export const APP_FALLBACK = '#configurar';
+export const APP_FALLBACK = `#${SECTION_IDS.configure}`;
 
 interface SanitizeOptions {
   allowMailto?: boolean;

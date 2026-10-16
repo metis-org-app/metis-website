@@ -45,7 +45,7 @@ describe('ResultsSection', () => {
     ).toHaveClass('mt-e-reviewing');
     expect(screen.getByRole('link', { name: 'See the conversations →' })).toHaveAttribute(
       'href',
-      '#conversaciones',
+      '#insights',
     );
   });
 });

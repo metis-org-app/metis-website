@@ -1,6 +1,6 @@
 /**
  * Language-independent sample data for the interactive demos.
- * Numbers and ids come from the approved prototype (design/index-e/Indice.dc.html).
+ * Numbers come from the approved prototype (design/index-e/Index.dc.html).
  */
 
 export const ITEM_TYPES = ['mc', 'tf', 'short', 'match'] as const;
@@ -51,14 +51,14 @@ export const ITEM_ACCURACY: ReadonlyArray<{ num: string; topic: TopicId; pct: nu
   { num: '01', topic: 'demand', pct: 93 },
 ];
 
-/** Section anchors (kept from the design). */
+/** Section anchors for in-page links (`#guide`, `#insights`…), the same in every language. */
 export const SECTION_IDS = {
-  home: 'inicio',
-  guide: 'guia',
-  configure: 'configurar',
-  results: 'resultados',
-  insights: 'conversaciones',
-  spec: 'ficha',
+  home: 'home',
+  guide: 'guide',
+  configure: 'configure',
+  results: 'results',
+  insights: 'insights',
+  spec: 'spec',
 } as const;
 
 /** Conversation insights: what students asked Metis during the assessment (Quiz 02, 45 minutes). */

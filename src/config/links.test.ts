@@ -62,6 +62,6 @@ describe('isExternal', () => {
   it('distinguishes external URLs from in-page anchors', () => {
     expect(isExternal('https://x.test')).toBe(true);
     expect(isExternal('mailto:a@b.test')).toBe(true);
-    expect(isExternal('#configurar')).toBe(false);
+    expect(isExternal('#configure')).toBe(false);
   });
 });

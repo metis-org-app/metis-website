@@ -4,7 +4,7 @@ This folder keeps the approved design for the Metis landing page so the implemen
 
 | File | What it is |
 |---|---|
-| `Indice.dc.html` | The approved prototype (a Design Component). Markup, copy (English), interactions and animations; the logic lives in the `Component` class at the bottom (`renderVals()`). `@@MT_INNER@@` marks where the avatar SVG is inlined and `/*@@MT_CSS@@*/` where the avatar CSS goes. |
+| `Index.dc.html` | The approved prototype (a Design Component). Markup, copy (English), interactions and animations; the logic lives in the `Component` class at the bottom (`renderVals()`). `@@MT_INNER@@` marks where the avatar SVG is inlined and `/*@@MT_CSS@@*/` where the avatar CSS goes. |
 | `MetisAvatar.dc.html` | Spec board for the vector avatar: the six expressions and where each one is used. |
 | `metis-avatar.reference.svg` | Standalone animated avatar. Open it in any browser to see the original motion. |
 | `glossary.es.md` | English → Spanish terms and tone, taken from the Spanish version of the prototype. |
@@ -28,3 +28,4 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 13. The hero card cycles through Metis's six expressions on its own, with a pause button and progress segments, instead of expression buttons.
 14. A "Conversation insights" section (05) follows Results: saved student chats, common questions, a question timeline and a Metis trend note. Spec and CTA become 06 and 07.
 15. The scrolling ticker band under the hero is removed: it repeated the Results figures and added constant motion next to the hero carousel.
+16. Section anchors are in English (`#guide`, `#configure`, `#results`, `#insights`, `#spec`) instead of the prototype's Spanish ids (`#guia`, `#configurar`…), for both languages.
