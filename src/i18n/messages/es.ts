@@ -252,36 +252,143 @@ export const es: Messages = {
   },
   insights: {
     title: 'Cada pregunta que le hacen a Metis queda guardada.',
-    lead: 'Los chats se guardan junto con los resultados de la evaluación. Puedes leer la conversación de cualquier estudiante, ver qué preguntó más el grupo y encontrar el momento del examen en que se acumularon las preguntas.',
+    lead: 'Los chats se guardan junto con los resultados de la evaluación. Puedes leer la conversación de cualquier estudiante, ver de qué preguntó el grupo, comprobar que Metis nunca dio una respuesta y seguir cuánto se apoyan en ella de una evaluación a otra.',
     stats: {
       asked: 'Estudiantes que preguntaron',
       questions: 'Preguntas a Metis',
       peak: (item: string) => `Pico · ítem ${item}`,
       minutes: 'min',
     },
-    intents: {
-      heading: 'Qué le preguntan a Metis',
-      names: {
-        concept: 'Explicar un concepto',
-        check: 'Comprobar una respuesta',
-        answer: 'Pedir la respuesta',
-        start: 'Saber por dónde empezar',
+    analyses: {
+      heading: 'Lo que Metis analiza en las conversaciones',
+      carousel: 'carrusel',
+      slide: 'diapositiva',
+      tabsLabel: 'Análisis',
+      position: (n: number, total: number) => `${n} de ${total}`,
+      previous: 'Análisis anterior',
+      next: 'Análisis siguiente',
+      pause: 'Pausar el carrusel de análisis',
+      play: 'Reanudar el carrusel de análisis',
+      computes: 'Qué calcula Metis',
+      showData: 'Ver los datos',
+      slides: {
+        integrity: {
+          tab: 'Integridad',
+          kicker: 'Integridad y confianza en la IA',
+          title: 'Un segundo modelo revisó las 64 respuestas de Metis. Ninguna reveló la solución.',
+          points: [
+            'Cada respuesta se compara con tus reglas: si reveló la solución, si respetó el estilo de ayuda y si citó el material.',
+            'Metis cuenta los intentos de sacarle la respuesta y cuántos resistió.',
+            'Se marcan las respuestas de estudiantes que copian la redacción de Metis.',
+          ],
+          method: 'Cada respuesta se revisa con las reglas que estaban activas cuando se envió.',
+        },
+        semantic: {
+          tab: 'De qué hablan',
+          kicker: 'De qué hablan realmente',
+          title:
+            'Las dudas se concentran en la p. 08 de la Lección 4, mientras el grupo resuelve el ítem 05.',
+          points: [
+            'Las preguntas se agrupan por significado, aunque cada estudiante las escriba distinto.',
+            'Cada pregunta se conecta con el pasaje del material que la responde.',
+            'Aparecen solos los enunciados poco claros y los términos que el grupo confunde.',
+          ],
+          method: 'Preguntas y material se comparan por significado con embeddings de modelos de lenguaje.',
+        },
+        evidence: {
+          tab: 'Con evidencia',
+          kicker: 'Interpretación con evidencia',
+          title: 'Tres ideas erróneas explican 11 de las 14 respuestas incorrectas del ítem 05.',
+          points: [
+            'Un modelo de lenguaje lee lo que escribió cada estudiante y nombra la idea que hay detrás.',
+            'Cada hallazgo enlaza con las conversaciones de donde sale.',
+            'La recomendación para la clase cita sus fuentes, así que puedes comprobarla.',
+          ],
+          method:
+            'Las conversaciones se leen junto a las respuestas entregadas; cada hallazgo conserva sus citas.',
+        },
+        longitudinal: {
+          tab: 'En el tiempo',
+          kicker: 'A lo largo del curso',
+          title: 'Las preguntas a Metis por estudiante bajaron de 3 a 1 entre el Quiz 01 y el Quiz 04.',
+          points: [
+            'Se sigue cuánto se apoya en Metis cada estudiante y el grupo, de una evaluación a la siguiente.',
+            'La ayuda sobre un tema se contrasta con las respuestas posteriores sobre ese mismo tema.',
+            'Se avisa a tiempo de quienes piden respuestas una y otra vez, muestran frustración y obtienen notas bajas.',
+          ],
+          method: 'Mediana y 50 % central del mismo grupo de estudiantes en cada evaluación.',
+        },
       },
-      examples: {
-        concept: '¿Qué significa excedente del consumidor?',
-        check: '¿Es $40?',
-        answer: 'Solo dime la respuesta.',
-        start: 'No sé por dónde empezar.',
+      integrity: {
+        caption: 'Auditoría de las respuestas de Metis · cada cuadro es una respuesta',
+        legend: {
+          cited: 'Respetó tus reglas y citó el material',
+          followed: 'Respetó tus reglas, sin cita',
+          offMode: 'Se salió del estilo de ayuda',
+          revealed: 'Reveló la respuesta',
+        },
+        summary: (total: number, cited: number, followed: number, offMode: number, revealed: number) =>
+          `${total} respuestas: ${cited} respetaron las reglas y citaron el material, ${followed} respetaron las reglas sin cita, ${offMode} se salieron del estilo de ayuda y ${revealed} revelaron la respuesta.`,
+        revealed: 'Respuestas reveladas',
+        revealedValue: (n: number, total: number) => `${n} de ${total}`,
+        attempts: 'Intentos de sacar la respuesta',
+        attemptsNote: (n: number) => `los ${n} resistidos`,
+        copied: 'Respuestas que copian a Metis',
+        columns: { category: 'Categoría', replies: 'Respuestas' },
       },
-      withheld: 'Respuesta reservada siempre',
-    },
-    timeline: {
-      heading: 'Preguntas durante el examen',
-      caption: 'Preguntas a Metis por bloque de 5 minutos',
-      label:
-        'Gráfica de línea: las preguntas a Metis subieron hasta un pico de 17 entre los minutos 20 y 25, mientras el grupo resolvía el ítem 05, y bajaron hacia el final del examen.',
-      axis: (minute: number) => `${minute} min`,
-      peak: (item: string, n: number) => `Ítem ${item} · ${n}`,
+      semantic: {
+        caption: 'Preguntas por ítem y página de la Lección 4',
+        item: (item: string) => `Ítem ${item}`,
+        page: (page: string) => `p. ${page}`,
+        legend: 'Preguntas por celda',
+        hottest: 'Más preguntas',
+        summary: (total: number, max: number, item: string, page: string) =>
+          `Mapa de calor de ${total} preguntas por ítem y página de la Lección 4. La mayoría, ${max}, son sobre la página ${page} durante el ítem ${item}.`,
+        clustersTitle: 'Grupos de preguntas más grandes',
+        questions: (n: number) => `${n} preguntas`,
+        clusters: {
+          surplus: {
+            label: 'Qué es el excedente del consumidor',
+            quote: '¿Es lo que pagaron o lo que estaban dispuestos a pagar?',
+          },
+          table: { label: 'Cómo leer la tabla de precios', quote: '¿Cuál columna es la cantidad demandada?' },
+          prompt: { label: 'Qué pide el ítem 04', quote: '¿Quieren el número o la explicación?' },
+        },
+        columns: { item: 'Ítem', total: 'Total' },
+      },
+      evidence: {
+        caption: 'Ideas detrás de las respuestas incorrectas del ítem 05',
+        names: {
+          pricePaid: 'Confunde el excedente con el precio pagado',
+          wholeArea: 'Toma toda el área bajo la curva de demanda',
+          quantities: 'Resta cantidades en lugar de precios',
+          unclear: 'Sin un patrón claro',
+        },
+        students: (n: number) => `${n} estudiantes`,
+        summary: (named: number, incorrect: number) =>
+          `Gráfica de barras: tres ideas erróneas explican ${named} de las ${incorrect} respuestas incorrectas del ítem 05; la más común es confundir el excedente con el precio pagado.`,
+        quotesTitle: 'Evidencia',
+        quotes: [
+          { who: 'Estudiante 04 · min 22', text: 'Entonces, ¿el excedente son los $30 que pagaron?' },
+          { who: 'Estudiante 15 · min 24', text: 'Sumé todo lo que queda bajo la curva de demanda.' },
+        ],
+        teachTitle: 'Qué enseñar el lunes',
+        teach:
+          'Vuelve a la definición con la tabla de precios de la p. 08. Pregunta cuánto estaba dispuesto a pagar cada comprador y compáralo con el precio que pagó.',
+        columns: { belief: 'Idea', students: 'Estudiantes' },
+      },
+      longitudinal: {
+        caption: 'Preguntas a Metis por estudiante (mediana)',
+        band: '50 % central de estudiantes',
+        quiz: (quiz: string) => `Quiz ${quiz}`,
+        current: 'Esta evaluación',
+        summary: (from: string, to: string) =>
+          `Gráfica de línea: la mediana de preguntas a Metis por estudiante pasó de ${from} en el Quiz 01 a ${to} en el Quiz 04, y la diferencia entre estudiantes se redujo.`,
+        answerRequests: 'Pedidos de la respuesta',
+        transfer: 'Acertaron excedente en el Quiz 03 tras preguntar por él',
+        earlyWarning: 'Estudiantes para contactar',
+        columns: { quiz: 'Evaluación', median: 'Mediana', range: '50 % central' },
+      },
     },
     sessions: {
       heading: 'Revisa cualquier conversación',

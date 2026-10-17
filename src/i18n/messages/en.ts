@@ -1,5 +1,13 @@
 import type { Expression } from '../../components/avatar/expressions';
-import type { Intent, ItemType, Level, SessionId, TopicId } from '../../content/demo-data';
+import type {
+  AuditCategory,
+  ItemType,
+  Level,
+  MeaningClusterId,
+  MisconceptionId,
+  SessionId,
+  TopicId,
+} from '../../content/demo-data';
 import type { HelpMode, Kind, Preset } from '../../features/guide/types';
 
 type ModeCopy = { label: string; desc: string; short: string; tag: string };
@@ -263,36 +271,144 @@ export const en = {
   },
   insights: {
     title: 'Every question students ask Metis is saved.',
-    lead: "Chats are stored with the assessment results. You can read any student's conversation, see what the class asked most, and find the point in the exam where questions piled up.",
+    lead: "Chats are stored with the assessment results. You can read any student's conversation, see what the class asked about, check that Metis never gave an answer away and follow how students rely on it from one assessment to the next.",
     stats: {
       asked: 'Students who asked',
       questions: 'Questions to Metis',
       peak: (item: string) => `Peak · item ${item}`,
       minutes: 'min',
     },
-    intents: {
-      heading: 'What students ask Metis',
-      names: {
-        concept: 'Explain a concept',
-        check: 'Check an answer',
-        answer: 'Ask for the answer',
-        start: 'Know where to start',
-      } as Record<Intent, string>,
-      examples: {
-        concept: 'What does consumer surplus mean?',
-        check: 'Is it $40?',
-        answer: 'Just tell me the answer.',
-        start: "I don't know where to start.",
-      } as Record<Intent, string>,
-      withheld: 'Answer withheld every time',
-    },
-    timeline: {
-      heading: 'Questions during the exam',
-      caption: 'Questions to Metis per 5-minute block',
-      label:
-        'Line chart: questions to Metis rose to a peak of 17 between minutes 20 and 25, while students worked on item 05, then fell toward the end of the exam.',
-      axis: (minute: number) => `${minute} min`,
-      peak: (item: string, n: number) => `Item ${item} · ${n}`,
+    analyses: {
+      heading: 'What Metis analyzes in the conversations',
+      carousel: 'carousel',
+      slide: 'slide',
+      tabsLabel: 'Analyses',
+      position: (n: number, total: number) => `${n} of ${total}`,
+      previous: 'Previous analysis',
+      next: 'Next analysis',
+      pause: 'Pause the analyses carousel',
+      play: 'Play the analyses carousel',
+      computes: 'What Metis calculates',
+      showData: 'See the data',
+      slides: {
+        integrity: {
+          tab: 'Integrity',
+          kicker: 'Integrity and trust in AI',
+          title: 'A second model reviewed all 64 replies from Metis. None gave the answer away.',
+          points: [
+            'Each reply is checked against your rules: whether it revealed the answer, kept to the help style and cited the material.',
+            'Metis counts the attempts to get the answer out of it, and how many it held back.',
+            'Student answers that copy the wording of Metis are flagged.',
+          ],
+          method: 'Each reply is checked against the rules that were active when it was sent.',
+        },
+        semantic: {
+          tab: 'What they ask',
+          kicker: 'What students really talk about',
+          title: 'Questions pile up on page 08 of Lesson 4, while students work on item 05.',
+          points: [
+            'Questions are grouped by meaning, even when students word them differently.',
+            'Each question is linked to the passage of the material that answers it.',
+            'Unclear item wording and terms students mix up show up on their own.',
+          ],
+          method: 'Questions and course material are compared by meaning with language-model embeddings.',
+        },
+        evidence: {
+          tab: 'With evidence',
+          kicker: 'Interpretation with evidence',
+          title: 'Three misconceptions explain 11 of the 14 wrong answers on item 05.',
+          points: [
+            'A language model reads what each student wrote and names the belief behind it.',
+            'Every finding links to the conversations it comes from.',
+            'The teaching recommendation cites its sources, so you can check it.',
+          ],
+          method: 'Conversations are read next to the submitted answers; each finding keeps its quotes.',
+        },
+        longitudinal: {
+          tab: 'Over time',
+          kicker: 'Across the course',
+          title: 'Questions to Metis per student fell from 3 to 1 between Quiz 01 and Quiz 04.',
+          points: [
+            'Reliance on Metis is tracked for each student and for the class, assessment after assessment.',
+            'Help on a topic is checked against later answers on that same topic.',
+            'Students who keep asking for answers, show frustration and score low are flagged early.',
+          ],
+          method: 'Median and middle 50% of the same group of students in each assessment.',
+        },
+      },
+      integrity: {
+        caption: 'Audit of the replies from Metis · each square is one reply',
+        legend: {
+          cited: 'Followed your rules and cited the material',
+          followed: 'Followed your rules, no citation',
+          offMode: 'Drifted from the help style',
+          revealed: 'Revealed the answer',
+        } as Record<AuditCategory, string>,
+        summary: (total: number, cited: number, followed: number, offMode: number, revealed: number) =>
+          `${total} replies: ${cited} followed the rules and cited the material, ${followed} followed the rules without a citation, ${offMode} drifted from the help style and ${revealed} revealed the answer.`,
+        revealed: 'Answers revealed',
+        revealedValue: (n: number, total: number) => `${n} of ${total}`,
+        attempts: 'Attempts to get the answer',
+        attemptsNote: (n: number) => `all ${n} held back`,
+        copied: 'Answers that copy Metis',
+        columns: { category: 'Category', replies: 'Replies' },
+      },
+      semantic: {
+        caption: 'Questions by item and page of Lesson 4',
+        item: (item: string) => `Item ${item}`,
+        page: (page: string) => `p. ${page}`,
+        legend: 'Questions per cell',
+        hottest: 'Most questions',
+        summary: (total: number, max: number, item: string, page: string) =>
+          `Heat map of ${total} questions by item and page of Lesson 4. The most, ${max}, are about page ${page} during item ${item}.`,
+        clustersTitle: 'Largest groups of questions',
+        questions: (n: number) => `${n} questions`,
+        clusters: {
+          surplus: {
+            label: 'What consumer surplus means',
+            quote: 'Is it what they paid or what they were willing to pay?',
+          },
+          table: { label: 'How to read the price table', quote: 'Which column is the quantity demanded?' },
+          prompt: {
+            label: 'What item 04 is asking for',
+            quote: 'Do they want the number or the explanation?',
+          },
+        } as Record<MeaningClusterId, { label: string; quote: string }>,
+        columns: { item: 'Item', total: 'Total' },
+      },
+      evidence: {
+        caption: 'Beliefs behind the wrong answers on item 05',
+        names: {
+          pricePaid: 'Mixes up surplus with the price paid',
+          wholeArea: 'Takes the whole area under the demand curve',
+          quantities: 'Subtracts quantities instead of prices',
+          unclear: 'No clear pattern',
+        } as Record<MisconceptionId, string>,
+        students: (n: number) => `${n} students`,
+        summary: (named: number, incorrect: number) =>
+          `Bar chart: three misconceptions explain ${named} of the ${incorrect} wrong answers on item 05; the largest is mixing up surplus with the price paid.`,
+        quotesTitle: 'Evidence',
+        quotes: [
+          { who: 'Student 04 · min 22', text: 'So the surplus is the $30 they paid, right?' },
+          { who: 'Student 15 · min 24', text: 'I added up everything under the demand curve.' },
+        ],
+        teachTitle: 'What to teach on Monday',
+        teach:
+          'Go back to the definition with the price table on page 08. Ask what each buyer was willing to pay, then compare it with the price they paid.',
+        columns: { belief: 'Belief', students: 'Students' },
+      },
+      longitudinal: {
+        caption: 'Questions to Metis per student (median)',
+        band: 'Middle 50% of students',
+        quiz: (quiz: string) => `Quiz ${quiz}`,
+        current: 'This assessment',
+        summary: (from: string, to: string) =>
+          `Line chart: the median number of questions to Metis per student went from ${from} in Quiz 01 to ${to} in Quiz 04, and the spread between students narrowed.`,
+        answerRequests: 'Requests for the answer',
+        transfer: 'Right on surplus in Quiz 03 after asking about it',
+        earlyWarning: 'Students to reach out to',
+        columns: { quiz: 'Assessment', median: 'Median', range: 'Middle 50%' },
+      },
     },
     sessions: {
       heading: 'Review any conversation',

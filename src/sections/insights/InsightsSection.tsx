@@ -4,7 +4,6 @@ import { SampleDataNote } from '../../components/ui/SampleDataNote';
 import { SectionIntro } from '../../components/ui/SectionIntro';
 import {
   INSIGHTS,
-  INTENT_SHARES,
   QUESTION_TIMELINE,
   SECTION_IDS,
   TIMELINE_BLOCK_MINUTES,
@@ -13,12 +12,10 @@ import {
 import { useInView } from '../../hooks/useInView';
 import { useI18n } from '../../i18n/useI18n';
 import { ConversationReview } from './ConversationReview';
-import { QuestionTimeline } from './QuestionTimeline';
-import { useHydrated } from '../../hooks/useHydrated';
+import { AnalysisCarousel } from './AnalysisCarousel';
 
 const SERIES: readonly number[] = QUESTION_TIMELINE;
 const PEAK_START = SERIES.indexOf(Math.max(...SERIES)) * TIMELINE_BLOCK_MINUTES;
-const TOP_SHARE = Math.max(...INTENT_SHARES.map((s) => s.pct));
 
 function Stat({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -48,48 +45,6 @@ function Stats() {
         <span className="text-[22px] text-soft"> {copy.minutes}</span>
       </Stat>
     </dl>
-  );
-}
-
-function IntentShares({ active }: { active: boolean }) {
-  const { m } = useI18n();
-  // Inline styles only after hydration: the prerendered HTML must not carry style attributes (CSP).
-  const hydrated = useHydrated();
-  const copy = m.insights.intents;
-  return (
-    <div className="flex flex-col gap-3 lg:col-span-6">
-      <h3 className="label-mono m-0 border-b border-ink pb-3 text-xs font-normal text-soft">
-        {copy.heading}
-      </h3>
-      <ol className="m-0 flex list-none flex-col p-0">
-        {INTENT_SHARES.map(({ intent, pct }, i) => (
-          <li key={intent} className="flex flex-col gap-2 border-b border-line py-3">
-            <div className="flex items-baseline justify-between gap-3">
-              <span className="inline-flex flex-wrap items-center gap-2 font-semibold">
-                {copy.names[intent]}
-                {intent === 'answer' && (
-                  <span className="label-mono border border-ink px-1.5 py-0.5 text-xs font-normal">
-                    {copy.withheld}
-                  </span>
-                )}
-              </span>
-              <span className="shrink-0 font-mono text-sm whitespace-nowrap">{m.results.percent(pct)}</span>
-            </div>
-            <span aria-hidden="true" className="h-2 bg-line2">
-              <span
-                className={`block h-full origin-left bg-ink ${active ? 'motion-safe:animate-bar-x' : ''}`}
-                style={
-                  hydrated
-                    ? { width: `${(pct / TOP_SHARE) * 100}%`, animationDelay: `${i * 0.08}s` }
-                    : undefined
-                }
-              />
-            </span>
-            <q className="font-mono text-[13px] text-soft">{copy.examples[intent]}</q>
-          </li>
-        ))}
-      </ol>
-    </div>
   );
 }
 
@@ -135,10 +90,7 @@ export function InsightsSection() {
           <ConversationReview active={inView} />
           <TrendCard />
         </div>
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-12">
-          <IntentShares active={inView} />
-          <QuestionTimeline active={inView} />
-        </div>
+        <AnalysisCarousel />
       </div>
     </section>
   );

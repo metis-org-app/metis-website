@@ -75,7 +75,7 @@ src/
 ```
 
 Sections in page order, with their anchors (English in both languages): `#home` (hero), `#guide` (AI
-guide chat), `#configure`, `#results`, `#insights` (saved conversations), `#spec` (spec sheet), then the
+guide chat), `#configure`, `#results`, `#insights` (saved conversations and the advanced-analyses carousel), `#spec` (spec sheet), then the
 call to action.
 
 ## Text and languages

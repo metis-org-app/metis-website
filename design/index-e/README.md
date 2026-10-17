@@ -26,7 +26,7 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 11. Unused keyframes from the prototype (scan, corner, say) are dropped.
 12. The brand is "Metis" (no "Campus").
 13. The hero card cycles through Metis's six expressions on its own, with a pause button and progress segments, instead of expression buttons.
-14. A "Conversation insights" section follows Results: saved student chats, common questions, a question timeline and a Metis trend note.
+14. A "Conversation insights" section follows Results: saved student chats, a Metis trend note and the advanced-analyses carousel (see 26).
 15. The scrolling ticker band under the hero is removed: it repeated the Results figures and added constant motion next to the hero carousel.
 16. Section anchors are in English (`#guide`, `#configure`, `#results`, `#insights`, `#spec`) instead of the prototype's Spanish ids (`#guia`, `#configurar`…), for both languages.
 17. The header tagline ("AI assessments · for instructors and students") is removed.
@@ -38,3 +38,4 @@ The prototype is **normative for layout, copy, interactions and motion**. It is 
 23. In charts the accent marks only what needs attention (low scores, the flagged item, the question peak), with a legend on the histogram; the "0 answers revealed" figure and the top intent bar are ink.
 24. The hero text is readable from the first frame: it only slides into place (no fade or blur), so the headline and the buttons do not wait for an animation.
 25. Canvas LMS is not mentioned: the hero label above the headline is gone, and the spec sheet's "Integration" row became "Export" (PDF and Word).
+26. The insights section ends with a carousel of four advanced analyses, each with what Metis calculates and a chart chosen with UI/UX Pro Max: an audit waffle (integrity), a material heat map (semantic), ranked misconception bars with quotes (evidence) and a reliance trend with a middle-50% band (longitudinal). It rotates every 9 s on wide screens only, pauses on hover, focus or the pause button, and each chart has a "See the data" table.

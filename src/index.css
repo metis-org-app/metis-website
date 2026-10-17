@@ -46,6 +46,8 @@
   --animate-sweep: sweep 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
   --animate-nudge: nudge 1.4s ease-in-out 3;
   --animate-progress: progress 3.6s linear both;
+  /* Analyses carousel: one slide every 9 s (SLIDE_MS in AnalysisCarousel.tsx). */
+  --animate-slide: progress 9s linear both;
   --animate-draw: draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both;
 
   @keyframes rise {

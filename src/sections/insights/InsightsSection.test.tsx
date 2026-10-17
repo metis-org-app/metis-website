@@ -1,7 +1,7 @@
 import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
-import { INTENT_SHARES, QUESTION_TIMELINE, SESSIONS } from '../../content/demo-data';
+import { SESSIONS } from '../../content/demo-data';
 import { expectNoAxeViolations } from '../../test/axe';
 import { renderWithProviders } from '../../test/render';
 import { InsightsSection } from './InsightsSection';
@@ -22,26 +22,14 @@ describe('InsightsSection', () => {
     expect(stats).toHaveTextContent('Peak · item 05');
   });
 
-  it('ranks what students ask, and the answer is always withheld', () => {
+  it('shows the advanced analyses carousel in place of the old charts', () => {
     renderWithProviders(<InsightsSection />);
-    const list = screen.getByRole('heading', { name: 'What students ask Metis' }).nextElementSibling!;
-    const rows = within(list as HTMLElement).getAllByRole('listitem');
-    expect(rows.map((row) => row.querySelector('.font-mono.text-sm')?.textContent)).toEqual(
-      INTENT_SHARES.map((s) => `${s.pct}%`),
-    );
-    expect(rows[2]).toHaveTextContent('Ask for the answer');
-    expect(rows[2]).toHaveTextContent('Answer withheld every time');
-    expect(rows[2]).toHaveTextContent('Just tell me the answer.');
-  });
-
-  it('charts the questions during the exam and marks the peak', () => {
-    renderWithProviders(<InsightsSection />);
-    const chart = screen.getByRole('img', { name: /^Line chart: questions to Metis rose to a peak of 17/ });
-    expect(chart).toHaveTextContent('Item 05 · 17');
-    expect(chart.querySelectorAll('rect[width="6"], rect[width="10"]')).toHaveLength(
-      QUESTION_TIMELINE.length,
-    );
-    expect(QUESTION_TIMELINE.reduce((a, b) => a + b, 0)).toBe(64);
+    expect(
+      screen.getByRole('region', { name: 'What Metis analyzes in the conversations' }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole('tab')).toHaveLength(4);
+    expect(screen.queryByText('What students ask Metis')).not.toBeInTheDocument();
+    expect(screen.queryByText('Questions during the exam')).not.toBeInTheDocument();
   });
 
   it('lets the instructor read any saved conversation', async () => {

@@ -16,11 +16,19 @@ export function mockReducedMotion(value: boolean): void {
   }
 }
 
+/** `(min-width: …)` queries match against the jsdom window width (1024 px unless a test changes it). */
+function minWidthMatches(query: string): boolean {
+  const found = /\(min-width:\s*([\d.]+)(px|rem)\)/.exec(query);
+  if (!found) return false;
+  const px = Number(found[1]) * (found[2] === 'rem' ? 16 : 1);
+  return window.innerWidth >= px;
+}
+
 function matchMedia(query: string): MediaQueryList {
   const isMotion = query.includes('prefers-reduced-motion');
   return {
     get matches() {
-      return isMotion ? reducedMotion : false;
+      return isMotion ? reducedMotion : minWidthMatches(query);
     },
     media: query,
     onchange: null,
