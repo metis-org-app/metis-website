@@ -3,10 +3,34 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
-# SPA fallback so future client-side routes work on direct links
+# No SPA catch-all: each language has its own prerendered page (/ and /en/),
+# so unknown paths return a real 404 instead of index.html with 200.
+
+# Visitors whose browser prefers English land on /en/ (Netlify matches the first Accept-Language entry).
+# The language switch sets the nf_lang cookie, which Netlify uses instead, so a chosen language sticks.
+# Crawlers usually send no Accept-Language and get the Spanish page, which is also the x-default.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/"
+  to = "/en/"
+  status = 302
+  force = true
+  conditions = {Language = ["en"]}
+
+# Keep in sync with SECURITY_HEADERS in vite.config.ts (checked by scripts/headers.test.ts).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+    X-Frame-Options = "DENY"
+    Cross-Origin-Opener-Policy = "same-origin"
+
+# Hashed build assets never change.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

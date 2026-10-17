@@ -1,44 +1,33 @@
-import { useEffect } from 'react';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import Marquee from './components/Marquee';
-import ProductPreview from './components/ProductPreview';
-import CanvasSection from './components/CanvasSection';
-import Features from './components/Features';
-import Steps from './components/Steps';
-import Showcase from './components/Showcase';
-import CTA from './components/CTA';
-import Footer from './components/Footer';
+import { SiteFooter } from './components/layout/SiteFooter';
+import { SiteHeader } from './components/layout/SiteHeader';
+import { SkipLink } from './components/layout/SkipLink';
+import { DemoProvider } from './features/guide/DemoProvider';
+import { ConfigureSection } from './sections/configure/ConfigureSection';
+import { CtaSection } from './sections/cta/CtaSection';
+import { GuideSection } from './sections/guide/GuideSection';
+import { HeroSection } from './sections/hero/HeroSection';
+import { InsightsSection } from './sections/insights/InsightsSection';
+import { ResultsSection } from './sections/results/ResultsSection';
+import { SpecSection } from './sections/spec/SpecSection';
 
 export default function App() {
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('on');
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12 },
-    );
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
   return (
     <>
-      <Nav />
-      <Hero />
-      <Marquee />
-      <ProductPreview />
-      <CanvasSection />
-      <Features />
-      <Steps />
-      <Showcase />
-      <CTA />
-      <Footer />
+      <SkipLink />
+      <SiteHeader />
+      <main id="main" tabIndex={-1} className="outline-none">
+        <HeroSection />
+        {/* The guide chat and the configurator share the guide rules. */}
+        <DemoProvider>
+          <GuideSection />
+          <ConfigureSection />
+        </DemoProvider>
+        <ResultsSection />
+        <InsightsSection />
+        <SpecSection />
+        <CtaSection />
+      </main>
+      <SiteFooter />
     </>
   );
 }

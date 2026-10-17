@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Metis avatar · SVG</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+.ma *{box-sizing:border-box}
+.ma h1,.ma p{margin:0}
+.ma button{font:inherit;cursor:pointer}
+.ma-mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+/*@@MT_CSS@@*/
+.ma .mt{display:block;width:100%;height:100%}
+</style>
+</helmet>
+<div class="ma" style="width: 1200px; height: 860px; background: #F3F2EE; color: #111111; font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; display: flex; gap: 48px; padding: 56px; border: 1px solid #111111">
+<div style="position: relative; width: 600px; height: 748px; flex-shrink: 0; display: flex; flex-direction: column; border: 1px solid #111111; background: {{t.stage}}; transition: background .3s">
+<div class="ma-mono" style="display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid {{t.rule}}; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: {{t.label}}"><span>Metis / {{stateName}}</span><span>viewBox 0 0 1192 1168</span></div>
+<div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px">
+<div style="width: 100%; aspect-ratio: 1192 / 1168"><svg class="mt {{stateCls}}" viewBox="0 0 1192 1168" role="img" aria-label="Metis, the Metis Campus guide, as an animated vector illustration" style="--mt-gold: {{t.gold}}; --mt-gold-dark: {{t.dark}}; --mt-gold-hi: {{t.hi}}; --mt-spark: {{t.spark}}">@@MT_INNER@@</svg></div>
+</div>
+</div>
+
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 26px">
+<span class="ma-mono" style="font-size: 13px; letter-spacing: .06em; text-transform: uppercase">Brand asset · vector avatar</span>
+<h1 style="font-weight: 600; font-stretch: 108%; font-size: 56px; line-height: .95; letter-spacing: -.04em">Metis, in vectors.</h1>
+<p style="font-size: 17px; line-height: 1.5; color: #55534E; text-wrap: pretty">Traced from the original illustration into layered SVG paths, with six expressions. Each part moves on its own, so Metis can listen, think, review, guide and celebrate inside the product.</p>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="ma-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #55534E">Expression · where it appears</span>
+<div role="group" aria-label="Avatar expression" style="display: flex; flex-direction: column; border-top: 1px solid #111111">
+<sc-for list="{{states}}" as="s" hint-placeholder-count="6">
+<button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 14px; align-items: center; min-height: 48px; padding: 8px 12px; border: 0; border-bottom: 1px solid #CFCCC4; background: {{s.bg}}; color: {{s.fg}}; text-align: left; transition: background .2s, color .2s">
+<span class="ma-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; font-weight: 500">{{s.label}}</span>
+<span style="font-size: 15px">{{s.use}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="ma-mono" style="font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #55534E">Color</span>
+<div role="group" aria-label="Avatar color" style="display: flex; gap: 8px; flex-wrap: wrap">
+<sc-for list="{{themes}}" as="th" hint-placeholder-count="4">
+<button type="button" onClick="{{th.pick}}" aria-pressed="{{th.on}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: {{th.border}}; background: #FFFFFF; color: #111111; font-size: 15px; font-weight: 600"><span style="width: 18px; height: 18px; background: {{th.swatch}}; border: 1px solid #111111"></span>{{th.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<span class="ma-mono" style="margin-top: auto; font-size: 12px; letter-spacing: .04em; line-height: 1.6; color: #55534E">Always moving: the owl blinks, the laurel catches the light, sparkles twinkle, books float, the body breathes. Layered SVG · about 105 KB · colors as CSS variables (--mt-ink, --mt-gold, --mt-paper…)</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":860}}'>
+class Component extends DCLogic {
+  state = { st: 'happy', theme: 'gold' };
+
+  renderVals() {
+    const s = this.state;
+    const STATES = [
+      { id: 'happy', label: 'Happy', cls: 'mt-e-happy', use: 'Default. Brand moments and headers.' },
+      { id: 'listening', label: 'Listening', cls: 'mt-e-listening', use: 'Chat is open, waiting for a question.' },
+      { id: 'thinking', label: 'Thinking', cls: 'mt-e-thinking', use: 'Preparing a hint. Thought bubble, owl sways.' },
+      { id: 'reviewing', label: 'Reviewing', cls: 'mt-e-reviewing', use: 'Results and rubric checks. Reading glasses.' },
+      { id: 'guiding', label: 'Guiding', cls: 'mt-e-guiding', use: 'Writing a hint. Speech bubble, mouth moves.' },
+      { id: 'celebrating', label: 'Celebrating', cls: 'mt-e-celebrating', use: 'A student gets there. Calls to action.' }
+    ];
+    const THEMES = {
+      gold: { label: 'Original gold', swatch: '#D0AE78', stage: '#FFFFFF', rule: '#CFCCC4', label2: '', gold: '#D0AE78', dark: '#6A4A1C', hi: '#F6E2B4', spark: '#141414' },
+      vermilion: { label: 'Vermilion', swatch: '#C9321F', stage: '#FBFAF8', rule: '#CFCCC4', gold: '#C9321F', dark: '#6B1A10', hi: '#F2A08F', spark: '#141414' },
+      cobalt: { label: 'Cobalt', swatch: '#1F48D6', stage: '#FBFAF8', rule: '#CFCCC4', gold: '#1F48D6', dark: '#0F2470', hi: '#9DB2F5', spark: '#141414' },
+      night: { label: 'Night', swatch: '#0A0F24', stage: '#0A0F24', rule: '#283163', gold: '#D9B56E', dark: '#6A4A1C', hi: '#F8E6B8', spark: '#EBC46B' }
+    };
+    const cur = STATES.find((x) => x.id === s.st) || STATES[0];
+    const t = THEMES[s.theme] || THEMES.gold;
+    return {
+      t: { ...t, label: s.theme === 'night' ? '#A9B0CE' : '#55534E' },
+      stateCls: cur.cls,
+      stateName: cur.label,
+      states: STATES.map((x) => {
+        const on = x.id === s.st;
+        return { label: x.label, use: x.use, on, bg: on ? '#111111' : 'transparent', fg: on ? '#F3F2EE' : '#111111', pick: () => this.setState({ st: x.id }) };
+      }),
+      themes: Object.keys(THEMES).map((k) => {
+        const on = k === s.theme;
+        return { label: THEMES[k].label, swatch: THEMES[k].swatch, on, border: on ? '2px solid #111111' : '1px solid #CFCCC4', pick: () => this.setState({ theme: k }) };
+      }),
+      parts: [
+        { k: 'Owl', v: 'Blinks every few seconds and tilts its head; sways side to side while Metis thinks.' },
+        { k: 'Laurel', v: 'Each leaf catches the light in turn, from the stem to the tip.' },
+        { k: 'Sparkles', v: 'Ten stars twinkle out of sync; they speed up while Metis thinks.' },
+        { k: 'Books', v: 'Float and turn gently on either side.' },
+        { k: 'Mouth', v: 'Moves while Metis writes a reply.' },
+        { k: 'Body', v: 'Breathes slowly, so the figure never feels frozen.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
