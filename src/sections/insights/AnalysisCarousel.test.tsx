@@ -6,7 +6,7 @@ import { mockReducedMotion } from '../../test/mocks';
 import { renderWithProviders } from '../../test/render';
 import { AnalysisCarousel, SLIDE_MS } from './AnalysisCarousel';
 
-const TABS = ['01 · Integrity', '02 · What they ask', '03 · With evidence', '04 · Over time'];
+const TABS = ['Integrity', 'What they ask', 'With evidence', 'Over time'];
 
 beforeEach(() => {
   vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
@@ -130,10 +130,10 @@ describe('AnalysisCarousel', () => {
       screen.getByRole('region', { name: 'Lo que Metis analiza en las conversaciones' }),
     ).toHaveAttribute('aria-roledescription', 'carrusel');
     expect(screen.getAllByRole('tab').map((tab) => tab.textContent)).toEqual([
-      '01 · Integridad',
-      '02 · De qué hablan',
-      '03 · Con evidencia',
-      '04 · En el tiempo',
+      'Integridad',
+      'De qué hablan',
+      'Con evidencia',
+      'En el tiempo',
     ]);
     expect(panels()[0]).toHaveAttribute('aria-label', '1 de 4');
   });

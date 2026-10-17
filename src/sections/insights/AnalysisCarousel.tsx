@@ -158,9 +158,7 @@ export function AnalysisCarousel() {
               onKeyDown={onTabKey}
               className={`flex min-h-12 flex-col justify-between gap-2 border-line px-4 pt-3 text-left transition-colors max-lg:odd:border-r max-lg:[&:nth-child(-n+2)]:border-b lg:[&:not(:last-child)]:border-r ${selected ? 'bg-bg text-ink' : 'text-soft hover:text-ink'}`}
             >
-              <span className="label-mono text-xs">
-                {String(i + 1).padStart(2, '0')} · {copy.slides[slide].tab}
-              </span>
+              <span className="label-mono text-xs">{copy.slides[slide].tab}</span>
               {/* Progress through the current slide while it rotates; a full bar marks the slide when paused. */}
               <span aria-hidden="true" className="block h-[3px] overflow-hidden bg-line2">
                 {selected && (
